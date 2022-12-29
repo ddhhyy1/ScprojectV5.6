@@ -81,11 +81,27 @@ public class TodayTicketController {
 		String sessionId = (String) session.getAttribute("userId");
 		MemberDao dao2 = sqlSession.getMapper(MemberDao.class);
 		
+		if(sessionId !=null) {
 		memberDto userP = dao2.getMemberInfo(sessionId);
 		String usingTicket = userP.getUsingTicket();
 		int uTicket = Integer.parseInt(usingTicket);
+			if(uTicket>=1) {
+				try {
+					response.setContentType("text/html; charset=UTF-8");      
+			        PrintWriter out;
+					out = response.getWriter();
+					out.println("<script>alert('중복예약은 불가능합니다'); history.go(-1);</script>");
+				    out.flush();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} return "ChooseTicket";
 		
-		if(sessionId==null) {
+			
+			}	
+		}
+		
+		if(sessionId ==null) {
 		try {
 			response.setContentType("text/html; charset=UTF-8");      
 	        PrintWriter out;
@@ -96,18 +112,6 @@ public class TodayTicketController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} return "ChooseTicket";
-		}else if(uTicket>=1){
-			try {
-			response.setContentType("text/html; charset=UTF-8");      
-	        PrintWriter out;
-			out = response.getWriter();
-			out.println("<script>alert('중복 예약은 불가능합니다.'); history.go(-1);</script>");
-		    out.flush();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-			return "ChooseTicket";
 		}else {
 			return "TodayTicketView";
 		}

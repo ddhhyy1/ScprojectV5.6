@@ -1,5 +1,8 @@
 package com.studycafe.prac.dao;
 
+import java.util.ArrayList;
+
+import com.studycafe.prac.dto.Criteria;
 import com.studycafe.prac.dto.memberDto;
 
 public interface MemberDao {
@@ -17,4 +20,11 @@ public interface MemberDao {
 			String userEmail, String userPoint);
 	
 	public void updateUticketPoint(String userId, String userPoint, String usingTicket);
+	
+	public ArrayList<memberDto> getAllMemberInfo(Criteria cri);
+	
+	public int memberAllCount();
+	
+	public void admMemberKick(String userId);
+
 }

@@ -43,7 +43,7 @@
 %>
 	<center>
 	<form action="registsTicketConfirm">
-	<table width="65%" border="0" cellspacing="0" cellpadding="20">
+	<table width="1000" border="0" cellspacing="0" cellpadding="20">
 		
 		<input type="hidden" name = "selectedDate" value="<%=selectedDate%>">
 		<input type="hidden" name = "seatNo" value="<%=seatNo%>">
@@ -78,7 +78,7 @@
 			<td>
 				<center>
 					<div class="row">
-						<table id="example-table-1"  width="80%" border="1" cellspacing="1" cellpadding="10"
+						<table id="example-table-1" border="1" cellspacing="1" cellpadding="10"
 						>
 							<thead>
 									<tr>

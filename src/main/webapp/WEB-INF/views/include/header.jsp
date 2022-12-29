@@ -16,24 +16,25 @@
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr class="headline01">
 			<td width="5%"  class="menu01"><a href="index">StudyCafe</a></td>
-			<td width="50%" class="menu01">&nbsp;</td>
+			<td width="40%" class="menu01">&nbsp;</td>
 			<td width="5%" class="menu01">
 			<% 
 				if(sessionId == null) { 
 			%>
         		&nbsp;
         	<% 
-        		} else if(sessionId.equals("admin")){ 
+        		} else if(sessionId != null && sessionId.equals("admin")) { 
         	%>
-        		<td><a href="memberLogin">관리자페이지</a></td>
+        		<a href="adminMain">관리자</a>
         	<% 
         		} 
         	%>
-			
+        	</td>
+			<td width="5%" class="menu01">
 			<% 
 				if(sessionId == null) { 
 			%>
-        		<td><a href="memberLogin">로그인</a>
+        		<a href="memberLogin">로그인</a>
         	<% 
         		} else { 
         	%>
@@ -50,11 +51,24 @@
 			<%
 				} else {	
 			%>
-				<a href="memberModify">내 정보</a>
+				<a href="memberInfo">내 정보</a>
 			<% 
 				} 
 			%>	
 			</td>
+			
+			<%
+				if(sessionId == null) {
+			%>
+				
+			<%
+				} else {	
+			%>
+				<td width="5%" class="menu01"><a href="memberInfo">예약정보</a>	</td>
+			<% 
+				} 
+			%>	
+		
 			
 			
 			<td width="5%" class="menu01"><a href="TicketPrice">이용금액</a></td>

@@ -8,8 +8,8 @@
 	
 	<!-- 회원 관리 SQL -->
 	<insert id="joinMember">
-		INSERT INTO scmemberTBL(userId, userPw, userName, userPhone, userEmail, userPoint,usingTicket)
-		VALUES(#{param1}, #{param2}, #{param3}, #{param4},#{param5},#{param6,  jdbcType=VARCHAR },#{param7})
+		INSERT INTO scmemberTBL(userId, userPw, userName, userPhone, userEmail, userPoint,usingTicket,userNo)
+		VALUES(#{param1}, #{param2}, #{param3}, #{param4},#{param5},#{param6},#{param7},USER_seq.nextval)
 	</insert>
 	
 	<select id="checkUserId" resultType="int">
@@ -31,5 +31,24 @@
 	<update id="updateUticketPoint">
 		UPDATE scmemberTBL SET userPoint=#{param2}, usingTicket=#{param3} WHERE userId=#{param1}
 	</update>
+	
+	<select id="memberAllCount" resultType="int">
+		SELECT COUNT(*) FROM scmemberTBL
+	</select>
+	
+	
+	<!-- 관리자 관련  -->
+	<select id="getAllMemberInfo" resultType="com.studycafe.prac.dto.memberDto">
+		SELECT * FROM
+			(SELECT A.*,Floor((ROWNUM-1)/#{amount}+1)PAGE,ROWNUM
+			FROM
+			(SELECT * FROM scmemberTBL ORDER BY userNo DESC)A) 
+		WHERE PAGE= #{pageNum}
+	</select>
+	
+	<delete id="admMemberKick">
+		DELETE FROM SCMEMBERTBL WHERE userID=#{param1}
+	
+	</delete>
 	
 </mapper>

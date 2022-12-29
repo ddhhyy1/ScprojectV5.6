@@ -16,5 +16,5 @@ public class memberDto {
 	private String userEmail;
 	private String userPoint;
 	private String usingTicket;
-
+	private int userNo;
 }

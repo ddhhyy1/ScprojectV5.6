@@ -82,7 +82,7 @@
 										</td>
 									</tr>
 									<input type="hidden" name = "userPoint" value="200000">
-									<input type="hidden" name = "usingTicket" value="none">
+									<input type="hidden" name = "usingTicket" value="0">
 									<tr>
 										<td colspan="">
 											<button type="submit" class="btn btn-primary btn-lg">회원가입</button>
