@@ -1,6 +1,7 @@
 package com.studycafe.prac.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.studycafe.prac.dto.ScSalesDto;
 import com.studycafe.prac.dto.ScreservDto;
@@ -21,8 +22,9 @@ public interface TodayTicketDao {
 	public void BuySTicket(String sticketName, String suserId, String sremainTime);
 	public void updateRemainTime(String suserId);
 	
+	
 	//매출관련
 	public void getSalesInfo(String userId, String payingPoint);
-	public ScSalesDto getChartInfo(String userId);
+	public List<ScSalesDto> getChartInfo();
 	
 }

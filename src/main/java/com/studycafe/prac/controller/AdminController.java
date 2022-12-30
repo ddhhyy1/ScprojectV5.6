@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import com.studycafe.prac.dao.MemberDao;
+import com.studycafe.prac.dao.TodayTicketDao;
 import com.studycafe.prac.dto.Criteria;
 import com.studycafe.prac.dto.PageDto;
+import com.studycafe.prac.dto.ScSalesDto;
 import com.studycafe.prac.dto.memberDto;
 
 @Controller
@@ -141,7 +143,15 @@ public class AdminController {
 	@RequestMapping(value="/admCheckSales")//관리자메인페이지
 	public String admCheckSales() {
 		
+		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
 		
+		List<ScSalesDto> salesDto = dao.getChartInfo();
+		
+		List<String> SalesForMonth = new ArrayList<String>();
+		
+		for(int i=0; i<=SalesForMonth.size();i++) {
+			System.out.println(SalesForMonth.get(i));
+			}
 		
 		return "admin/admCheckSales";
 	}
