@@ -15,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.studycafe.prac.dao.MemberDao;
 import com.studycafe.prac.dao.TodayTicketDao;
+import com.studycafe.prac.dto.memberDto;
 import com.studycafe.prac.dto.seatDto;
 
 @Controller
@@ -26,9 +28,13 @@ public class SubcriptionTicketController {
 	private SqlSession sqlSession;
 	
 	@RequestMapping(value="/SubscriptionTicketBuy")//구독이용권구매1
-	public String STicketBuy(HttpServletResponse response,HttpSession session) {
+	public String STicketBuy(HttpServletResponse response,HttpSession session,Model model) {
 		
 		String sessionId = (String) session.getAttribute("userId");
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		
+		memberDto memberdto = dao.getMemberInfo(sessionId);
+		
 		
 		if(sessionId==null) {
 		try {
@@ -42,6 +48,8 @@ public class SubcriptionTicketController {
 			e.printStackTrace();
 		} return "ChooseTicket";
 		}else {
+			
+			model.addAttribute("memberdto", memberdto);
 		
 			return "SubscriptionTicketBuy";
 		}

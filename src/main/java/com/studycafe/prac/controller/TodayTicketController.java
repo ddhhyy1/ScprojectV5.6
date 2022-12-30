@@ -280,7 +280,7 @@ public class TodayTicketController {
 		seatDto seatdto=new seatDto();
 		
 		
-		
+		//받아온 파라미터값들 request 객체로 받아 저장
 		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());
 		String userId = request.getParameter("userId");
 		String ticketName = request.getParameter("ticketName");
@@ -303,20 +303,21 @@ public class TodayTicketController {
 				
 				int intUserP= Integer.parseInt(UserP);
 				
-				String newPayingPoint = PayingPoint.replaceAll(",", "");
-				int intPayingPoint=Integer.parseInt(newPayingPoint);
+				String newPayingPoint = PayingPoint.replaceAll(",", ""); //지불할 포인트의 ,를 없앰
+				int intPayingPoint=Integer.parseInt(newPayingPoint); //인티저로 변환
 				
 				if (intUserP>=intPayingPoint) { //보유한 포인트가 지불할 포인트보다 많을 경우만 통과
-				int intUserP2=intUserP-intPayingPoint;
-				String UserP2=String.valueOf(intUserP2);
+					int intUserP2=intUserP-intPayingPoint;
+					String UserPoAfterPaying=String.valueOf(intUserP2);
 				
 				
-				dao2.updateUticketPoint(userId, UserP2, ticketName);
-				dao.regist(seatNo, userId, ticketName, selectedDate);//정보들을 scseatTbl에 먼저저장
-					for(int n=1;n<=selectedTime.length;n++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
-						dao.makeReservation(seatNo, userId, selectedDate, selectedTimes[n-1]);//예약테이블에 체크박스 횟수만큼 저장
-						}
-					return "todayPayOk";
+					dao2.updateUticketPoint(userId, UserPoAfterPaying, ticketName);
+					dao.regist(seatNo, userId, ticketName, selectedDate);//정보들을 scseatTbl에 먼저저장
+						for(int n=1;n<=selectedTime.length;n++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
+							dao.makeReservation(seatNo, userId, selectedDate, selectedTimes[n-1]);//예약테이블에 체크박스 횟수만큼 저장
+							}
+					dao.getSalesInfo(userId, newPayingPoint);
+						return "todayPayOk";
 				
 				}
 				else {
@@ -324,7 +325,7 @@ public class TodayTicketController {
 						response.setContentType("text/html; charset=UTF-8");      
 				        PrintWriter out;
 						out = response.getWriter();
-						out.println("<script>alert('이용시간과 선택한 지정시간이 일치하지 않습니다.'); history.go(-1);</script>");
+						out.println("<script>alert('포인트가 부족합니다.'); history.go(-1);</script>");
 					    out.flush();
 						} catch (IOException e) {
 						// TODO Auto-generated catch block

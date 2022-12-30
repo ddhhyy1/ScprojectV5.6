@@ -19,4 +19,8 @@ public interface TodayTicketDao {
 	//시간제(정액권) 관련
 	public void BuySTicket(String sticketName, String suserId, String sremainTime);
 	public void updateRemainTime(String suserId);
+	
+	//매출관련
+	public void getSalesInfo(String userId, String payingPoint);
+	
 }

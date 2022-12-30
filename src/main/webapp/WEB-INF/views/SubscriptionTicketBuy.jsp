@@ -9,9 +9,17 @@
 <title>시간권 구매</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <script type="text/javascript">
+var userPoint = '<c:out value="${memberdto.userPoint}"/>';
+userPoint = parseInt(userPoint);
+</script>
+<script type="text/javascript">
 $(function(){
     $('.change50').click(function(){
     	$('input[name=sticketName]').attr('value',"65,000");
+    	var userPoint = '<c:out value="${memberdto.userPoint}"/>';
+    	userPoint = parseInt(userPoint);
+    	userPoint = userPoint-65000
+    	$('input[name=afterPayingPoint]').attr('value',userPoint);
     });
 });
 $(function(){
@@ -70,7 +78,7 @@ $(function(){
 									</tr>
 										<tr>
 										<td><span class="content_text01">보유포인트 : </span></td>
-										<td>
+										<td>${memberdto.userPoint}
 										
 										</td>
 									</tr>		
@@ -109,15 +117,15 @@ $(function(){
 									</tr>
 									<tr>
 										<td>&nbsp;</td>
-										<td>보유포인트</td>						
+										<td>${memberdto.userPoint}</td>						
 									</tr>
 									<tr>
 										<td>&nbsp;</td>
-										<td>-<input type="text" name="sticketName2" value="0">p</td>
+										<td>-<input type="text" name="sticketName" value="0">p</td>
 									</tr>
 									<tr>
 										<td><span class="content_text01">결제 후 남은포인트:</span></td>
-										
+										<td><input type="text" name="afterPayingPoint" value="0"> </td>
 									</tr>
 									<tr>
 										<td colspan="2">

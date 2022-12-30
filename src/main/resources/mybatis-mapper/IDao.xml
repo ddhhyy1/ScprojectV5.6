@@ -45,5 +45,13 @@
 		UPDATE SUBSCRIPTIONTBL SET SREMAINTIME =#{param2} WHERE SUSERID=#{param1}
 	</update>
 	
+	<!-- 시간 이용권 끝 -->
+	
+	<!-- 관리자 및 매출관련 -->
+	
+	<insert id="getSalesInfo">
+		INSERT INTO SCSALESTBL (salesNo, userId, price)
+		VALUES (SALES_seq.nextval, #{param1}, #{param2})
+	</insert>
 	
 </mapper>
