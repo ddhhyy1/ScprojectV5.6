@@ -54,4 +54,11 @@
 		VALUES (SALES_seq.nextval, #{param1}, #{param2})
 	</insert>
 	
+	<select id="getChartInfo">
+	SELECT 
+    TO_CHAR(salesdate, 'yy/mm'), SUM(Price)
+	from scsalestbl
+	
+	</select>
+	
 </mapper>

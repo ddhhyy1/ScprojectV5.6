@@ -2,6 +2,7 @@ package com.studycafe.prac.dao;
 
 import java.util.ArrayList;
 
+import com.studycafe.prac.dto.ScSalesDto;
 import com.studycafe.prac.dto.ScreservDto;
 import com.studycafe.prac.dto.seatDto;
 
@@ -22,5 +23,6 @@ public interface TodayTicketDao {
 	
 	//매출관련
 	public void getSalesInfo(String userId, String payingPoint);
+	public ScSalesDto getChartInfo(String userId);
 	
 }

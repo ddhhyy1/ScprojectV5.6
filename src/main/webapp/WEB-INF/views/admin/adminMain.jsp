@@ -62,7 +62,7 @@
 										<td align="center">
 										<div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
   											<div class="card-header">
-  												<a href="SubscriptionTicketBuy">매출조회&현황</a>
+  												<a href="admCheckSales">매출조회&현황</a>
   											</div>
   												<div class="card-body">
    												   <h5 class="card-title"></h5>

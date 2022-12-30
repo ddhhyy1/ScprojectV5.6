@@ -102,16 +102,15 @@ public class AdminController {
 			response.setContentType("text/html; charset=UTF-8");      
 	        PrintWriter out;
 			out = response.getWriter();
-			out.println("<script>alert('변경완료!');</script>");
+			out.println("<script>alert('변경완료!');window.location.href = 'admMemberList'</script>");
 		    out.flush();
-		    return "admMemberList";
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		
-		return "admMemberList";
+		return "admin/admMemberList";
 	}
 	
 	@RequestMapping(value="/admMemberKick")//관리자메인페이지
@@ -136,6 +135,14 @@ public class AdminController {
 		}
 		
 		
-		return "admMemberList";
+		return "admin/admMemberList";
+	}
+	
+	@RequestMapping(value="/admCheckSales")//관리자메인페이지
+	public String admCheckSales() {
+		
+		
+		
+		return "admin/admCheckSales";
 	}
 }

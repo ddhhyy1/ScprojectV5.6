@@ -5,19 +5,18 @@
 <head>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/title.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/SubscriptionTicketPay.js"></script>
 <meta charset="UTF-8">
 <title>시간권 구매</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <script type="text/javascript">
-var userPoint = '<c:out value="${memberdto.userPoint}"/>';
+var userPoint = '${memberdto.userPoint}';
 userPoint = parseInt(userPoint);
 </script>
 <script type="text/javascript">
 $(function(){
     $('.change50').click(function(){
     	$('input[name=sticketName]').attr('value',"65,000");
-    	var userPoint = '<c:out value="${memberdto.userPoint}"/>';
-    	userPoint = parseInt(userPoint);
     	userPoint = userPoint-65000
     	$('input[name=afterPayingPoint]').attr('value',userPoint);
     });
@@ -25,16 +24,23 @@ $(function(){
 $(function(){
     $('.change100').click(function(){
     	$('input[name=sticketName]').attr('value',"120,000");
+    	userPoint = userPoint-120000  
+    	$('input[name=afterPayingPoint]').attr('value',userPoint);
     });
 });
 $(function(){
     $('.change150').click(function(){
     	$('input[name=sticketName]').attr('value',"160,000");
+    	userPoint = userPoint-160000
+    	$('input[name=afterPayingPoint]').attr('value',userPoint);
     });
 });
 $(function(){
     $('.change200').click(function(){
     	$('input[name=sticketName]').attr('value',"200,000");
+    	userPoint = userPoint-200000
+    	$('input[name=afterPayingPoint]').attr('value',userPoint);
+    
     });
 });
 </script>
@@ -129,7 +135,8 @@ $(function(){
 									</tr>
 									<tr>
 										<td colspan="2">
-											<input class="button_type01" type="submit" value="결제하기">&nbsp;&nbsp;
+											
+											<input class="button_type01" type="button" value="결제하기" onclick="payingCheck()">&nbsp;&nbsp;
 											<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 										</td>
 									</tr>
