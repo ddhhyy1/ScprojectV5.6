@@ -137,10 +137,7 @@ public class SubcriptionTicketController {
 		
 		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
 		String sessionId = (String) session.getAttribute("userId");
-		MemberDao memberdao = sqlSession.getMapper(MemberDao.class);
 		
-		
-		memberDto memberdto = memberdao.getMemberInfo(sessionId);
 		SubscriptionTicketDto sticketDto= dao.getSTicketInfo(sessionId);
 		String remainTime = sticketDto.getSremainTime();//유저 이용권의 남은시간 불러오기
 		
@@ -163,8 +160,9 @@ public class SubcriptionTicketController {
 				
 				int intremainTime = Integer.parseInt(remainTime);
 				int afterRemaintime= intremainTime - bticketName;
-					
-					if(bticketName==selectedTime.length) {//체크박스의 갯수와 ticketname의 숫자를 비교해서 일치하지 않으면 뒤로돌려보냄
+				
+				String remainTime2 = String.valueOf(afterRemaintime);
+		    
 						
 							
 						//방금 들어간 회원정보들을 결제 전 체크페이지에 전달
@@ -193,24 +191,14 @@ public class SubcriptionTicketController {
 						  model.addAttribute("totalHour",bticketName);		  
 						  model.addAttribute("startTime",startTime);
 						  model.addAttribute("endTime",endTime);
-						  model.addAttribute("remainTime",afterRemaintime);
+						  model.addAttribute("remainTime",remainTime2);
 						
-						return "registsTicketConfirm";
-					}else {
-					try {
-						response.setContentType("text/html; charset=UTF-8");      
-				        PrintWriter out;
-						out = response.getWriter();
-						out.println("<script>alert('이용시간과 선택한 지정시간이 일치하지 않습니다.'); history.go(-1);</script>");
-					    out.flush();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+						
+					
 					
 					return "SubscriptionTicketView2";
-					}
-		
+					
+
 		
 	}
 	@RequestMapping(value="/sTicketReservComplete")

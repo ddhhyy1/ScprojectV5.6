@@ -62,7 +62,7 @@ $(function(){
 		<tr>
 			<td>
 				<center>
-				<form action="BuySubscription">
+				<form action="BuySubscription" name="join_frm">
 				<table width="80%" border="0" cellspacing="0" cellpadding="10">
 					<tr class="contentbox">
 						<td class="content">
