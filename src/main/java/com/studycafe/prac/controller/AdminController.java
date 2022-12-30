@@ -148,8 +148,8 @@ public class AdminController {
 		List<ScSalesDto> salesDto = dao.getChartInfo();
 		
 		List<String> SalesForMonth = new ArrayList<String>();
-		
 		for(int i=0; i<=SalesForMonth.size();i++) {
+			SalesForMonth.add(salesDto.get(i).getPrice());
 			System.out.println(SalesForMonth.get(i));
 			}
 		
