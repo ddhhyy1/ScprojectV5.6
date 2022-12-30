@@ -45,6 +45,11 @@
 		UPDATE SUBSCRIPTIONTBL SET SREMAINTIME =#{param2} WHERE SUSERID=#{param1}
 	</update>
 	
+	<select id="getSTicketInfo" resultType="com.studycafe.prac.dto.SubscriptionTicketDto">
+		SELECT * FROM SUBSCRIPTIONTBL WHERE SUSERID=#{param1}
+	
+	</select>
+	
 	<!-- 시간 이용권 끝 -->
 	
 	<!-- 관리자 및 매출관련 -->

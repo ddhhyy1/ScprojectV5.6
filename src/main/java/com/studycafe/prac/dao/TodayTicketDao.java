@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.studycafe.prac.dto.ScSalesDto;
 import com.studycafe.prac.dto.ScreservDto;
+import com.studycafe.prac.dto.SubscriptionTicketDto;
 import com.studycafe.prac.dto.seatDto;
 
 public interface TodayTicketDao {
@@ -21,7 +22,7 @@ public interface TodayTicketDao {
 	//시간제(정액권) 관련
 	public void BuySTicket(String sticketName, String suserId, String sremainTime);
 	public void updateRemainTime(String suserId);
-	
+	public SubscriptionTicketDto getSTicketInfo(String suserId);
 	
 	//매출관련
 	public void getSalesInfo(String userId, String payingPoint);

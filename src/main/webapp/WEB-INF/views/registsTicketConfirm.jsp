@@ -43,20 +43,20 @@
 									</tr>
 									<tr>
 										<td><span class="content_text01">이용날짜 : </span>
-										&nbsp;&nbsp;${fseatDto.selectedDate}
+										&nbsp;&nbsp;${selectedDate }
 										
 										</td>
 									</tr>
 									
 									<tr>
 										<td><span class="content_text01">지정좌석 : </span>
-										&nbsp;&nbsp;${fseatDto.seatNo}시간
+										&nbsp;&nbsp;${seatNo}
 										
 										</td>
 									</tr>
 									<tr>
 										<td><span class="content_text01">이용시간 : </span>
-										&nbsp;&nbsp;${fseatDto.ticketName}
+										&nbsp;&nbsp;${totalHour}
 										
 										</td>
 									</tr>
@@ -68,8 +68,8 @@
 									</tr>
 										</tr>
 										<tr>
-										<td><span class="content_text01"></span></td>
-										<td>
+										<td><span class="content_text01">예약 후 보유시간:</span></td>
+										<td>${remainTime }
 										
 										</td>
 									</tr>

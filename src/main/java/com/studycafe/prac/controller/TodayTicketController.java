@@ -140,7 +140,7 @@ public class TodayTicketController {
 		
 	
 		//인트 리스트로 변환
-		int n,f,x;
+		int n,f;
 		 List<Integer> IntDBselectedTimes = new ArrayList<Integer>();
 	        for (n = 0; n < intselectedTime.size(); n++) {
 	        	IntDBselectedTimes.add(Integer.parseInt(intselectedTime.get(n)));

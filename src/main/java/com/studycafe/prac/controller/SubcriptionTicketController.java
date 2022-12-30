@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.studycafe.prac.dao.MemberDao;
 import com.studycafe.prac.dao.TodayTicketDao;
+import com.studycafe.prac.dto.ScreservDto;
+import com.studycafe.prac.dto.SubscriptionTicketDto;
 import com.studycafe.prac.dto.memberDto;
 import com.studycafe.prac.dto.seatDto;
 
@@ -74,7 +77,7 @@ public class SubcriptionTicketController {
 		String[] SubTime = {"50","100","150","200"};
 		for(int i=0;i<4;i++) {
 			if(SubPrice[i].equals(sticketName)) {
-				dao.BuySTicket(sticketName, sessionId, SubTime[i]);
+				dao.BuySTicket(sticketName, sessionId, SubTime[i]);//db에 시간 저장
 			}
 		
 		model.addAttribute("sticketName",sticketName);
@@ -87,13 +90,38 @@ public class SubcriptionTicketController {
 		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
 		String sessionId = (String) session.getAttribute("userId");
 		
-		
 		String selectedDate = request.getParameter("selectedDate");
 		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());
 	
-		
+		//날짜와 좌석을 기반으로 정보를 모두 가져옴
+				List<ScreservDto> reservInfo = dao.searchReservation(seatNo, selectedDate);
+				
+				//받아온 db정보들을 String 리스트에 저장
+				List<String> intselectedTime = new ArrayList<String>();
+				for(int i=0;i<reservInfo.size();i++) {
+					String times = reservInfo.get(i).getSelectedTime();//reservinfo에서 원하는 정보인 selectedTime만 저장
+					intselectedTime.add(times); //새 String 리스트에 하나씩 저장
+				}
+				
+			
+				//인트 리스트로 변환
+				int n,f;
+				 List<Integer> IntDBselectedTimes = new ArrayList<Integer>();
+			        for (n = 0; n < intselectedTime.size(); n++) {
+			        	IntDBselectedTimes.add(Integer.parseInt(intselectedTime.get(n)));
+			        }
+			        
+			    List<String> OccupiedTimes = new ArrayList<String>();
+			    for(f = 1; f<=17;f++) {
+			    	if(IntDBselectedTimes.contains(f)) {
+			    		OccupiedTimes.add("1");
+			    	}else {
+			    		OccupiedTimes.add("0");
+			    	}
+			    }
 		model.addAttribute("selectedDate", selectedDate);
 		model.addAttribute("seatNo", seatNo);
+		model.addAttribute("opTimes",OccupiedTimes);
 		
 		return "SubscriptionTicketView2";
 	
@@ -109,37 +137,37 @@ public class SubcriptionTicketController {
 		
 		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
 		String sessionId = (String) session.getAttribute("userId");
+		MemberDao memberdao = sqlSession.getMapper(MemberDao.class);
 		
-		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());
 		
+		memberDto memberdto = memberdao.getMemberInfo(sessionId);
+		SubscriptionTicketDto sticketDto= dao.getSTicketInfo(sessionId);
+		String remainTime = sticketDto.getSremainTime();//유저 이용권의 남은시간 불러오기
+		
+		
+		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());	
 		String selectedDate = request.getParameter("selectedDate");
 		String [] selectedTime = request.getParameterValues("selectedTime");
 		
 		
+		
 		//넘어온 체크박스값 정렬 후, 첫번째 값부터 마지막값까지 추출후 새 배열에 넣음
-				Arrays.sort(selectedTime);
+				Arrays.sort(selectedTime);//먼저 배열들 순서 정리
 				int i;
-				String [] selectedTimes= new String[selectedTime.length];
+				String [] selectedTimes= new String[selectedTime.length];//새배열 생성
 				for(i=0;i<selectedTime.length;i++) {	
 				String number=selectedTime[i];
-				selectedTimes[i]=number;
+				selectedTimes[i]=number;//새로 생성한 배열에 selectedTime의 체크박스값들 저장
 				}
-				int bticketName = selectedTime.length;
+				int bticketName = selectedTime.length;//이용시간을 selectedTime 체크박스 갯수를 통해 저장
 				
-				
+				int intremainTime = Integer.parseInt(remainTime);
+				int afterRemaintime= intremainTime - bticketName;
 					
 					if(bticketName==selectedTime.length) {//체크박스의 갯수와 ticketname의 숫자를 비교해서 일치하지 않으면 뒤로돌려보냄
-						String sticketName = String.valueOf(bticketName);
-						dao.regist(seatNo, sessionId, sticketName, selectedDate);
-							for(int n=1;n<=selectedTime.length;n++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
-								dao.makeReservation(seatNo, sessionId, selectedDate, selectedTimes[n-1]);
-							}
+						
 							
-						//방금 들어간 회원정보들을 결제 전 체크페이지에 전달	
-						ArrayList<seatDto> seatDto= dao.registTodayConfirm();
-						
-						seatDto fseatDto = seatDto.get(0);
-						
+						//방금 들어간 회원정보들을 결제 전 체크페이지에 전달
 						
 						int[] Times= new int[17];//8부터 24까지 문자배열생성
 						for(int j=0;j<16;j++) {
@@ -158,9 +186,14 @@ public class SubcriptionTicketController {
 						  lastindex = lastindex + 1 ;
 						  String endTime = String.valueOf(lastindex); //종료시간 저장
 						  
+						 
+						  
+						  model.addAttribute("selectedDate",selectedDate);
+						  model.addAttribute("seatNo",seatNo );
+						  model.addAttribute("totalHour",bticketName);		  
 						  model.addAttribute("startTime",startTime);
 						  model.addAttribute("endTime",endTime);
-						  model.addAttribute("fseatDto", fseatDto);
+						  model.addAttribute("remainTime",afterRemaintime);
 						
 						return "registsTicketConfirm";
 					}else {
@@ -179,6 +212,19 @@ public class SubcriptionTicketController {
 					}
 		
 		
+	}
+	@RequestMapping(value="/sTicketReservComplete")
+	public String sTicketReservComplete() {
+		
+//		String sticketName = String.valueOf(bticketName);
+//		dao.regist(seatNo, sessionId, sticketName, selectedDate);
+//			for(int n=1;n<=selectedTime.length;n++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
+//				dao.makeReservation(seatNo, sessionId, selectedDate, selectedTimes[n-1]);
+//			}
+//		
+		
+		
+		return "sTicketReservComplete";
 	}
 	
 	
