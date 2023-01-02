@@ -35,9 +35,25 @@ public class SubcriptionTicketController {
 		
 		String sessionId = (String) session.getAttribute("userId");
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		
 		memberDto memberdto = dao.getMemberInfo(sessionId);
 		
+	
+		if(sessionId !=null) {
+		String usingTicket = memberdto.getUsingTicket();
+		int uTicket = Integer.parseInt(usingTicket);
+			if(uTicket>0) {
+				try {
+					response.setContentType("text/html; charset=UTF-8");      
+			        PrintWriter out;
+					out = response.getWriter();
+					out.println("<script>alert('중복예약은 불가능합니다'); history.go(-1);</script>");
+				    out.flush();
+				    return "Ticket/ChooseTicket";
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		
 		if(sessionId==null) {
 		try {
@@ -56,7 +72,8 @@ public class SubcriptionTicketController {
 		
 			return "Ticket/SubscriptionTicketBuy";
 		}
-		
+			}
+		return "Ticket/SubscriptionTicketBuy";
 	}
 	@RequestMapping(value="/SubscriptionTicketView")//구독이용권좌석선택
 	public String STicketView() {
