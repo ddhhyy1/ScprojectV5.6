@@ -49,12 +49,12 @@ public class SubcriptionTicketController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} return "ChooseTicket";
+		} return "Ticket/ChooseTicket";
 		}else {
 			
 			model.addAttribute("memberdto", memberdto);
 		
-			return "SubscriptionTicketBuy";
+			return "Ticket/SubscriptionTicketBuy";
 		}
 		
 	}
@@ -62,7 +62,7 @@ public class SubcriptionTicketController {
 	public String STicketView() {
 		
 		
-		return "SubscriptionTicketView";
+		return "Ticket/SubscriptionTicketView";
 	}
 	@RequestMapping(value="/BuySubscription")//
 	public String BuySTicket(HttpServletRequest request, Model model,HttpSession session) {
@@ -82,7 +82,7 @@ public class SubcriptionTicketController {
 		
 		model.addAttribute("sticketName",sticketName);
 		}
-		return "SubscriptionTicketView";
+		return "Ticket/SubscriptionTicketView";
 	}
 	@RequestMapping(value="/searchsTicketSeat")
 	public String searchsTicketSeat(HttpServletRequest request, Model model,HttpSession session) {
@@ -123,14 +123,14 @@ public class SubcriptionTicketController {
 		model.addAttribute("seatNo", seatNo);
 		model.addAttribute("opTimes",OccupiedTimes);
 		
-		return "SubscriptionTicketView2";
+		return "Ticket/SubscriptionTicketView2";
 	
 	}
 	@RequestMapping(value="/SubscriptionTicketView2")
 	public String SubscriptionTicketView2() {
 		
 		
-		return "SubscriptionTicketView2";
+		return "Ticket/SubscriptionTicketView2";
 	}
 	@RequestMapping(value="/registsTicketConfirm")
 	public String registsTicketConfirm(HttpServletRequest request, Model model,HttpServletResponse response,HttpSession session) {
@@ -197,7 +197,7 @@ public class SubcriptionTicketController {
 						
 					
 					
-					return "registsTicketConfirm";
+					return "Ticket/registsTicketConfirm";
 					
 
 		
@@ -213,7 +213,7 @@ public class SubcriptionTicketController {
 //		
 		
 		
-		return "sTicketReservComplete";
+		return "Ticket/sTicketReservComplete";
 	}
 	
 	

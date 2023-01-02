@@ -65,14 +65,14 @@ public class TodayTicketController {
 	public String TicketPrice() {
 		
 		
-		return "TicketPrice";
+		return "Ticket/TicketPrice";
 	}
 	
 	@RequestMapping(value="/ChooseTicket")//이용권선택
 	public String chooseTicket() {
 		
 		
-		return "ChooseTicket";
+		return "Ticket/ChooseTicket";
 	}
 	
 	@RequestMapping(value="/TodayTicketView")
@@ -95,7 +95,7 @@ public class TodayTicketController {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} return "ChooseTicket";
+				} return "Ticket/ChooseTicket";
 		
 			
 			}	
@@ -111,9 +111,9 @@ public class TodayTicketController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} return "ChooseTicket";
+		} return "Ticket/ChooseTicket";
 		}else {
-			return "TodayTicketView";
+			return "Ticket/TodayTicketView";
 		}
 	}
 	
@@ -162,7 +162,7 @@ public class TodayTicketController {
 		model.addAttribute("seatNo", strSeatNo);
 		model.addAttribute("opTimes", OccupiedTimes);
 		
-		return "TodayTicketView2";
+		return "Ticket/TodayTicketView2";
 	}
 
 	@RequestMapping(value="/TodayTicketView2")
@@ -172,7 +172,7 @@ public class TodayTicketController {
 			
 			
 		
-		return "TodayTicketView2";
+		return "Ticket/TodayTicketView2";
 	}
 	
 	@RequestMapping(value="/registToday")
@@ -239,7 +239,7 @@ public class TodayTicketController {
 				  model.addAttribute("selectedTime",selectedTime);
 				  
 				//-----------------방금 들어간 회원정보들을 결제 전 체크페이지에 전달 끝	---------------------------
-				return "registTodayConfirm";
+				return "Ticket/registTodayConfirm";
 			}else {
 			try {
 				response.setContentType("text/html; charset=UTF-8");      
@@ -252,7 +252,7 @@ public class TodayTicketController {
 				e.printStackTrace();
 			}
 			
-			return "TodayTicketView2";
+			return "Ticket/TodayTicketView2";
 			}
 		
 		
@@ -267,7 +267,7 @@ public class TodayTicketController {
 
 		
 		
-		return "registTodayConfirm";
+		return "Ticket/registTodayConfirm";
 	}
 	@RequestMapping(value="/todayPay")
 	public String todayPay(HttpServletRequest request,HttpServletResponse response,Model model
@@ -317,7 +317,7 @@ public class TodayTicketController {
 							dao.makeReservation(seatNo, userId, selectedDate, selectedTimes[n-1]);//예약테이블에 체크박스 횟수만큼 저장
 							}
 					dao.getSalesInfo(userId, newPayingPoint);
-						return "todayPayOk";
+						return "Ticket/todayPayOk";
 				
 				}
 				else {
@@ -331,7 +331,7 @@ public class TodayTicketController {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 						}
-						return "registTodayConfirm";
+						return "Ticket/registTodayConfirm";
 					}	
 				}
 	@RequestMapping(value="/todayPayOk")
@@ -341,7 +341,7 @@ public class TodayTicketController {
 			
 			
 		
-		return "todayPayOk";
+		return "Ticket/todayPayOk";
 	}
 	
 }

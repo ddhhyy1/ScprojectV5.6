@@ -9,7 +9,8 @@
 <title>사용&예약 확인 후 결제</title>
 </head>
 <body>
-<%@ include file="include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
+<%-- <%@ String[] selectedTimes=request.getParameterValues("selectedTime"); %> --%>
 <center>
 	<table width="75%" border="0" cellspacing="0" cellpadding="20">
 		<tr>
@@ -25,6 +26,7 @@
 		<tr>
 			<td>
 				<center>
+				<form action="todayPay">
 				<table width="80%" border="0" cellspacing="0" cellpadding="10">
 					<tr class="contentbox">
 						<td class="content">
@@ -37,26 +39,26 @@
 									</tr>
 									<tr>
 										<td><span class="content_text01">아 이 디 : </span>
-										<span class="title02">&nbsp;&nbsp;&nbsp;&nbsp;<%= sessionId %></span>
+										&nbsp;&nbsp;<%= sessionId %>
 										
 										</td>
 									</tr>
 									<tr>
 										<td><span class="content_text01">이용날짜 : </span>
-										&nbsp;&nbsp;${selectedDate }
+										&nbsp;&nbsp;${selectedDate}
 										
 										</td>
 									</tr>
 									
 									<tr>
 										<td><span class="content_text01">지정좌석 : </span>
-										&nbsp;&nbsp;${seatNo}
+										&nbsp;&nbsp;${seatNo}번 좌석
 										
 										</td>
 									</tr>
 									<tr>
 										<td><span class="content_text01">이용시간 : </span>
-										&nbsp;&nbsp;${totalHour}
+										&nbsp;&nbsp;${ticketName}시간
 										
 										</td>
 									</tr>
@@ -68,18 +70,28 @@
 									</tr>
 										</tr>
 										<tr>
-										<td><span class="content_text01">예약 후 보유시간:</span>
-										&nbsp;&nbsp;${remainTime}
+										<td><span class="content_text01">지불할 포인트 :</span>
+										&nbsp;&nbsp;${PayingPoint}p
+										</td>
+										<td>
+										
 										</td>
 									</tr>
+									<input type="hidden" name = "userId" value="<%= sessionId %>">
+									<input type="hidden" name = "selectedDate" value="${selectedDate}">
+									<input type="hidden" name = "seatNo" value="${seatNo}">
+									<input type="hidden" name = "ticketName" value="${ticketName}">
+									<input type="hidden" name = "PayingPoint" value="${PayingPoint}">
+									<input type="hidden" name = "selectedTime" value="${selectedTime}">
 									<tr>
 										<td colspan="2">
-											<input class="button_type01" type="button" value="결제하기" onclick="script:window.location='memberModify'">&nbsp;&nbsp;
+											<input class="button_type01" type="submit" value="결제하기" >&nbsp;&nbsp;
 											<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 										</td>
 									</tr>
 												
 							</table>
+							</form>
 							</center>							
 						</td>						
 					</tr>
@@ -90,6 +102,6 @@
 		</tr>
 	</table>
 	</center>
-<%@ include file="include/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

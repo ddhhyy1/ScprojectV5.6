@@ -22,7 +22,7 @@
 </style>
 </head>
 <body>
-<%@ include file="include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <center>
 	<table width="75%" border="0" cellspacing="0" cellpadding="20">
 		<tr>
@@ -69,6 +69,6 @@
 		</tr>
 	</table>
 	</center>
-<%@ include file="include/footer.jsp" %>
+<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

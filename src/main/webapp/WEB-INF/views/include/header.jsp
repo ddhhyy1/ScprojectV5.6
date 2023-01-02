@@ -73,7 +73,7 @@
 			
 			<td width="5%" class="menu01"><a href="TicketPrice">이용금액</a></td>
 			<td width="7%" class="menu01"><a href="ChooseTicket">이용권구매</a></td>
-			<td width="5%" class="menu01">문의Q&A</td>
+			<td width="5%" class="menu01"><a href="list">문의Q&A</a></td>
 			
 			<td width="2%">&nbsp;</td>
 		</tr>

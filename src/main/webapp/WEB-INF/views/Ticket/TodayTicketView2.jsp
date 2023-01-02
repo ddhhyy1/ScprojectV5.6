@@ -33,25 +33,24 @@
 
 
 <meta charset="UTF-8">
-<title>시간권 사용&예약등록</title>
+<title>당일권 사용&예약등록</title>
 </head>
 <body>
-<%@ include file="include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 <%
   //주소창에서 입력한 값들 저장
  String selectedDate=request.getParameter("selectedDate");
  String seatNo=request.getParameter("seatNo");
 %>
 	<center>
-	<form action="registsTicketConfirm">
-	<table width="1000" border="0" cellspacing="0" cellpadding="20">
-		
-		
+	<form action="registToday">
+	<table width="50%" border="0" cellspacing="0" cellpadding="20">
+		<input type="hidden" name = "userId" value="<%= sessionId %>">
 		<input type="hidden" name = "selectedDate" value="<%=selectedDate%>">
 		<input type="hidden" name = "seatNo" value="<%=seatNo%>">
 		<tr>
 			<td class="titlebox">
-				<h1>시간권_예약하기</h1>
+				<h1>당일권_사용등록&예약하기</h1>
 			</td>
 		</tr>
 		<tr>
@@ -75,11 +74,24 @@
 			</td>
 		
 		</tr>
-		
 		<tr>
+							<td class="titlebox">
+								<span class="title02" name="ticketName2">이용시간:
+  									<select name="ticketName" >
+   						 				<option value="none" name="usingTIME">=== 선택 ===</option>
+   						 				<option value="1" selected>1시간 - 2,000p</option>
+    					 				<option value="2">2시간 - 3,000p</option>
+    									<option value="4">4시간 - 5,000p</option>
+    								    <option value="6">6시간 - 6,000p</option>
+    					 				<option value="8">8시간 - 7,000p</option>
+ 					 				</select>
+								</span>
+							</td>
+							</tr>
+		<tr class="seatTblTr">
 			<td>
 				<center>
-					<div class="row">
+					<div>
 						<table class="innerTable" width="60%" border="1" cellspacing="1" cellpadding="10">
 							<thead class="seatTblThead">
 									<tr class="seatTblTr">
@@ -111,9 +123,10 @@
 									</c:forEach>
 							</tbody>
 					</table>
+						
+						
 							<tr>
 										<td colspan="3">
-											
 											<input class="button_type01" type="submit" value="예약하기">
 											<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 										</td>
@@ -126,7 +139,7 @@
 	
 	</form>
 	</center>
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
 	
 </body>
 </html>

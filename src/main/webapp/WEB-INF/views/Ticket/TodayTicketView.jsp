@@ -30,6 +30,9 @@
     $(document).ready(function () {
             $.datepicker.setDefaults($.datepicker.regional['ko']); 
             $( "#pickDate" ).datepicker({
+            	 showOn: "button",
+                 buttonImage:"${pageContext.request.contextPath }/resources/img/cal.png",
+                 buttonImageOnly: true,
                  changeMonth: true, 
                  changeYear: true,
                  nextText: '다음 달',
@@ -79,13 +82,13 @@
 <title>당일권 사용&예약등록</title>
 </head>
 <body>
-<%@ include file="include/header.jsp" %>
+<%@ include file="../include/header.jsp" %>
 	<center>
-	<form action="searchsTicketSeat">
+	<form action="searchSeat">
 	<table width="65%" border="0" cellspacing="0" cellpadding="20">
 		<tr>
 			<td class="titlebox">
-				<h1>시간권_예약하기</h1>
+				<h1>당일권_사용등록&예약하기</h1>
 			</td>
 		</tr>
 		<tr>
@@ -124,7 +127,7 @@
 	
 	</form>
 	</center>
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
 	
 </body>
 </html>
