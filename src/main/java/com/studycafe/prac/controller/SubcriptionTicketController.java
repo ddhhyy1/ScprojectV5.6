@@ -30,7 +30,7 @@ public class SubcriptionTicketController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	@RequestMapping(value="/SubscriptionTicketBuy")//구독이용권구매1
+	@RequestMapping(value="/SubscriptionTicketBuy")//시간제(구독)이용권 구매페이지
 	public String STicketBuy(HttpServletResponse response,HttpSession session,Model model) {
 		
 		String sessionId = (String) session.getAttribute("userId");
@@ -78,7 +78,7 @@ public class SubcriptionTicketController {
 		
 		return "Ticket/SubscriptionTicketView";
 	}
-	@RequestMapping(value="/BuySubscription")//
+	@RequestMapping(value="/BuySubscription")//시간제(구독)이용권구매
 	public String BuySTicket(HttpServletRequest request, Model model,HttpSession session) {
 			
 		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
@@ -87,6 +87,7 @@ public class SubcriptionTicketController {
 		String sticketName = request.getParameter("sticketName");
 		String afterPayingPoint = request.getParameter("afterPayingPoint");
 		
+		String newPayingPoint = sticketName.replaceAll(",", "");
 		//포인트를 고르면 해당하는 시간이 db에 저장됨
 		String[] SubPrice = {"65,000","120,000","160,000","200,000"};
 		String[] SubTime = {"50","100","150","200"};
@@ -94,6 +95,7 @@ public class SubcriptionTicketController {
 			if(SubPrice[i].equals(sticketName)) {
 				dao.BuySTicket(sticketName, sessionId, SubTime[i]);//subscriptiontbl 시간 저장
 				dao.updateUsingTicketPointM(sessionId, afterPayingPoint, SubTime[i]);//membertbl 유저보유 포인트와 티켓 갱신
+				dao.addSalesInfo(sessionId,newPayingPoint);//scsalesTBl에 매출올림
 			}
 		
 		model.addAttribute("sticketName",sticketName);
@@ -201,7 +203,7 @@ public class SubcriptionTicketController {
 				  int lastindex = savedTimes[savedTimes.length-1];
 				  lastindex = lastindex + 1 ;
 				  String endTime = String.valueOf(lastindex); //종료시간 저장
-						 
+				//-------시작시간 종료시간 뽑아내기 끝---------		 
 						  
 						  model.addAttribute("selectedDate",selectedDate);
 						  model.addAttribute("startTime",startTime);
@@ -209,7 +211,7 @@ public class SubcriptionTicketController {
 						  model.addAttribute("seatNo",seatNo );
 						  model.addAttribute("totalHour",bticketName);
 						  model.addAttribute("remainTime",remainTime2);
-						
+						  model.addAttribute("selectedTime",selectedTime);
 						
 					
 					
@@ -219,14 +221,52 @@ public class SubcriptionTicketController {
 		
 	}
 	@RequestMapping(value="/sTicketReservComplete")
-	public String sTicketReservComplete() {
+	public String sTicketReservComplete(HttpServletRequest request,HttpServletResponse response,Model model
+			,HttpSession session) {
+		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
 		
-//		String sticketName = String.valueOf(bticketName);
-//		dao.regist(seatNo, sessionId, sticketName, selectedDate);
-//			for(int n=1;n<=selectedTime.length;n++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
-//				dao.makeReservation(seatNo, sessionId, selectedDate, selectedTimes[n-1]);
-//			}
-//		
+		String sessionId = (String) session.getAttribute("userId");
+		String selectedDate = request.getParameter("selectedDate");
+		int seatNo = Integer.parseInt(request.getParameter("seatNo"));
+		String [] selectedTime = request.getParameterValues("selectedTime");
+		String remainTime = request.getParameter("remainTime");
+		
+		int bticketName = selectedTime.length;
+		int intRemainTime = Integer.parseInt(remainTime);
+		
+		//넘어온 체크박스값 정렬 후, 첫번째 값부터 마지막값까지 추출후 새 배열에 넣음
+		Arrays.sort(selectedTime);//먼저 배열들 순서 정리
+		int i;
+		String [] selectedTimes= new String[selectedTime.length];//새배열 생성
+		for(i=0;i<selectedTime.length;i++) {	
+		String number=selectedTime[i];
+		selectedTimes[i]=number;//새로 생성한 배열에 selectedTime의 체크박스값들 저장
+		}
+		
+		
+		if(intRemainTime<0) {//보유시간이 예약시간보다 적을시 예약못함
+			try {
+				response.setContentType("text/html; charset=UTF-8");      
+		        PrintWriter out;
+				out = response.getWriter();
+				out.println("<script>alert('예약시간이 사용가능한 시간을 초과했습니다. 시간을 충전해주세요.'); history.go(-1);</script>");
+			    out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		}	else {//보유시간이 예약시간보다 많을 경우 예약가능
+			String sticketName = String.valueOf(bticketName);
+			dao.regist(seatNo, sessionId, sticketName, selectedDate);
+			dao.updateRemainTime(sessionId, remainTime);
+				for(int n=1;n<=selectedTime.length;n++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
+					dao.makeReservation(seatNo, sessionId, selectedDate, selectedTimes[n-1]);
+				}
+	
+			
+			
+		}
+		
 		
 		
 		return "Ticket/sTicketReservComplete";

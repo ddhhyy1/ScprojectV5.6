@@ -51,7 +51,7 @@ public class TodayTicketController {
 	public String talbetest() {
 		
 		
-		return "tabletest";
+		return "test/tabletest";
 	}
 	
 	@RequestMapping(value="/loginpage")//이용금액표
@@ -130,7 +130,6 @@ public class TodayTicketController {
 		String selectedDate = request.getParameter("selectedDate");
 		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());
 		
-		ScreservDto dto= new ScreservDto();
 		
 		//날짜와 좌석을 기반으로 정보를 모두 가져옴
 		List<ScreservDto> reservInfo = dao.searchReservation(seatNo, selectedDate);
@@ -182,10 +181,7 @@ public class TodayTicketController {
 	@RequestMapping(value="/registToday")
 	public String regist(HttpServletRequest request,HttpServletResponse response,Model model) {
 		
-		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
-		
 		String seatNo = request.getParameter("seatNo");
-		String userId = request.getParameter("userId");
 		String ticketName = request.getParameter("ticketName");
 		String selectedDate = request.getParameter("selectedDate");
 		String [] selectedTime = request.getParameterValues("selectedTime");
@@ -285,8 +281,7 @@ public class TodayTicketController {
 		
 		
 		//받아온 파라미터값들 request 객체로 받아 저장
-		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());
-		String userId = request.getParameter("userId");
+		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());	
 		String ticketName = request.getParameter("ticketName");
 		String selectedDate = request.getParameter("selectedDate");
 		String [] selectedTime = request.getParameterValues("selectedTime");
@@ -302,7 +297,7 @@ public class TodayTicketController {
 				}
 				
 				//userpoint를 받아옴
-				memberDto userP = dao2.getMemberInfo(userId);
+				memberDto userP = dao2.getMemberInfo(sessionId);
 				String UserP = userP.getUserPoint();
 				
 				int intUserP= Integer.parseInt(UserP);
@@ -315,12 +310,12 @@ public class TodayTicketController {
 					String UserPoAfterPaying=String.valueOf(intUserP2);
 				
 				
-					dao2.updateUticketPoint(userId, UserPoAfterPaying, ticketName);
-					dao.regist(seatNo, userId, ticketName, selectedDate);//정보들을 scseatTbl에 먼저저장
+					dao2.updateUticketPoint(sessionId, UserPoAfterPaying, ticketName);
+					dao.regist(seatNo, sessionId, ticketName, selectedDate);//정보들을 scseatTbl에 먼저저장
 						for(int n=1;n<=selectedTime.length;n++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
-							dao.makeReservation(seatNo, userId, selectedDate, selectedTimes[n-1]);//예약테이블에 체크박스 횟수만큼 저장
+							dao.makeReservation(seatNo, sessionId, selectedDate, selectedTimes[n-1]);//예약테이블에 체크박스 횟수만큼 저장
 							}
-					dao.getSalesInfo(userId, newPayingPoint);
+					dao.addSalesInfo(sessionId, newPayingPoint);
 						return "Ticket/todayPayOk";
 				
 				}

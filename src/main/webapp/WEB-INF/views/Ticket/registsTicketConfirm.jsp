@@ -25,6 +25,7 @@
 		<tr>
 			<td>
 				<center>
+				<form action="sTicketReservComplete">
 				<table width="80%" border="0" cellspacing="0" cellpadding="10">
 					<tr class="contentbox">
 						<td class="content">
@@ -50,13 +51,13 @@
 									
 									<tr>
 										<td><span class="content_text01">지정좌석 : </span>
-										&nbsp;&nbsp;${seatNo}
+										&nbsp;&nbsp;${seatNo}번좌석
 										
 										</td>
 									</tr>
 									<tr>
 										<td><span class="content_text01">이용시간 : </span>
-										&nbsp;&nbsp;${totalHour}
+										&nbsp;&nbsp;${totalHour}시간
 										
 										</td>
 									</tr>
@@ -69,16 +70,20 @@
 										</tr>
 										<tr>
 										<td><span class="content_text01">예약 후 보유시간:</span>
-										&nbsp;&nbsp;${remainTime}
+										&nbsp;&nbsp;${remainTime}시간
 										</td>
 									</tr>
-									<tr>
+										<input type="hidden" name = "remainTime" value="${remainTime}">
+										<input type="hidden" name = "seatNo" value="${seatNo}">
+										<input type="hidden" name = "selectedDate" value="${selectedDate}">
+										<input type="hidden" name = "selectedTime" value="${selectedTime}">
+									<tr>		
 										<td colspan="2">
-											<input class="button_type01" type="button" value="결제하기" onclick="script:window.location='memberModify'">&nbsp;&nbsp;
+											<input class="button_type01" type="submit" value="결제하기" >&nbsp;&nbsp;
 											<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 										</td>
 									</tr>
-												
+									</form>			
 							</table>
 							</center>							
 						</td>						

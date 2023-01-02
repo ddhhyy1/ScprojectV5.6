@@ -3,6 +3,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
@@ -30,6 +31,9 @@
     $(document).ready(function () {
             $.datepicker.setDefaults($.datepicker.regional['ko']); 
             $( "#pickDate" ).datepicker({
+            	 showOn: "button",
+                 buttonImage:"${pageContext.request.contextPath }/resources/img/cal.png",
+                 buttonImageOnly: true,
                  changeMonth: true, 
                  changeYear: true,
                  nextText: '다음 달',
@@ -73,89 +77,153 @@
     <!--      달력 추가 js 끝       -->
 
 </script>
+<script type="text/javascript">
+$(function(){
+	
+    $('.change1').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"1");
+    });
+});
+$(function(){
+	
+    $('.change2').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"2");
+    });
+});
+$(function(){
+	
+    $('.change3').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"3");
+    });
+});
+$(function(){
+	
+    $('.change4').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"4");
+    });
+});
+$(function(){
+	
+    $('.change5').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"5");
+    });
+});
+$(function(){
+	
+    $('.change6').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"6");
+    });
+});
+$(function(){
+	
+    $('.change7').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"7");
+    });
+});
+$(function(){
+	
+    $('.change8').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"8");
+    });
+});
+$(function(){
+	
+    $('.change9').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"9");
+    });
+});
+$(function(){
+	
+    $('.change10').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"10");
+    });
+$(function(){
+    	
+        $('.change11').click(function(e){
+        	event.stopPropagation();
+        	$('input[name=sticketName]').attr('value',"11");
+        });
+    });    
+});
 
-
+</script>
+    <style>
+      .seatNo:hover {
+      color:red;
+      }
+    </style>
 <meta charset="UTF-8">
 <title>당일권 사용&예약등록</title>
+
 </head>
 <body>
-<%@ include file="include/header.jsp" %>
-<%
- String userId=request.getParameter("userId");   //주소창에서 입력한 값들 저장
- String selectedDate=request.getParameter("selectedDate");
- String seatNo=request.getParameter("seatNo");
-%>
+<%@ include file="../include/header.jsp" %>
 	<center>
-	<form action="registToday">
+	<form action="searchSeat">
 	<table width="65%" border="0" cellspacing="0" cellpadding="20">
-		<input type="hidden" name = "userId" value="<%=userId%>">
-		<input type="hidden" name = "selectedDate" value="<%=selectedDate%>">
-		<input type="hidden" name = "seatNo" value="<%=seatNo%>">
-		
-						<table id="example-table-1"  width="80%" border="1" cellspacing="1" cellpadding="10"
-						>
-							<thead>
-									<tr>
-										<th>시간</th>
-										<th>${seatNo}번 좌석현황</th>
-										<th>시간지정</th>
-										<th style="align:center;">현재 이용 가능 좌석</th>
-									</tr>
-							</thead>
-							<tbody>
-									<tr>
-										<td class="skillbox" >8:00 ~ 9:00</td>
-										<td class="skillbox" >사용&예약 가능</td>
-										<td class="skillbox" >
-										<label><input type="checkbox" name="selectedTime" value="a1"></label>
-										</td>
-										<td rowspan="16" class="picbox">
-										
-									</td>
-									</tr>
-   						 				<c:forEach begin="8" end="23" step="1" var="l">
-												<tr>
-													<td class="skillbox" >${l}:00 ~ ${l+1}:00</td>
-													<td class="skillbox" >사용&예약 가능</td>
-													<td class="skillbox" >
-													<label><input type="checkbox" name="selectedTime" value="a{l}"></label>		 					 				
-													</td>
-												</tr>
-										</c:forEach>
-							
-									gdgdgdㅇㄴㅇㄴ
-							</tbody>
-				</table>
-						
-							<%-- <tr>
-								<td class="titlebox">
-									<span class="title02">시작시간 지정:
-										<select name="selectTime2" >
-   						 				<option value="none" name="startTIME">=== 선택 ===</option>
-   						 					<c:forEach begin="8" end="23" step="1" var="t">
-    					 						<option name="selectTime1" value="a${t}">${t}:00 ~ ${t+1}:00</option>
-    									 	</c:forEach>
- 					 				</select>
-										
-									</span>
-									</td>
-							</tr> --%>
-							<tr>
-										<td colspan="3">
-											
-											<input class="button_type01" type="submit" value="예약하기">
-											<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
-										</td>
-									</tr>
-				</div>
-				</center>			
+		<tr>
+			<td class="titlebox">
+				<h1>당일권_사용등록&예약하기</h1>
+			</td>
+		</tr>
+		<tr>
+			<td class="titlebox">
+				<span class="title02">회원아이디:</span>
+				<span class="title02"></span>
+			</td>
+		</tr>
+		<tr>
+			<td class="titlebox">
+				<span class="title02">날짜지정:
+				<input type="text" id="pickDate" name="selectedDate">
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="titlebox">
+				<span class="title02">좌석지정:
+  					<input type="text" name="sticketName">
+				</span>
+			</td>
+		</tr>
+		<tr>
+		<td>
+			<input class="button_type01" type="submit" value="다음 단계로">
+			<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img src="${pageContext.request.contextPath} /resources/img/CafeMap2.png" usemap="#cafeMap">
+				<map name="cafeMap"  id="cafeMap">
+				<div class="change1"><area class="seatNo" shape="rect" coords="834,27,881,81" href=#></div>
+				<div class="change2"><area shape="rect" coords="776,27,821,81" href=#></div>
+				<div class="change3"><area shape="rect" coords="717,27,764,81" href=#></div>
+				<div class="change4"><area shape="rect" coords="658,27,705,81" href=#></div>
+				<div class="change5"><area shape="rect" coords="600,27,645,81" href=#></div>
+				<div class="change6"><area shape="rect" coords="541,27,586,81" href=#></div>
+				<div class="change7"><area shape="rect" coords="480,27,529,81" href=#></div>
+				<div class="change8"><area shape="rect" coords="420,27,471,81" href=#></div>
+				<div class="change9"><area shape="rect" coords="360,27,411,81" href=#></div>
+				<div class="change10"><area shape="rect" coords="306,27,353,81" href=#></div>
+				<div class="change11"><area shape="rect" coords="246,27,295,81" href=#></div>
 			</td>
 		</tr>
 	</table>
 	
 	</form>
 	</center>
-	<%@ include file="include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
 	
 </body>
 </html>

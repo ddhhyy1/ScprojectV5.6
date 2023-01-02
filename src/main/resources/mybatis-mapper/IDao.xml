@@ -58,7 +58,7 @@
 	
 	<!-- 관리자 및 매출관련 -->
 	
-	<insert id="getSalesInfo">
+	<insert id="addSalesInfo">
 		INSERT INTO SCSALESTBL (salesNo, userId, price)
 		VALUES (SALES_seq.nextval, #{param1}, #{param2})
 	</insert>
