@@ -84,7 +84,7 @@ function categoryChange(e) {
 	<option value="a7">14:00</option>
 </select>
 
-종료시간:
+종료시간:ㅎㅇ
 <div class="change02">0</div>
 <div class="change03"></div>
 
