@@ -231,9 +231,9 @@ public class TodayTicketController {
 				  lastindex = lastindex + 1 ;
 				  String endTime = String.valueOf(lastindex); //종료시간 저장
 				  
+				  model.addAttribute("selectedDate",selectedDate);
 				  model.addAttribute("startTime",startTime);
 				  model.addAttribute("endTime",endTime);
-				  model.addAttribute("selectedDate",selectedDate);
 				  model.addAttribute("seatNo",seatNo );
 				  model.addAttribute("ticketName",ticketName);
 				  model.addAttribute("selectedTime",selectedTime);

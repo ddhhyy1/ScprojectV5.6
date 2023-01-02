@@ -142,7 +142,7 @@ public class SubcriptionTicketController {
 		String remainTime = sticketDto.getSremainTime();//유저 이용권의 남은시간 불러오기
 		
 		
-		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());	
+		String seatNo = request.getParameter("seatNo");	
 		String selectedDate = request.getParameter("selectedDate");
 		String [] selectedTime = request.getParameterValues("selectedTime");
 		
@@ -156,6 +156,7 @@ public class SubcriptionTicketController {
 				String number=selectedTime[i];
 				selectedTimes[i]=number;//새로 생성한 배열에 selectedTime의 체크박스값들 저장
 				}
+				
 				int bticketName = selectedTime.length;//이용시간을 selectedTime 체크박스 갯수를 통해 저장
 				
 				int intremainTime = Integer.parseInt(remainTime);
@@ -167,36 +168,36 @@ public class SubcriptionTicketController {
 							
 						//방금 들어간 회원정보들을 결제 전 체크페이지에 전달
 						
-						int[] Times= new int[17];//8부터 24까지 문자배열생성
-						for(int j=0;j<16;j++) {
-						Times[j]=j+8;	
-						}
-						  int[] intstTimes= new int[selectedTimes.length]; //체크박스 지정된 갯수만큼의 사이즈의 배열 생성
-						  for (int k = 0; k < selectedTimes.length; k++) {
-					            intstTimes[k] = Integer.parseInt(selectedTimes[k]);//체크박스 값들을 정수배열로 변환
-					        }
-						  int[] savedTimes= new int[intstTimes.length];//체크박스의 값들을 시간으로 치환해줄 배열생성
-						  for (i=0;i < intstTimes.length;i++) {
-							  savedTimes[i]=Times[intstTimes[i]];//체크박스값 배열들을 시간으로 치환하여 저장
-						  }
-						  String startTime = String.valueOf(savedTimes[0]); //시작시간을 저장
-						  int lastindex = savedTimes[savedTimes.length-1];
-						  lastindex = lastindex + 1 ;
-						  String endTime = String.valueOf(lastindex); //종료시간 저장
-						  
+				//-------시작시간 종료시간 뽑아내기---------
+				int[] Times= new int[17];//8부터 24까지 문자배열생성
+				for(int j=0;j<16;j++) {
+				Times[j]=j+8;	
+				}
+				  int[] intstTimes= new int[selectedTimes.length]; //체크박스 지정된 갯수만큼의 사이즈의 배열 생성
+				  for (int k = 0; k < selectedTimes.length; k++) {
+			            intstTimes[k] = Integer.parseInt(selectedTimes[k]);//체크박스 값들을 정수배열로 변환
+			        }
+				  int[] savedTimes= new int[intstTimes.length];//체크박스의 값들을 시간으로 치환해줄 배열생성
+				  for (i=0;i < intstTimes.length;i++) {
+					  savedTimes[i]=Times[intstTimes[i]];//체크박스값 배열들을 시간으로 치환하여 저장
+				  }
+				  String startTime = String.valueOf(savedTimes[0]); //시작시간을 저장
+				  int lastindex = savedTimes[savedTimes.length-1];
+				  lastindex = lastindex + 1 ;
+				  String endTime = String.valueOf(lastindex); //종료시간 저장
 						 
 						  
 						  model.addAttribute("selectedDate",selectedDate);
-						  model.addAttribute("seatNo",seatNo );
-						  model.addAttribute("totalHour",bticketName);		  
 						  model.addAttribute("startTime",startTime);
 						  model.addAttribute("endTime",endTime);
+						  model.addAttribute("seatNo",seatNo );
+						  model.addAttribute("totalHour",bticketName);
 						  model.addAttribute("remainTime",remainTime2);
 						
 						
 					
 					
-					return "SubscriptionTicketView2";
+					return "registsTicketConfirm";
 					
 
 		

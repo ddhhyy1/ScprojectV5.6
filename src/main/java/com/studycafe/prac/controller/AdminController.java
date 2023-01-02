@@ -141,18 +141,24 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admCheckSales")//관리자메인페이지
-	public String admCheckSales() {
+	public String admCheckSales(Model model) {
 		
 		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
 		
 		List<ScSalesDto> salesDto = dao.getChartInfo();
 		
 		List<String> SalesForMonth = new ArrayList<String>();
-		for(int i=0; i<=SalesForMonth.size();i++) {
-			SalesForMonth.add(salesDto.get(i).getPrice());
+		for(int i=0; i<salesDto.size();i++) {
+			SalesForMonth.add(salesDto.get(i).getSumSales());
 			System.out.println(SalesForMonth.get(i));
 			}
 		
+		 List<String> SalesForMonth2 = new ArrayList<String>();
+		    for(int f = 0; f<SalesForMonth.size();f++) {
+		    	SalesForMonth2.add(SalesForMonth.get(f));
+		    }
+		
+		 model.addAttribute("SalesForMonth2",SalesForMonth2);
 		return "admin/admCheckSales";
 	}
 }

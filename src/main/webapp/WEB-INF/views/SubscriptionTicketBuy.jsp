@@ -10,14 +10,22 @@
 <title>시간권 구매</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <script type="text/javascript">
+function reply_click(cliked_id)
+{
+alert(clicked_id);	
+}
+</script>
+<script type="text/javascript"> 
 var userPoint = '${memberdto.userPoint}';
 userPoint = parseInt(userPoint);
 </script>
 <script type="text/javascript">
 $(function(){
-    $('.change50').click(function(){
+	
+    $('.change50').click(function(e){
+    	event.stopPropagation();
     	$('input[name=sticketName]').attr('value',"65,000");
-    	userPoint = userPoint-65000
+    	userPoint = userPoint-65000;
     	$('input[name=afterPayingPoint]').attr('value',userPoint);
     });
 });
@@ -98,7 +106,9 @@ $(function(){
 										<td>
 										<div class="btn-group" role="group" aria-label="Basic outlined example">
 
-  											<div class="change50"><a href=#>50시간</a></div>
+  											<div class="change50">
+  											<a href=#>50시간</a>
+   											</div>
   											<div class="change100"><a href=#>100시간</a></div>
   											<div class="change150"><a href=#>150시간</a></div>
    											<div class="change200"><a href=#>200시간</a></div>
@@ -112,7 +122,7 @@ $(function(){
 										<td><span class="content_text01" >차감포인트 : </span>
 										</td>
 										<td >
-        								<input type="text" name="sticketName" value="0">p
+        								<input type="text" name="sticketName">p
 										</td>
 									</tr>
 										</tr>
@@ -120,14 +130,6 @@ $(function(){
 										<td colspan="2">
 										<hr>
 										</td>
-									</tr>
-									<tr>
-										<td>&nbsp;</td>
-										<td>${memberdto.userPoint}</td>						
-									</tr>
-									<tr>
-										<td>&nbsp;</td>
-										<td>-<input type="text" name="sticketName" value="0">p</td>
 									</tr>
 									<tr>
 										<td><span class="content_text01">결제 후 남은포인트:</span></td>

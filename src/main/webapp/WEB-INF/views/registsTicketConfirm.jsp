@@ -68,9 +68,8 @@
 									</tr>
 										</tr>
 										<tr>
-										<td><span class="content_text01">예약 후 보유시간:</span></td>
-										<td>${remainTime}
-										
+										<td><span class="content_text01">예약 후 보유시간:</span>
+										&nbsp;&nbsp;${remainTime}
 										</td>
 									</tr>
 									<tr>

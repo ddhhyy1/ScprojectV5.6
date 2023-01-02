@@ -60,9 +60,9 @@
 	</insert>
 	
 	<select id="getChartInfo" resultType="com.studycafe.prac.dto.ScSalesDto">
-	SELECT SALESDATE,
-	SUM(PRICE) FROM scsalestbl
-	GROUP BY SALESDATE;
+	SELECT SUM(PRICE) AS sumSales FROM scsalestbl
+	GROUP BY substr(salesdate,1,7)
+	order By substr(salesdate,1,7) asc
 	</select>
 	
 </mapper>
