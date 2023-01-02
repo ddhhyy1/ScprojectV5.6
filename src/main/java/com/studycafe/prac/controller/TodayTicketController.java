@@ -81,6 +81,19 @@ public class TodayTicketController {
 		String sessionId = (String) session.getAttribute("userId");
 		MemberDao dao2 = sqlSession.getMapper(MemberDao.class);
 		
+		if(sessionId == null) {
+			try {
+				response.setContentType("text/html; charset=UTF-8");      
+		        PrintWriter out;
+				out = response.getWriter();
+				out.println("<script>alert('로그인이 필요한 서비스입니다.'); history.go(-1);</script>");
+			    out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			}
+		
 		if(sessionId !=null) {
 		memberDto userP = dao2.getMemberInfo(sessionId);
 		String usingTicket = userP.getUsingTicket();
@@ -95,26 +108,17 @@ public class TodayTicketController {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} return "Ticket/ChooseTicket";
+				} 
 		
 			
 			}	
 		}
 		
-		if(sessionId ==null) {
-		try {
-			response.setContentType("text/html; charset=UTF-8");      
-	        PrintWriter out;
-			out = response.getWriter();
-			out.println("<script>alert('로그인이 필요한 서비스입니다.'); history.go(-1);</script>");
-		    out.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} return "Ticket/ChooseTicket";
-		}else {
-			return "Ticket/TodayTicketView";
-		}
+		
+			
+		
+		
+		return "Ticket/TodayTicketView";
 	}
 	
 	@RequestMapping(value="/searchSeat")

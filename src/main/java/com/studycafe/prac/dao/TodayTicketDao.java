@@ -23,6 +23,7 @@ public interface TodayTicketDao {
 	public void BuySTicket(String sticketName, String suserId, String sremainTime);
 	public void updateRemainTime(String suserId);
 	public SubscriptionTicketDto getSTicketInfo(String suserId);
+	public void updateUsingTicketPointM(String suserId, String userPoint, String usingTicket);
 	
 	//매출관련
 	public void getSalesInfo(String userId, String payingPoint);
