@@ -35,44 +35,41 @@ public class SubcriptionTicketController {
 		
 		String sessionId = (String) session.getAttribute("userId");
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		memberDto memberdto = dao.getMemberInfo(sessionId);
 		
-	
+		
+		if(sessionId == null) {
+			try {
+				response.setContentType("text/html; charset=UTF-8");      
+		        PrintWriter out;
+				out = response.getWriter();
+				out.println("<script>alert('로그인이 필요한 서비스입니다.'); history.go(-1);</script>");
+			    out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			}
+		
 		if(sessionId !=null) {
+		memberDto memberdto = dao.getMemberInfo(sessionId);
 		String usingTicket = memberdto.getUsingTicket();
 		int uTicket = Integer.parseInt(usingTicket);
-			if(uTicket>0) {
+			if(uTicket>=1) {
 				try {
 					response.setContentType("text/html; charset=UTF-8");      
 			        PrintWriter out;
 					out = response.getWriter();
 					out.println("<script>alert('중복예약은 불가능합니다'); history.go(-1);</script>");
 				    out.flush();
-				    return "Ticket/ChooseTicket";
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				} 
+			}	else {
+				model.addAttribute("memberdto",memberdto);
+				return "Ticket/SubscriptionTicketBuy";
 			}
-		
-		if(sessionId==null) {
-		try {
-			response.setContentType("text/html; charset=UTF-8");      
-	        PrintWriter out;
-			out = response.getWriter();
-			out.println("<script>alert('로그인이 필요한 서비스입니다.'); history.go(-1);</script>");
-		    out.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} return "Ticket/ChooseTicket";
-		}else {
-			
-			model.addAttribute("memberdto", memberdto);
-		
-			return "Ticket/SubscriptionTicketBuy";
 		}
-			}
 		return "Ticket/SubscriptionTicketBuy";
 	}
 	@RequestMapping(value="/SubscriptionTicketView")//구독이용권좌석선택
@@ -88,13 +85,15 @@ public class SubcriptionTicketController {
 		String sessionId = (String) session.getAttribute("userId");
 		
 		String sticketName = request.getParameter("sticketName");
+		String afterPayingPoint = request.getParameter("afterPayingPoint");
 		
 		//포인트를 고르면 해당하는 시간이 db에 저장됨
 		String[] SubPrice = {"65,000","120,000","160,000","200,000"};
 		String[] SubTime = {"50","100","150","200"};
 		for(int i=0;i<4;i++) {
 			if(SubPrice[i].equals(sticketName)) {
-				dao.BuySTicket(sticketName, sessionId, SubTime[i]);//db에 시간 저장
+				dao.BuySTicket(sticketName, sessionId, SubTime[i]);//subscriptiontbl 시간 저장
+				dao.updateUsingTicketPointM(sessionId, afterPayingPoint, SubTime[i]);//membertbl 유저보유 포인트와 티켓 갱신
 			}
 		
 		model.addAttribute("sticketName",sticketName);

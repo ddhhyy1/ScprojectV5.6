@@ -50,6 +50,10 @@
 	
 	</select>
 	
+	<update id="updateUsingTicketPointM">
+		UPDATE SCMEMBERTBL SET USERPOINT =#{param2}, USINGTICKET =#{param3} WHERE USERID=#{param1}
+	</update>
+	
 	<!-- 시간 이용권 끝 -->
 	
 	<!-- 관리자 및 매출관련 -->
