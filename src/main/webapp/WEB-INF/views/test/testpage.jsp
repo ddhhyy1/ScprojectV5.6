@@ -83,8 +83,8 @@ function categoryChange(e) {
 	<option value="a6">13:00</option>
 	<option value="a7">14:00</option>
 </select>
-gdgdgdsgd
-
+gdgdgdsgdsdfsd
+dsa
 <div class="change02">0</div>
 <div class="change03"></div>
 
