@@ -73,7 +73,10 @@ public class SubcriptionTicketController {
 		return "Ticket/SubscriptionTicketBuy";
 	}
 	@RequestMapping(value="/SubscriptionTicketView")//구독이용권좌석선택
-	public String STicketView() {
+	public String STicketView(HttpSession session) {
+		
+		String sessionId = (String) session.getAttribute("userId");
+		
 		
 		
 		return "Ticket/SubscriptionTicketView";
@@ -230,7 +233,9 @@ public class SubcriptionTicketController {
 		int seatNo = Integer.parseInt(request.getParameter("seatNo"));
 		String [] selectedTime = request.getParameterValues("selectedTime");
 		String remainTime = request.getParameter("remainTime");
-		
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
+ 		
 		int bticketName = selectedTime.length;
 		int intRemainTime = Integer.parseInt(remainTime);
 		
@@ -257,7 +262,7 @@ public class SubcriptionTicketController {
 			} 
 		}	else {//보유시간이 예약시간보다 많을 경우 예약가능
 			String sticketName = String.valueOf(bticketName);
-			dao.regist(seatNo, sessionId, sticketName, selectedDate);
+			dao.regist(seatNo, sessionId, sticketName, selectedDate,startTime,endTime);
 			dao.updateRemainTime(sessionId, remainTime);
 				for(int n=1;n<=selectedTime.length;n++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
 					dao.makeReservation(seatNo, sessionId, selectedDate, selectedTimes[n-1]);
@@ -270,6 +275,35 @@ public class SubcriptionTicketController {
 		
 		
 		return "Ticket/sTicketReservComplete";
+	}
+	
+	@RequestMapping(value="/checkReservInfo")
+	public String checkReservInfo(Model model,HttpSession session) {
+		
+		String sessionId = (String) session.getAttribute("userId");
+		
+		MemberDao mdao = sqlSession.getMapper(MemberDao.class);
+		TodayTicketDao tdao = sqlSession.getMapper(TodayTicketDao.class);
+		
+		memberDto memberDto = mdao.getMemberInfo(sessionId);
+		SubscriptionTicketDto stDto = tdao.getSTicketInfo(sessionId);
+		seatDto sDto = tdao.getReservInfo(sessionId);
+		
+		String selectedDate = sDto.getSelectedDate();
+		
+		String year= selectedDate.substring(0, 4);
+		String month= selectedDate.substring(4, 6);
+		String day= selectedDate.substring(6, 8);
+		
+		model.addAttribute("day",day);
+		model.addAttribute("month",month);
+		model.addAttribute("year",year);
+		model.addAttribute("memberDto", memberDto);
+		model.addAttribute("stDto", stDto);
+		model.addAttribute("sDto",sDto);
+		
+		
+		return "Ticket/checkReservInfo";
 	}
 	
 	

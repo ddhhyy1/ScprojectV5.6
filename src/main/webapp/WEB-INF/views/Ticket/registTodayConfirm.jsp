@@ -83,6 +83,8 @@
 									<input type="hidden" name = "ticketName" value="${ticketName}">
 									<input type="hidden" name = "PayingPoint" value="${PayingPoint}">
 									<input type="hidden" name = "selectedTime" value="${selectedTime}">
+									<input type="hidden" name = "startTime" value="${startTime}">
+									<input type="hidden" name = "endTime" value="${endTime}">
 									<tr>
 										<td colspan="2">
 											<input class="button_type01" type="submit" value="결제하기" >&nbsp;&nbsp;

@@ -12,7 +12,7 @@ public interface TodayTicketDao {
 	
 	
 	//당일권 관련
-	public void regist(int seatNo, String userId, String ticketName, String selectedDate);
+	public void regist(int seatNo, String userId, String ticketName, String selectedDate,String startTime, String endTime);
 	public ArrayList<seatDto> registTodayConfirm();
 	public ArrayList<seatDto> searchSeat(String seatNo,String selectedDate);
 	public ArrayList<ScreservDto> searchReservation(int seatNo, String selectedDate);
@@ -28,5 +28,9 @@ public interface TodayTicketDao {
 	//매출관련
 	public void addSalesInfo(String userId, String payingPoint);
 	public List<ScSalesDto> getChartInfo();
+	
+	//내예약정보확인관련
+	public seatDto getReservInfo(String userId);
+	
 	
 }

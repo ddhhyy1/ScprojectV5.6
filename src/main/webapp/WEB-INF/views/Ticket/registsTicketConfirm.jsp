@@ -77,6 +77,8 @@
 										<input type="hidden" name = "seatNo" value="${seatNo}">
 										<input type="hidden" name = "selectedDate" value="${selectedDate}">
 										<input type="hidden" name = "selectedTime" value="${selectedTime}">
+										<input type="hidden" name = "startTime" value="${startTime}">
+										<input type="hidden" name = "endTime" value="${endTime}">
 									<tr>		
 										<td colspan="2">
 											<input class="button_type01" type="submit" value="결제하기" >&nbsp;&nbsp;

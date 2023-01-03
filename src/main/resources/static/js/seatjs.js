@@ -1,0 +1,149 @@
+/**
+ * 
+ */
+ 
+ $(function(){
+	
+    $('.change1').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"1");
+    });
+});
+$(function(){
+	
+    $('.change2').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"2");
+    });
+});
+$(function(){
+	
+    $('.change3').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"3");
+    });
+});
+$(function(){
+	
+    $('.change4').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"4");
+    });
+});
+$(function(){
+	
+    $('.change5').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"5");
+    });
+});
+$(function(){
+	
+    $('.change6').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"6");
+    });
+});
+$(function(){
+	
+    $('.change7').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"7");
+    });
+});
+$(function(){
+	
+    $('.change8').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"8");
+    });
+});
+$(function(){
+	
+    $('.change9').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"9");
+    });
+});
+$(function(){
+	
+    $('.change10').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"10");
+    });
+ 
+$(function(){
+    	
+     $('.change11').click(function(e){
+        	event.stopPropagation();
+        	$('input[name=sticketName]').attr('value',"11");
+        });
+    });
+$(function(){
+	
+    $('.change12').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"12");
+    });
+});    
+$(function(){     
+   $('.change13').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"13");
+    });
+});
+$(function(){  
+   $('.change14').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"14");
+    });
+}); 
+$(function(){  
+   $('.change15').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"15");
+    });
+});
+$(function(){  
+   $('.change16').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"16");
+    });
+});
+$(function(){  
+   $('.change17').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"17");
+    });
+});
+$(function(){  
+   $('.change18').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"18");
+    });
+});
+$(function(){  
+   $('.change19').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"19");
+    });
+});
+$(function(){  
+   $('.change20').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"20");
+    });
+});
+$(function(){  
+   $('.change21').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"21");
+    });
+ });
+$(function(){  
+   $('.change22').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=sticketName]').attr('value',"22");
+    });
+});
+});   

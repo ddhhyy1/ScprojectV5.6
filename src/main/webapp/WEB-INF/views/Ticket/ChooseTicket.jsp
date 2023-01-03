@@ -68,7 +68,7 @@
     <ul id="timer">
         <li>
             <span class="days">
-            <a href="BuySubscription">바로 예약</a>
+            <a href="SubscriptionTicketView">바로 예약</a>
             </span>
             <p class="days_text">&nbsp;&nbsp;&nbsp;이미 시간권을 보유하신 고객님은 바로 예약!</p>
         </li>

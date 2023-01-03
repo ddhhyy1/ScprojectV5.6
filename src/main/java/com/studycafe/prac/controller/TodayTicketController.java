@@ -286,6 +286,8 @@ public class TodayTicketController {
 		String selectedDate = request.getParameter("selectedDate");
 		String [] selectedTime = request.getParameterValues("selectedTime");
 		String PayingPoint = request.getParameter("PayingPoint");
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
 		
 				//넘어온 체크박스값 정렬 후, 첫번째 값부터 마지막값까지 추출후 새 배열에 넣음
 				Arrays.sort(selectedTime);
@@ -309,9 +311,9 @@ public class TodayTicketController {
 					int intUserP2=intUserP-intPayingPoint;
 					String UserPoAfterPaying=String.valueOf(intUserP2);
 				
-				
+
 					dao2.updateUticketPoint(sessionId, UserPoAfterPaying, ticketName);
-					dao.regist(seatNo, sessionId, ticketName, selectedDate);//정보들을 scseatTbl에 먼저저장
+					dao.regist(seatNo, sessionId, ticketName, selectedDate,startTime,endTime);//정보들을 scseatTbl에 먼저저장
 						for(int n=1;n<=selectedTime.length;n++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
 							dao.makeReservation(seatNo, sessionId, selectedDate, selectedTimes[n-1]);//예약테이블에 체크박스 횟수만큼 저장
 							}

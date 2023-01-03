@@ -12,7 +12,7 @@
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/seatjs.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/title.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
 
@@ -78,83 +78,8 @@
 
 </script>
 <script type="text/javascript">
-$(function(){
-	
-    $('.change1').click(function(e){
-    	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"1");
-    });
-});
-$(function(){
-	
-    $('.change2').click(function(e){
-    	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"2");
-    });
-});
-$(function(){
-	
-    $('.change3').click(function(e){
-    	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"3");
-    });
-});
-$(function(){
-	
-    $('.change4').click(function(e){
-    	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"4");
-    });
-});
-$(function(){
-	
-    $('.change5').click(function(e){
-    	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"5");
-    });
-});
-$(function(){
-	
-    $('.change6').click(function(e){
-    	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"6");
-    });
-});
-$(function(){
-	
-    $('.change7').click(function(e){
-    	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"7");
-    });
-});
-$(function(){
-	
-    $('.change8').click(function(e){
-    	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"8");
-    });
-});
-$(function(){
-	
-    $('.change9').click(function(e){
-    	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"9");
-    });
-});
-$(function(){
-	
-    $('.change10').click(function(e){
-    	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"10");
-    });
-$(function(){
-    	
-        $('.change11').click(function(e){
-        	event.stopPropagation();
-        	$('input[name=sticketName]').attr('value',"11");
-        });
-    });    
-});
+
+
 
 </script>
     <style>
@@ -197,12 +122,6 @@ $(function(){
 			</td>
 		</tr>
 		<tr>
-		<td>
-			<input class="button_type01" type="submit" value="다음 단계로">
-			<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
-			</td>
-		</tr>
-		<tr>
 			<td>
 				<img src="${pageContext.request.contextPath} /resources/img/CafeMap2.png" usemap="#cafeMap">
 				<map name="cafeMap"  id="cafeMap">
@@ -217,6 +136,24 @@ $(function(){
 				<div class="change9"><area shape="rect" coords="360,27,411,81" href=#></div>
 				<div class="change10"><area shape="rect" coords="306,27,353,81" href=#></div>
 				<div class="change11"><area shape="rect" coords="246,27,295,81" href=#></div>
+				<div class="change12"><area shape="rect" coords="172,27,225,78" href=#></div>
+				<div class="change13"><area shape="rect" coords="171,87,226,137" href=#></div>
+				<div class="change14"><area shape="rect" coords="171,147,225,197" href=#></div>
+				<div class="change15"><area shape="rect" coords="172,206,225,257" href=#></div>
+				<div class="change16"><area shape="rect" coords="171,260,225,316" href=#></div>
+				<div class="change17"><area shape="rect" coords="172,320,225,376" href=#></div>
+				<div class="change18"><area shape="rect" coords="19,54,79,126" href=#></div>
+				<div class="change19"><area shape="rect" coords="17,141,78,212" href=#></div>
+				<div class="change20"><area shape="rect" coords="18,226,78,298" href=#></div>
+				<div class="change21"><area shape="rect" coords="17,310,78,383" href=#></div>
+				<div class="change22"><area shape="rect" coords="18,397,78,470" href=#></div>
+				
+			</td>
+		</tr>
+		<tr>
+		<td>
+			<input class="button_type01" type="submit" value="다음 단계로">
+			<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 			</td>
 		</tr>
 	</table>

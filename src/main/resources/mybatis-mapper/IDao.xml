@@ -8,8 +8,8 @@
 
 	<!-- 당일 이용권 관련  -->
 	<insert id="regist">
-		INSERT INTO scseatTBL(seatNo, userId, ticketName, selectedDate, TEMPUSINGNO )
-		 VALUES(#{param1}, #{param2}, #{param3}, #{param4},TEMPUN_seq.nextval) 
+		INSERT INTO scseatTBL(seatNo, userId, ticketName, selectedDate, TEMPUSINGNO, startTime, endTime )
+		 VALUES(#{param1}, #{param2}, #{param3}, #{param4},TEMPUN_seq.nextval, #{param5},#{param6}) 
 	</insert>
 
 
@@ -67,6 +67,13 @@
 	SELECT SUM(PRICE) AS sumSales FROM scsalestbl
 	GROUP BY substr(salesdate,1,7)
 	order By substr(salesdate,1,7) asc
+	</select>
+	
+	<!-- 내 예약정보확인 관련 -->
+	
+	<select id="getReservInfo" resultType="com.studycafe.prac.dto.seatDto">
+		SELECT * FROM SCSEATTBL WHERE userId = #{param1}
+	
 	</select>
 	
 </mapper>
