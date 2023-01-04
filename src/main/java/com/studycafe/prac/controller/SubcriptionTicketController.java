@@ -55,12 +55,13 @@ public class SubcriptionTicketController {
 		memberDto memberdto = dao.getMemberInfo(sessionId);
 		String usingTicket = memberdto.getUsingTicket();
 		int uTicket = Integer.parseInt(usingTicket);
-			if(uTicket>=1) {
+		System.out.print(uTicket);
+			if(uTicket>=50) {
 				try {
 					response.setContentType("text/html; charset=UTF-8");      
 			        PrintWriter out;
 					out = response.getWriter();
-					out.println("<script>alert('중복예약은 불가능합니다'); history.go(-1);</script>");
+					out.println("<script>alert('시간제를 이미 사용중이십니다. 추가 충전은 예약정보란에서 가능합니다.'); history.go(-1);</script>");
 				    out.flush();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -270,18 +271,20 @@ public class SubcriptionTicketController {
 		String remainTime = request.getParameter("remainTime");
 		String startTime = request.getParameter("startTime");
 		String endTime = request.getParameter("endTime");
- 		
+		int startTimeInt = Integer.parseInt(request.getParameter("startTime"));
+	    int endTimeInt = Integer.parseInt(request.getParameter("endTime"));
+		
 		int bticketName = selectedTime.length;
 		int intRemainTime = Integer.parseInt(remainTime);
 		
-		//넘어온 체크박스값 정렬 후, 첫번째 값부터 마지막값까지 추출후 새 배열에 넣음
-		Arrays.sort(selectedTime);//먼저 배열들 순서 정리
-		int i;
-		String [] selectedTimes= new String[selectedTime.length];//새배열 생성
-		for(i=0;i<selectedTime.length;i++) {	
-		String number=selectedTime[i];
-		selectedTimes[i]=number;//새로 생성한 배열에 selectedTime의 체크박스값들 저장
-		}
+//		//넘어온 체크박스값 정렬 후, 첫번째 값부터 마지막값까지 추출후 새 배열에 넣음
+//		Arrays.sort(selectedTime);//먼저 배열들 순서 정리
+//		int i;
+//		String [] selectedTimes= new String[selectedTime.length];//새배열 생성
+//		for(i=0;i<selectedTime.length;i++) {	
+//		String number=selectedTime[i];
+//		selectedTimes[i]=number;//새로 생성한 배열에 selectedTime의 체크박스값들 저장
+//		}
 		
 		
 		if(intRemainTime<0) {//보유시간이 예약시간보다 적을시 예약못함
@@ -304,9 +307,20 @@ public class SubcriptionTicketController {
 			
 			tdao.regist(seatNo, sessionId, sticketName, selectedDate,startTime,endTime,salesNo);
 			tdao.updateRemainTime(sessionId, remainTime);
-				for(int n=1;n<=selectedTime.length;n++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
-					tdao.makeReservation(seatNo, sessionId, selectedDate, selectedTimes[n-1]);
-				}
+			   for(int i = startTimeInt;i<endTimeInt;i++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
+                   tdao.makeReservation(seatNo, sessionId, selectedDate, i);//예약테이블에 체크박스 횟수만큼 저장
+                   
+                   try {
+           			response.setContentType("text/html; charset=UTF-8");      
+           	        PrintWriter out;
+           			out = response.getWriter();
+           			out.println("<script>alert('예약 완료!');window.location.href = 'ReservInfoList'</script>");
+           		    out.flush();
+           		} catch (IOException e) {
+           			// TODO Auto-generated catch block
+           			e.printStackTrace();
+           		}
+			   }
 	
 			
 			
@@ -314,7 +328,7 @@ public class SubcriptionTicketController {
 		
 		
 		
-		return "Ticket/sTicketReservComplete";
+		return "Ticket/ReservInfoList";
 	}
 	
 	

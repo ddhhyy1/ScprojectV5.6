@@ -64,7 +64,7 @@
 			<%
 				} else {	
 			%>
-				<td width="5%" class="menu01"><a href="checkReservInfo">예약정보</a>	</td>
+				<td width="5%" class="menu01"><a href="ReservInfoList">예약정보</a>	</td>
 			<% 
 				} 
 			%>	

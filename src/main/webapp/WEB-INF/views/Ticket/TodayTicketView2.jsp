@@ -25,10 +25,33 @@
 <!-- bootstrap CSS -->
 <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
+
 <script type="text/javascript">
-
-
-		
+$(function(){
+    $(".checkTime").click(function(){
+        var fruit = new Array();
+        var i=0;
+        $(".checkTime").each(function(index){
+            if($(this).is(":checked")){
+                fruit[i]=index;
+                i++;
+            }
+        });
+        if(fruit.length != 1){
+            var temp = fruit[0];
+            for(var k=1; k<fruit.length; k++){
+                if(temp+k != fruit[k]){
+                    alert("시간 예약은 연속으로만 가능합니다.");
+                    if($(this).is(":checked"))
+                        $(this).is(":checked",false);
+                    else
+                        $(this).is(":checked",true);
+                    return false;
+                }
+            }
+        }
+    });    
+});	
 </script>
 
 
@@ -109,7 +132,7 @@
 												<td class="seatTblTd">${l}:00 ~ ${l+1}:00</td>
 												<td class="seatTblTd"> 예약 가능</td>
 												<td class="seatTblTd">
-												<label><input type="checkbox" name="selectedTime" value="${l-8}"></label>		 					 				
+												<label><input class="checkTime" type="checkbox" name="selectedTime" value="${l-8}"></label>		 					 				
 												</td>
 											 </tr>
 											 </c:when>

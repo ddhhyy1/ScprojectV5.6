@@ -63,16 +63,13 @@
 									</tr>
 									<tr>
 										<td colspan="2">
-										<%
-											String boardId = (String) request.getAttribute("buserid");
 										
-											if(boardId.equals("GUEST")) {
-										%>
 										<input class="button_type01" type="submit" value="수정">&nbsp;&nbsp;										
 										<input class="button_type01" type="button" value="삭제" onclick="script:window.location='questionDelete?bnum=${qdto.bnum}'">
 										<input class="button_type01" type="button" value="글목록" onclick="script:window.location='list'">
 										<%
-											} else if((sessionId != null ) && (sessionId.equals(boardId))) {
+											 String boardId = (String) request.getAttribute("buserid");
+											if((sessionId != null ) && (sessionId.equals(boardId))) {
 										%>
 											<input class="button_type01" type="submit" value="수정">&nbsp;&nbsp;
 											<input class="button_type01" type="button" value="삭제" onclick="script:window.location='questionDelete?bnum=${qdto.bnum}'">

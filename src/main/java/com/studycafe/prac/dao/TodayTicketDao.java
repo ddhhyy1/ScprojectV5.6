@@ -16,7 +16,7 @@ public interface TodayTicketDao {
 	public ArrayList<seatDto> registTodayConfirm();//
 	public ArrayList<seatDto> searchSeat(String seatNo,String selectedDate);//
 	public ArrayList<ScreservDto> searchReservation(int seatNo, String selectedDate);//해당날짜,좌석으로 예약된시간대 전부 가져오기
-	public void makeReservation(int seatNo,String userId, String selectedDate, String selectedTime);//당일권 예약 최종결제
+	public void makeReservation(int seatNo,String userId, String selectedDate, int selectedTime);//당일권 예약 최종결제
 	
 	
 	//시간제(정액권) 관련
@@ -32,9 +32,11 @@ public interface TodayTicketDao {
 	public List<ScSalesDto> getSalesNo(String userId);//아이디 그룹화하여 가장 최신에 등록된 매출번호 가져오기
 	
 	//내예약정보확인관련
-	public seatDto getReservInfo(String userId); //내 예약정보 확인
+	public seatDto getReservInfo(String tempUsingNo); //내 예약정보 확인
+	public List<seatDto> getAllReservInfo(String userId);
 	public void cancelReservSeatTbl(String tempUsingNo); //seatTbl의 예약 취소
 	public void cancelReservResvTbl(String userId, String seatNo, String selectedDate);//reservTbl(좌석및 시간대) 예약 취소
-	public void cancelReservSaleTbl(String salesNo);
+	public void cancelReservSaleTbl(String salesNo); //
 	public void returnUserPointTicket(String userId, String userPoint, String usingTicket);
+	public void returnRemainTime(String suserId, String sremainTime);
 }

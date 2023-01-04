@@ -3,6 +3,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
@@ -11,7 +12,7 @@
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/seatjs.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/title.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
 
@@ -76,10 +77,19 @@
     <!--      달력 추가 js 끝       -->
 
 </script>
+<script type="text/javascript">
 
 
+
+</script>
+    <style>
+      .seatNo:hover {
+      color:red;
+      }
+    </style>
 <meta charset="UTF-8">
 <title>당일권 사용&예약등록</title>
+
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
@@ -94,7 +104,7 @@
 		<tr>
 			<td class="titlebox">
 				<span class="title02">회원아이디:</span>
-				<span class="title02"><%= sessionId %></span>
+				<span class="title02"></span>
 			</td>
 		</tr>
 		<tr>
@@ -107,22 +117,58 @@
 		<tr>
 			<td class="titlebox">
 				<span class="title02">좌석지정:
-  					<select name="seatNo" >
-   						 <option value="none" name="seatNo2">=== 선택 ===</option>
-   						 <c:forEach begin="1" end="25" step="1" var="n">
-    					 <option name="selectTime">${n}</option>
-    					 </c:forEach>
- 					 </select>
+  					<input type="text" name="seatNo">
 				</span>
 			</td>
 		</tr>
 		<tr>
+			<td>
+				<img src="${pageContext.request.contextPath} /resources/img/CafeMap2.png" usemap="#cafeMap">
+				<map name="cafeMap"  id="cafeMap">
+				<div class="change1"><area shape="rect" coords="834,27,881,81" href=#></div>
+				<div class="change2"><area shape="rect" coords="776,27,821,81" href=#></div>
+				<div class="change3"><area shape="rect" coords="717,27,764,81" href=#></div>
+				<div class="change4"><area shape="rect" coords="658,27,705,81" href=#></div>
+				<div class="change5"><area shape="rect" coords="600,27,645,81" href=#></div>
+				<div class="change6"><area shape="rect" coords="541,27,586,81" href=#></div>
+				<div class="change7"><area shape="rect" coords="480,27,529,81" href=#></div>
+				<div class="change8"><area shape="rect" coords="420,27,471,81" href=#></div>
+				<div class="change9"><area shape="rect" coords="360,27,411,81" href=#></div>
+				<div class="change10"><area shape="rect" coords="306,27,353,81" href=#></div>
+				
+				<div class="change11"><area shape="rect" coords="246,27,295,81" href=#></div>
+				<div class="change12"><area shape="rect" coords="172,27,225,78" href=#></div>
+				<div class="change13"><area shape="rect" coords="171,87,226,137" href=#></div>
+				<div class="change14"><area shape="rect" coords="171,147,225,197" href=#></div>
+				<div class="change15"><area shape="rect" coords="172,206,225,257" href=#></div>
+				<div class="change16"><area shape="rect" coords="171,260,225,316" href=#></div>
+				<div class="change17"><area shape="rect" coords="172,320,225,376" href=#></div>
+				<div class="change18"><area shape="rect" coords="19,54,79,126" href=#></div>
+				<div class="change19"><area shape="rect" coords="17,141,78,212" href=#></div>
+				<div class="change20"><area shape="rect" coords="18,226,78,298" href=#></div>
+				
+				<div class="change21"><area shape="rect" coords="17,310,78,383" href=#></div>
+				<div class="change22"><area shape="rect" coords="18,397,78,470" href=#></div>	
+				<div class="change23"><area shape="rect" coords="24,530,77,576" href=#></div>
+				<div class="change24"><area shape="rect" coords="95,530,145,576" href=#></div>
+				<div class="change25"><area shape="rect" coords="162,530,213,576" href=#></div>
+				
+				<div class="change26"><area shape="rect" coords="591,270,642,325" href=#></div>
+				<div class="change27"><area shape="rect" coords="651,270,700,325" href=#></div>
+				<div class="change28"><area shape="rect" coords="711,270,762,325" href=#></div>
+				<div class="change29"><area shape="rect" coords="771,270,822,325" href=#></div>		
+				<div class="change30"><area shape="rect" coords="591,202,642,257" href=#></div>
+				<div class="change31"><area shape="rect" coords="654,202,702,257" href=#></div>
+				<div class="change32"><area shape="rect" coords="714,202,762,257" href=#></div>
+				<div class="change33"><area shape="rect" coords="774,202,822,257" href=#></div>
+			</td>
+		</tr>
+		<tr>
 		<td>
-			<input class="button_type01" type="submit" value="좌석검색">
+			<input class="button_type01" type="submit" value="다음 단계로">
 			<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 			</td>
 		</tr>
-		
 	</table>
 	
 	</form>

@@ -6,144 +6,215 @@
 	
     $('.change1').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"1");
+    	$('input[name=seatNo]').attr('value',"1");
     });
 });
 $(function(){
 	
     $('.change2').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"2");
+    	$('input[name=seatNo]').attr('value',"2");
     });
 });
 $(function(){
 	
     $('.change3').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"3");
+    	$('input[name=seatNo]').attr('value',"3");
     });
 });
 $(function(){
 	
     $('.change4').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"4");
+    	$('input[name=seatNo]').attr('value',"4");
     });
 });
 $(function(){
 	
     $('.change5').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"5");
+    	$('input[name=seatNo]').attr('value',"5");
     });
 });
 $(function(){
 	
     $('.change6').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"6");
+    	$('input[name=seatNo]').attr('value',"6");
     });
 });
 $(function(){
 	
     $('.change7').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"7");
+    	$('input[name=seatNo]').attr('value',"7");
     });
 });
 $(function(){
 	
     $('.change8').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"8");
+    	$('input[name=seatNo]').attr('value',"8");
     });
 });
 $(function(){
 	
     $('.change9').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"9");
+    	$('input[name=seatNo]').attr('value',"9");
     });
 });
 $(function(){
 	
     $('.change10').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"10");
+    	$('input[name=seatNo]').attr('value',"10");
     });
  
 $(function(){
     	
      $('.change11').click(function(e){
         	event.stopPropagation();
-        	$('input[name=sticketName]').attr('value',"11");
+        	$('input[name=seatNo]').attr('value',"11");
         });
     });
 $(function(){
 	
     $('.change12').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"12");
+    	$('input[name=seatNo]').attr('value',"12");
     });
 });    
 $(function(){     
    $('.change13').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"13");
+    	$('input[name=seatNo]').attr('value',"13");
     });
 });
 $(function(){  
    $('.change14').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"14");
+    	$('input[name=seatNo]').attr('value',"14");
     });
 }); 
 $(function(){  
    $('.change15').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"15");
+    	$('input[name=seatNo]').attr('value',"15");
     });
 });
 $(function(){  
    $('.change16').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"16");
+    	$('input[name=seatNo]').attr('value',"16");
     });
 });
 $(function(){  
    $('.change17').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"17");
+    	$('input[name=seatNo]').attr('value',"17");
     });
 });
 $(function(){  
    $('.change18').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"18");
+    	$('input[name=seatNo]').attr('value',"18");
     });
 });
 $(function(){  
    $('.change19').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"19");
+    	$('input[name=seatNo]').attr('value',"19");
     });
 });
 $(function(){  
    $('.change20').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"20");
+    	$('input[name=seatNo]').attr('value',"20");
     });
 });
 $(function(){  
    $('.change21').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"21");
+    	$('input[name=seatNo]').attr('value',"21");
     });
  });
 $(function(){  
    $('.change22').click(function(e){
     	event.stopPropagation();
-    	$('input[name=sticketName]').attr('value',"22");
+    	$('input[name=seatNo]').attr('value',"22");
     });
 });
-});   
+
+$(function(){  
+   $('.change23').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=seatNo]').attr('value',"23");
+    });
+});
+
+$(function(){  
+   $('.change24').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=seatNo]').attr('value',"24");
+    });
+});
+ 
+$(function(){  
+   $('.change25').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=seatNo]').attr('value',"25");
+    });
+});
+
+$(function(){  
+   $('.change26').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=seatNo]').attr('value',"26");
+    });
+});
+$(function(){  
+   $('.change27').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=seatNo]').attr('value',"27");
+    });
+});
+$(function(){  
+   $('.change28').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=seatNo]').attr('value',"28");
+    });
+});
+$(function(){  
+   $('.change29').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=seatNo]').attr('value',"29");
+    });
+});
+$(function(){  
+   $('.change30').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=seatNo]').attr('value',"30");
+    });
+});
+$(function(){  
+   $('.change31').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=seatNo]').attr('value',"31");
+    });
+});
+$(function(){  
+   $('.change32').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=seatNo]').attr('value',"32");
+    });
+});
+$(function(){  
+   $('.change33').click(function(e){
+    	event.stopPropagation();
+    	$('input[name=seatNo]').attr('value',"33");
+    });
+});
+
+});     

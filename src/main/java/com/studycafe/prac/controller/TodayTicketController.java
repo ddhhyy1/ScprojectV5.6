@@ -95,25 +95,25 @@ public class TodayTicketController {
 			} 
 			}
 		
-		if(sessionId !=null) {
-		memberDto userP = dao2.getMemberInfo(sessionId);
-		String usingTicket = userP.getUsingTicket();
-		int uTicket = Integer.parseInt(usingTicket);
-			if(uTicket>=1) {
-				try {
-					response.setContentType("text/html; charset=UTF-8");      
-			        PrintWriter out;
-					out = response.getWriter();
-					out.println("<script>alert('중복예약은 불가능합니다'); history.go(-1);</script>");
-				    out.flush();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
-		
-			
-			}	
-		}
+//		if(sessionId !=null) {
+//		memberDto userP = dao2.getMemberInfo(sessionId);
+//		String usingTicket = userP.getUsingTicket();
+//		int uTicket = Integer.parseInt(usingTicket);
+//			if(uTicket>=1) {
+//				try {
+//					response.setContentType("text/html; charset=UTF-8");      
+//			        PrintWriter out;
+//					out = response.getWriter();
+//					out.println("<script>alert('중복예약은 불가능합니다'); history.go(-1);</script>");
+//				    out.flush();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} 
+//		
+//			
+//			}	
+//		}
 		
 		
 			
@@ -186,10 +186,7 @@ public class TodayTicketController {
 		String ticketName = request.getParameter("ticketName");
 		String selectedDate = request.getParameter("selectedDate");
 		String [] selectedTime = request.getParameterValues("selectedTime");//체크박스값 String 배열로 저장
-		System.out.println("첫 체크박스값 ");
-		for(int i=0;i<selectedTime.length;i++) {			
-			System.out.println(selectedTime[i]);
-			}
+		
 		
 		//넘어온 체크박스값 정렬 후, 첫번째 값부터 마지막값까지 추출후 새 배열에 넣음
 		Arrays.sort(selectedTime);
@@ -199,10 +196,6 @@ public class TodayTicketController {
 		String number=selectedTime[i];
 		selectedTimes[i]=number;
 		}
-		System.out.println("새 배열에 정렬후 체크박스값 ");
-		for(i=0;i<selectedTime.length;i++) {
-			System.out.println(selectedTime[i]);
-			}
 		
 		int intticketName= Integer.parseInt(ticketName);//ticketname을 int로 변환 체크박스 갯수를 알아내기위해
 			
@@ -293,27 +286,23 @@ public class TodayTicketController {
 		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());	
 		String ticketName = request.getParameter("ticketName");
 		String selectedDate = request.getParameter("selectedDate");
-		String [] selectedTime = request.getParameterValues("selectedTime");
-		System.out.println("넘겨 받은 후 체크 박스값");
-		for(int i=0;i<selectedTime.length;i++) {
-			
-			System.out.println(selectedTime[i]);
-			}
+//		String [] selectedTime = request.getParameterValues("selectedTime");
 		String PayingPoint = request.getParameter("PayingPoint");
 		String startTime = request.getParameter("startTime");
 		String endTime = request.getParameter("endTime");
-		
-				//넘어온 체크박스값 정렬 후, 첫번째 값부터 마지막값까지 추출후 새 배열에 넣음
-				Arrays.sort(selectedTime);
-				int i;
-				String [] selectedTimes= new String[selectedTime.length];
-				for(i=0;i<selectedTime.length;i++) {	
-				String number=selectedTime[i];
-				selectedTimes[i]=number;
-				}
-				for(i=0;i<selectedTimes.length;i++) {
-				System.out.println(selectedTimes[i]);
-				}
+		int startTimeInt = Integer.parseInt(request.getParameter("startTime"));
+	    int endTimeInt = Integer.parseInt(request.getParameter("endTime"));
+	      
+
+//				//넘어온 체크박스값 정렬 후, 첫번째 값부터 마지막값까지 추출후 새 배열에 넣음
+//				Arrays.sort(selectedTime);
+//				int i;
+//				String [] selectedTimes= new String[selectedTime.length];
+//				for(i=0;i<selectedTime.length;i++) {	
+//				String number=selectedTime[i];
+//				selectedTimes[i]=number;
+//				}
+				
 				
 				
 				//userpoint를 받아옴
@@ -336,14 +325,26 @@ public class TodayTicketController {
 					String salesNo = Integer.toString(intSalesNo);
 					
 					tdao.regist(seatNo, sessionId, ticketName, selectedDate,startTime,endTime,salesNo);//정보들을 scseatTbl에 먼저저장
-						for(int n=0;n<selectedTime.length;n++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
-							tdao.makeReservation(seatNo, sessionId, selectedDate, selectedTimes[n]);//예약테이블에 체크박스 횟수만큼 저장
-							}
-					
-						return "Ticket/todayPayOk";
+					   for(int i = startTimeInt;i<endTimeInt;i++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
+		                     tdao.makeReservation(seatNo, sessionId, selectedDate, i);//예약테이블에 체크박스 횟수만큼 저장
+		                     }
+					  
+					   try {
+		           			response.setContentType("text/html; charset=UTF-8");      
+		           	        PrintWriter out;
+		           			out = response.getWriter();
+		           			out.println("<script>alert('예약 완료!');window.location.href = 'ReservInfoList'</script>");
+		           		    out.flush();
+		           		} catch (IOException e) {
+		           			// TODO Auto-generated catch block
+		           			e.printStackTrace();
+		           		}
+					   
+					   
+					   
+						return "Ticket/ReservInfoList";
 				
-				}
-				else {
+				}else {
 					try {
 						response.setContentType("text/html; charset=UTF-8");      
 				        PrintWriter out;

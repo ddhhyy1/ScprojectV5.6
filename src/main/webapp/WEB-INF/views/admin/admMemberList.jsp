@@ -116,7 +116,7 @@
 							</tr><br><br><br><br>
 							<tr>
 										<td colspan="3">
-											<input class="button_type01" type="submit" value="저장">
+			
 											<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 										</td>
 									</tr>
