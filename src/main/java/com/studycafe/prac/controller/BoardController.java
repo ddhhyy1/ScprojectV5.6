@@ -101,6 +101,7 @@ public class BoardController {
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		
 		BoardDto rfboardDto = dao.rfboardView(bnum);
+		System.out.println(rfboardDto.getBuserid());
 		ArrayList<replyDto> replyDtos = dao.rlist(bnum);
 		
 		model.addAttribute("qdto", rfboardDto);
