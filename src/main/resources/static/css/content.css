@@ -8,12 +8,7 @@ tr.contentbox {
 }
 
 
-table{
-	border-collapse: collapse;
-	border-radius: 10px;
-  	border-style: hidden;
-  	box-shadow: 0 0 0 1px #000;
-}
+
 
 
 
@@ -35,7 +30,7 @@ span.content_text01 {
 input.input_type01 {
 	background-color: #ffffff;
 	border: 1px solid #FED39F;
-	width: 250px;
+	width: 400px;
 	font-family: Arial;
 	font-size: 20px;
 	color: #2a2a2a;
@@ -67,14 +62,31 @@ input.button_type01:hover {
 	cursor: pointer;
 }
 
-textarea.textarea_type01 {
+
+
+textarea.textarea_a1 {
 	background-color: #ffffff;
 	border: 1px solid #FED39F;
-	width: 250px;
+	width: 400px;
 	font-family: Arial;
 	font-size: 20px;
-	color: #2a2a2a;
+	font-weight:bold;
+	color: #2a2a2a;;
 	padding: 5px;
 }
+
+
+
+textarea.textarea_type01 {
+	background-color: #ffffff;
+	border:1px solid #FED39F;
+	width: 400px;
+	font-family: Arial;
+	font-size: 20px;
+	color: #2a2a2a;;
+	padding: 5px;
+}
+
+
 
 
