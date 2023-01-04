@@ -185,8 +185,9 @@ public class TodayTicketController {
 		String seatNo = request.getParameter("seatNo");
 		String ticketName = request.getParameter("ticketName");
 		String selectedDate = request.getParameter("selectedDate");
-		String [] selectedTime = request.getParameterValues("selectedTime");
-		for(int i=0;i<selectedTime.length;i++) {
+		String [] selectedTime = request.getParameterValues("selectedTime");//체크박스값 String 배열로 저장
+		System.out.println("첫 체크박스값 ");
+		for(int i=0;i<selectedTime.length;i++) {			
 			System.out.println(selectedTime[i]);
 			}
 		
@@ -198,7 +199,10 @@ public class TodayTicketController {
 		String number=selectedTime[i];
 		selectedTimes[i]=number;
 		}
-		
+		System.out.println("새 배열에 정렬후 체크박스값 ");
+		for(i=0;i<selectedTime.length;i++) {
+			System.out.println(selectedTime[i]);
+			}
 		
 		int intticketName= Integer.parseInt(ticketName);//ticketname을 int로 변환 체크박스 갯수를 알아내기위해
 			
@@ -290,6 +294,11 @@ public class TodayTicketController {
 		String ticketName = request.getParameter("ticketName");
 		String selectedDate = request.getParameter("selectedDate");
 		String [] selectedTime = request.getParameterValues("selectedTime");
+		System.out.println("넘겨 받은 후 체크 박스값");
+		for(int i=0;i<selectedTime.length;i++) {
+			
+			System.out.println(selectedTime[i]);
+			}
 		String PayingPoint = request.getParameter("PayingPoint");
 		String startTime = request.getParameter("startTime");
 		String endTime = request.getParameter("endTime");
