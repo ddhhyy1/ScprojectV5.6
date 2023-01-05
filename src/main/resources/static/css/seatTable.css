@@ -38,6 +38,16 @@ thead.seatTblThead {
   vertical-align: middle;
 }
 
+td.seatTblTdReserved{
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  background: #a1a1a1;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 1em .5em;
+  vertical-align: middle;
+  color: #bfbfdf;
+  font-weight: bold;
+}
+
 a {
   color: #73685d;
 }
@@ -71,6 +81,10 @@ a {
   }
   
   tr.seatTblTr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  tr.seatTblTrReserved {
     display: inline-block;
     vertical-align: top;
   }

@@ -128,10 +128,11 @@ $(function(){
 											 </tr>
 											 </c:when>
 											 <c:otherwise>
-											 <tr class="seatTblTr">
-												<td class="seatTblTd">${l}:00 ~ ${l+1}:00</td>
-												<td class="seatTblTd">이미 예약됨</td>							
-											</tr class="seatTblTr">
+											 <tr class="seatTblTrReserved">
+												<td class="seatTblTdReserved">${l}:00 ~ ${l+1}:00</td>
+												<td class="seatTblTdReserved">이미 예약됨</td>	
+												<td class="seatTblTdReserved"></td>						
+											</tr>
 											</c:otherwise>
 										</c:choose>
 									</c:forEach>

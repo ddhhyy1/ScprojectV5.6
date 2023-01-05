@@ -18,54 +18,9 @@
     }
     </style>
  <script type="text/javascript">
-function addzero(n){                        // 한자리가 되는 숫자에 "0"을 넣어주는 함수
-    return n < 10 ? "0" + n: n;
-}
- 
-function dateInput(n,m){
-     $("#StartDate").val("");               // 우선 이미 들어가있는 값 초기화
-     $("#EndDate").val("");
-     
-     var date = new Date();
-     var start = new Date(Date.parse(date)-n* 1000 * 60 * 60 * 24);
-     var today = new Date(Date.parse(date)-m* 1000 * 60 * 60 * 24);
-     
-     if(n < 10){
-        start.setMonth(start.getMonth()-n);
-     }
-     var yyyy = start.getFullYear();
-     var mm = start.getMonth()+1;
-     var dd = start.getDate();
-     
-     var t_yyyy = today.getFullYear();
-     var t_mm = today.getMonth()+1;
-     var t_dd = today.getDate();
-     
-     $("#StartDate").val(yyyy+'-'+addzero(mm)+'-'+addzero(dd));
-     $("#EndDate").val(t_yyyy+'-'+addzero(t_mm)+'-'+addzero(t_dd));
-   
-}
-$(document).ready(function(){
- 
-    $("#1m").click(function(){              // 1개월 전
-        dateInput(1,0);      
-        });
-    $("#3m").click(function(){              // 3개월 전
-        dateInput(3,0);      
-        });
-    $("#6m").click(function(){              // 6개월 전
-        dateInput(6,0);      
-        });
-    $("#1y").click(function(){              // 1년 전
-        dateInput(365,0);        
-        });
-    $("#2y").click(function(){              // 2년 전
-        dateInput(730,0);        
-        });
-    $("#3y").click(function(){              // 3년 전
-        dateInput(1095,0);       
-        });  
-});
+ var date = new Date();
+
+ var aMonthago = date.getMonth() + 1;
 </script>
 
 </head>
@@ -96,7 +51,7 @@ $(document).ready(function(){
     	
         var color = Chart.helpers.color;
         var ChartData = {            
-            labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', dateInput(1,0)], // 챠트의 항목명 설정
+            labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', aMonthago], // 챠트의 항목명 설정
             datasets: [{
                 label: '2022년 총 매출',  // 데이터셑의 이름
                 pointRadius: 15, // 꼭지점의 원크기

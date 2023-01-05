@@ -95,25 +95,25 @@ public class TodayTicketController {
 			} 
 			}
 		
-//		if(sessionId !=null) {
-//		memberDto userP = dao2.getMemberInfo(sessionId);
-//		String usingTicket = userP.getUsingTicket();
-//		int uTicket = Integer.parseInt(usingTicket);
-//			if(uTicket>=1) {
-//				try {
-//					response.setContentType("text/html; charset=UTF-8");      
-//			        PrintWriter out;
-//					out = response.getWriter();
-//					out.println("<script>alert('중복예약은 불가능합니다'); history.go(-1);</script>");
-//				    out.flush();
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} 
-//		
-//			
-//			}	
-//		}
+		if(sessionId !=null) {
+		memberDto userP = dao2.getMemberInfo(sessionId);
+		String usingTicket = userP.getUsingTicket();
+		int uTicket = Integer.parseInt(usingTicket);
+			if(uTicket>=50) {
+				try {
+					response.setContentType("text/html; charset=UTF-8");      
+			        PrintWriter out;
+					out = response.getWriter();
+					out.println("<script>alert('시간제를 이미 사용중이십니다. 바로예약란으로 예약가능합니다.'); history.go(-1);</script>");
+				    out.flush();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} 
+		
+			
+			}	
+		}
 		
 		
 			

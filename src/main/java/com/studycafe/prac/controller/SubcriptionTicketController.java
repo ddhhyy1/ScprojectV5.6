@@ -267,25 +267,15 @@ public class SubcriptionTicketController {
 		String sessionId = (String) session.getAttribute("userId");
 		String selectedDate = request.getParameter("selectedDate");
 		int seatNo = Integer.parseInt(request.getParameter("seatNo"));
-		String [] selectedTime = request.getParameterValues("selectedTime");
 		String remainTime = request.getParameter("remainTime");
 		String startTime = request.getParameter("startTime");
 		String endTime = request.getParameter("endTime");
 		int startTimeInt = Integer.parseInt(request.getParameter("startTime"));
 	    int endTimeInt = Integer.parseInt(request.getParameter("endTime"));
 		
-		int bticketName = selectedTime.length;
-		int intRemainTime = Integer.parseInt(remainTime);
-		
-//		//넘어온 체크박스값 정렬 후, 첫번째 값부터 마지막값까지 추출후 새 배열에 넣음
-//		Arrays.sort(selectedTime);//먼저 배열들 순서 정리
-//		int i;
-//		String [] selectedTimes= new String[selectedTime.length];//새배열 생성
-//		for(i=0;i<selectedTime.length;i++) {	
-//		String number=selectedTime[i];
-//		selectedTimes[i]=number;//새로 생성한 배열에 selectedTime의 체크박스값들 저장
-//		}
-		
+		int bticketName = endTimeInt-startTimeInt;
+		String sticketName = String.valueOf(bticketName);//사용 총시간
+		int intRemainTime = Integer.parseInt(remainTime);//남은시간을 계산을 위해 int로 변환
 		
 		if(intRemainTime<0) {//보유시간이 예약시간보다 적을시 예약못함
 			try {
@@ -299,7 +289,7 @@ public class SubcriptionTicketController {
 				e.printStackTrace();
 			} 
 		}	else {//보유시간이 예약시간보다 많을 경우 예약가능
-			String sticketName = String.valueOf(bticketName);
+			
 			
 			List<ScSalesDto> salesDto = tdao.getSalesNo(sessionId);//매출 테이블의 해당 아이디로 된 가장 최신매출건의 번호 가져오기 
 			int intSalesNo = salesDto.get(0).getSalesNo();

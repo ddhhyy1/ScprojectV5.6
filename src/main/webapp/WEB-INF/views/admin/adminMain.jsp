@@ -51,11 +51,11 @@
  													 <div class="card-header">
  											 			<a href="admMemberList">회원목록&관리</a>
  											 		</div>
-  													 <div class="card-body">
+  													<!--  <div class="card-body">
   												  		<h5 class="card-title"></h5>
     														<p class="card-text">
     														</p>
-											   		 </div>
+											   		 </div> -->
 												  </div>
 											  </div>
 										</td>
@@ -64,10 +64,10 @@
   											<div class="card-header">
   												<a href="admCheckSales">매출조회&현황</a>
   											</div>
-  												<div class="card-body">
+  												<!-- <div class="card-body">
    												   <h5 class="card-title"></h5>
     												<p class="card-text"></p>
- 												 </div>
+ 												 </div> -->
 											</div>
 									</td>
 									</tr>			

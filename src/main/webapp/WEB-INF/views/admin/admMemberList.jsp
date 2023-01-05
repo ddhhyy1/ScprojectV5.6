@@ -70,16 +70,16 @@
 							</thead>
 							<tbody class="seatTblBody">
 								<c:forEach items="${memberDto}" var="Dto">									
-									<tr>
-									<td class="skillbox" >
+									<tr class="seatTblTr">
+									<td class="seatTblTd">
 									<a href="admUserInfo?userId=${Dto.userId}">
 									${Dto.userId}</a></td>
-									<td class="skillbox" >${Dto.userName}</td>
-									<td class="skillbox" >${Dto.userPhone}</td>
-									<td class="skillbox" >${Dto.userEmail}</td>
-									<td class="skillbox">
+									<td class="seatTblTd" >${Dto.userName}</td>
+									<td class="seatTblTd" >${Dto.userPhone}</td>
+									<td class="seatTblTd">${Dto.userEmail}</td>
+									<td class="seatTblTd">
 									${Dto.userPoint}</td>
-									<td class="skillbox" >${Dto.usingTicket}</td>
+									<td class="seatTblTd" >${Dto.usingTicket}</td>
 									
 									</tr>
 								</c:forEach>

@@ -13,6 +13,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/seatTable.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/join.js"></script>
 <title>내 정보</title>
+<style>
+
+table{
+	border-radius: 25px;
+}
+</style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
@@ -58,7 +64,7 @@
 												</tr>
 									
 											</c:when>
-											<c:when test="${memberDto.usingTicket>50}">
+											<c:when test="${memberDto.usingTicket>=50}">
 												<tr>
 													<td><span class="content_text01">사용중인 상품 : </span></td>
 													<td>시간권 ${memberDto.usingTicket}시간제 사용중</td>
@@ -98,8 +104,8 @@
 									<a href="ReservInfoView?tempUsingNo=${Dto.tempUsingNo}">
 									${Dto.tempUsingNo}</a></td>
 									<td class="skillbox" >${Dto.selectedDate}</td>
-									<td class="skillbox" >${Dto.seatNo}</td>
-									<td class="skillbox" >${Dto.startTime}~ ${Dto.endTime}</td>
+									<td class="skillbox" >${Dto.seatNo}번 좌석</td>
+									<td class="skillbox" >${Dto.startTime}:00 ~ ${Dto.endTime}:00</td>
 									</tr>
 								</c:forEach>
 							</tbody>

@@ -100,7 +100,8 @@ public class ReservInfoController {
 		String zeroUsingTicket = Integer.toString(usingTicket); //0으로 변환된 int를 다시 str로 변환하여 저장
 		String salesNo = sDto.getSalesNo();//매출테이블 번호 뽑아오기
 		
-	
+		int ticketName = Integer.parseInt(sDto.getTicketName().toString());
+		
 		
 		
 			if(intUsingTicket>0 && intUsingTicket<50) { //당일권 유저
@@ -138,7 +139,7 @@ public class ReservInfoController {
 			}else {		
 				
 				int remainTime = Integer.parseInt(subscrDto.getSremainTime().toString());
-				int returnedRemainTime= remainTime + intUsingTicket;
+				int returnedRemainTime= remainTime + ticketName;
 				String rrTime = Integer.toString(returnedRemainTime);
 				
 				tdao.cancelReservSeatTbl(tempNo); //전체적좌석 테이블 정보 제거
@@ -158,5 +159,12 @@ public class ReservInfoController {
 			}
 		
 		return "redirect:ReservInfoList";
+	}
+	
+
+	@RequestMapping(value = "changeDateSeat")
+	public String changeDateSeat() {
+		
+		return "Ticket/changeDateSeat";
 	}
 }
