@@ -12,7 +12,7 @@
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/ticketPayTimeCheck.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/title.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/seatTable.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
@@ -25,38 +25,7 @@
 <!-- bootstrap CSS -->
 <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 
-<script type="text/javascript">
-
-
-$(function(){
-    $(".checkTime").click(function(){
-        var fruit = new Array();
-        var i=0;
-        $(".checkTime").each(function(index){
-            if($(this).is(":checked")){
-                fruit[i]=index;
-                i++;
-            }
-        });
-        if(fruit.length != 1){
-            var temp = fruit[0];
-            for(var k=1; k<fruit.length; k++){
-                if(temp+k != fruit[k]){
-                    alert("연속으로 체크하셔야 합니다.");
-                    if($(this).is(":checked"))
-                        $(this).is(":checked",false);
-                    else
-                        $(this).is(":checked",true);
-                    return false;
-                }
-            }
-        }
-    });    
-});
-</script>
-		
-
-
+	
 
 <meta charset="UTF-8">
 <title>시간권 사용&예약등록</title>
@@ -69,7 +38,7 @@ $(function(){
  String seatNo=request.getParameter("seatNo");
 %>
 	<center>
-	<form action="registsTicketConfirm">
+	<form action="registsTicketConfirm" name="timeCheckOk">
 	<table width="1000" border="0" cellspacing="0" cellpadding="20">
 		
 		
@@ -140,8 +109,7 @@ $(function(){
 					</table>
 							<tr>
 										<td colspan="3">
-											
-											<input class="button_type01" type="submit" value="예약하기">
+											<input class="button_type01" type="button" value="다음단계로" onclick="timeCheckOk3()">
 											<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 										</td>
 									</tr>

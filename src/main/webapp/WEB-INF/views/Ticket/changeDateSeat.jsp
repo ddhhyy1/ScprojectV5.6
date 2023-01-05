@@ -87,14 +87,14 @@
 <body>
 <%@ include file="../include/header.jsp" %>
 	<center>
-	<form action="searchSeat" name="searchSeatForm">
+	<form action="changeTime" name="searchSeatForm">
 	<table width="70%" border="0" cellspacing="0" cellpadding="20">
 		<tr>
 		<td>
-		<table width="300" border="0" cellspacing="0" cellpadding="20">
+		<table width="1000" border="0" cellspacing="0" cellpadding="20">
 		<tr>
 			<td class="titlebox">
-				<h2>기존 날짜&좌석</h2>
+				<h2>날짜&좌석 변경</h2>
 			</td>
 		</tr>
 		<tr>
@@ -104,53 +104,37 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="titlebox">
+			<td class="titlebox" width="350">
 				<span class="title02">기존 예약 날짜:
-				<input type="text">
+				${year}년 ${month}월 ${day}일
 				</span>
 			</td>
-		</tr>
-		<tr>
-			<td class="titlebox">
-				<span class="title02">기존 지정 좌석:
-  					<input type="text">
-				</span>
+			<td><img src="${pageContext.request.contextPath} /resources/img/arrow.png" >
+				
 			</td>
-		</tr>
-		</table>
-		
-		</td>
-		<td>
-		<table width="300" border="0" cellspacing="0" cellpadding="20">
-		<tr>
 			<td class="titlebox">
-				<h2>변경할 날짜&좌석</h2>
-			</td>
-		</tr>
-		<tr>
-			<td class="titlebox">
-				<span class="title02">회원아이디:</span>
-				<span class="title02"><%= sessionId %></span>
-			</td>
-		</tr>
-		<tr>
-			<td class="titlebox">
-				<span class="title02">날짜지정:
+				<span class="title02">변경 예약 날짜:
 				<input type="text" id="pickDate" name="selectedDate">
 				</span>
 			</td>
 		</tr>
 		<tr>
+			<td class="titlebox" width="300">
+				<span class="title02">기존 지정 좌석:
+  					${sDto.seatNo }번
+				</span>
+			</td>
+			<td><img src="${pageContext.request.contextPath} /resources/img/arrow.png" >	
+			</td>
 			<td class="titlebox">
-				<span class="title02">좌석지정:
-  					<input type="text" name="seatNo">
+				<span class="title02">변경 예약 좌석:
+					<input type="text" name="seatNo">번
 				</span>
 			</td>
 		</tr>
-		</table>
-		</td>	
 		</tr>
 		
+		</table>
 		<tr>
 			<td>
 				<table width="70%" border="0" cellspacing="0" cellpadding="20">
@@ -200,6 +184,7 @@
 			</td>
 		</tr>
 		<tr>
+		<input type="hidden" name = "tempNo" value="${tempNo}">
 		<td>
 			<input class="button_type01" type="button" value="다음단계로" onclick="seatCheckOk()">
 			<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">

@@ -57,8 +57,9 @@
 										<td>
 											<input class="button_type01" type="button" value="예약 취소" onclick="script:window.location='cancelReserv?tempUsingNo=${sDto.tempUsingNo}&seatNo=${sDto.seatNo}&selectedDate=${selectedDate}'">
 										</td>
+										
 										<td>
-											<input class="button_type01" type="button" value="좌석 변경" onclick="script:window.location='changeDateSeat'">	
+											<input class="button_type01" type="button" value="좌석 변경" onclick="script:window.location='changeDateSeat?tempUsingNo=${sDto.tempUsingNo}'">	
 										</td>
 									</tr>
 		</table>

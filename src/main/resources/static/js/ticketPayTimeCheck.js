@@ -30,14 +30,24 @@ $(function(){
     });    
 });	
 
+  function timeCheckOk3() {
+		
+var count = 0; 
+var check = document.getElementsByName('selectedTime'); 
+for (var i = 0; i < check.length; i++) {    // 관심분야 검사 
+  if (check[i].checked) { 
+    count = 1; 
+    break; 
+  } 
+} 
+if (count == 0) {  //관심분야 확인 
+  alert("원하시는 시간을 지정해주세요!"); 
+  return false; 
  
- 
- function timeCheckOk() {
-		 
-
-
+} 
 	
+			
 	
-	document.timeCheckOk.submit();
+			document.timeCheckOk.submit();
 	
 }

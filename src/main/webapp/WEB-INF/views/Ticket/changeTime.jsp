@@ -39,14 +39,15 @@
  String seatNo=request.getParameter("seatNo");
 %>
 	<center>
-	<form action="registToday" name="timeCheckOk">
+	<form action="changeConfirm" name="timeCheckOk">
 	<table width="50%" border="0" cellspacing="0" cellpadding="20">
 		<input type="hidden" name = "userId" value="<%= sessionId %>">
 		<input type="hidden" name = "selectedDate" value="<%=selectedDate%>">
 		<input type="hidden" name = "seatNo" value="<%=seatNo%>">
+		<input type="hidden" name = "tempNo" value="${tempNo}">
 		<tr>
 			<td class="titlebox">
-				<h1>당일권_사용등록&예약하기</h1>
+				<h1>예약 시간 변경</h1>
 			</td>
 		</tr>
 		<tr>
@@ -57,20 +58,27 @@
 		</tr>
 		<tr>
 			<td class="titlebox">
-				<span class="title02">이용날짜:
+				<span class="title02">변경된 날짜:
 				${selectedDate}
 				</span>
 			</td>
 		</tr>
 		<tr>
 			<td class="titlebox">
-				<span class="title02">좌석지정:
+				<span class="title02">변경된 좌석:
   					${seatNo}
 				</span>
 			</td>
-		
 		</tr>
 		<tr>
+			<td class="titlebox">
+				<span class="title02">기존 이용시간:
+  				${sTime}:00 ~ ${eTime}:00 &nbsp; -- &nbsp;${tHour}시간   	
+				</span>
+			</td>
+		</tr>
+		
+						<tr>
 							<td class="titlebox">
 								<span class="title02" name="ticketName2">이용시간:
   									<select name="ticketName" >
@@ -119,6 +127,8 @@
 											</c:forEach>
 										</tbody>
 									</table>
+									
+									
 									<tr>
 										<td colspan="3">
 											<input class="button_type01" type="button" value="다음단계로" onclick="timeCheckOk3()">
