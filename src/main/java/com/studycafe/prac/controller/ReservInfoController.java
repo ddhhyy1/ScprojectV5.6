@@ -165,6 +165,8 @@ public class ReservInfoController {
 	@RequestMapping(value = "changeDateSeat")
 	public String changeDateSeat() {
 		
+		
+		
 		return "Ticket/changeDateSeat";
 	}
 }
