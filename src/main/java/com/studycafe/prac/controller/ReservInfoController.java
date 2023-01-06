@@ -199,7 +199,7 @@ public class ReservInfoController {
 		String selectedDate = request.getParameter("selectedDate");
 		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());
 		String tempNo = request.getParameter("tempNo");
-		System.out.println(tempNo);
+		
 		
 		seatDto sDto = dao.getReservInfo(tempNo);
 		int intSTime = Integer.parseInt(sDto.getStartTime().toString());
@@ -248,9 +248,13 @@ public class ReservInfoController {
 	}
 	
 	@RequestMapping(value="/changeConfirm")
-	public String changeConfirm(HttpServletRequest request,HttpServletResponse response,Model model) {
-			
+	public String changeConfirm(HttpServletRequest request,HttpServletResponse response,Model model,HttpSession session) {
+		
+		
+		String sessionId = (String) session.getAttribute("userId");
 		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
+		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
+		
 		
 		String seatNo = request.getParameter("seatNo");
 		String ticketName = request.getParameter("ticketName");
@@ -258,10 +262,14 @@ public class ReservInfoController {
 		String [] selectedTime = request.getParameterValues("selectedTime");//체크박스값 String 배열로 저장
 		String tempNo = request.getParameter("tempNo");
 		
+	
+		memberDto mDto = mDao.getMemberInfo(sessionId);
 		seatDto sDto = dao.getReservInfo(tempNo);
 		int intSTime = Integer.parseInt(sDto.getStartTime().toString());
 		int intETime = Integer.parseInt(sDto.getEndTime().toString());
 		int totalHour = intETime - intSTime;
+		
+		int usingTicket = Integer.parseInt(mDto.getUsingTicket().toString());
 		
 		//넘어온 체크박스값 정렬 후, 첫번째 값부터 마지막값까지 추출후 새 배열에 넣음
 		Arrays.sort(selectedTime);
@@ -272,24 +280,19 @@ public class ReservInfoController {
 		selectedTimes[i]=number;
 		}
 		
+		//환불or추가 지불할 포인트 계산
+		  int intOldTicket = Integer.parseInt(sDto.getTicketName().toString());
+		  int intNewTicket = Integer.parseInt(ticketName);
+		  int result = intOldTicket - intNewTicket;
+		  System.out.println(result);
+		  
+			
+		
 		int intticketName= Integer.parseInt(ticketName);//ticketname을 int로 변환 체크박스 갯수를 알아내기위해
 			
 		if(intticketName==selectedTime.length) {//체크박스의 갯수와 ticketname의 숫자를 비교해서 일치하지 않으면 뒤로돌려보냄
 				
-				//-----------------방금 들어간 회원정보들을 결제 전 체크페이지에 전달	---------------------------
-//				ArrayList<seatDto> seatDto= dao.registTodayConfirm();
-//				
-//				seatDto fseatDto = seatDto.get(0);
-//				
-				int t;
-				String[] TodayPrice = {"2,000","3,000","5,000","6,000","7,000"};
-				String[] TodayTime = {"1","2","4","6","8"};
-				for(t=0;t<5;t++) {
-					if(TodayTime[t].equals(ticketName)) {
-						
-						model.addAttribute("PayingPoint",TodayPrice[t]);//지불할 포인트 계산
-					}
-				}
+				//-----------------방금 들어간 회원정보들을 결제 전 체크페이지에 전달	---------------------------		
 				//-------시작시간 종료시간 뽑아내기---------
 				int[] Times= new int[17];//8부터 24까지 문자배열생성
 				for(int j=0;j<16;j++) {
@@ -308,16 +311,53 @@ public class ReservInfoController {
 				  lastindex = lastindex + 1 ;
 				  String endTime = String.valueOf(lastindex); //종료시간 저장
 				  
-				  model.addAttribute("selectedDate",selectedDate);
-				  model.addAttribute("startTime",startTime);
-				  model.addAttribute("endTime",endTime);
-				  model.addAttribute("seatNo",seatNo );
-				  model.addAttribute("ticketName",ticketName);
-				  model.addAttribute("selectedTime",selectedTime);
-				  model.addAttribute("sDto",sDto);
 				  
+				  if (usingTicket>=0 && usingTicket<50) {//당일권 유저는 tChangeConfirm으로
+					  
+					  int t;
+						int[] TodayPrice = {2000,3000,5000,6000,7000};
+						String[] TodayTime = {"1","2","4","6","8"};
+						for(t=0;t<5;t++) {
+							if(TodayTime[t].equals(ticketName)) {
+								int newPoint = TodayPrice[t]; //지불할 포인트 계산
+								if(TodayTime[t].equals(intOldTicket)) {
+									int oldPoint = TodayPrice[t];
+									int returnPoint = oldPoint-newPoint;
+									model.addAttribute("returnPoint",returnPoint);
+								}
+							}
+						}
+					  
+					  model.addAttribute("selectedDate",selectedDate);
+					  model.addAttribute("startTime",startTime);
+					  model.addAttribute("endTime",endTime);
+					  model.addAttribute("seatNo",seatNo );
+					  model.addAttribute("ticketName",ticketName);
+					  model.addAttribute("selectedTime",selectedTime);
+					  model.addAttribute("sDto",sDto);
+					  model.addAttribute("result", result);
 				//-----------------방금 들어간 회원정보들을 결제 전 체크페이지에 전달 끝	---------------------------
-				  return "Ticket/changeConfirm";
+				  return "Ticket/tChangeConfirm";
+				  
+				  }else {//시간권 유저는 sChangeConfirm으로 보냄
+						SubscriptionTicketDto sticketDto= dao.getSTicketInfo(sessionId);
+						String remainTime = sticketDto.getSremainTime();//유저 이용권의 남은시간 불러오기
+					  
+					  model.addAttribute("selectedDate",selectedDate);
+					  model.addAttribute("startTime",startTime);
+					  model.addAttribute("endTime",endTime);
+					  model.addAttribute("seatNo",seatNo );
+					  model.addAttribute("ticketName",ticketName);
+					  model.addAttribute("selectedTime",selectedTime);
+					  model.addAttribute("sDto",sDto);
+					  model.addAttribute("remainTime",remainTime);  
+					  model.addAttribute("result", result);
+					  
+					  return "Ticket/sChangeConfirm";
+					  
+				  }
+				  
+				  
 			}else {
 			try {
 				response.setContentType("text/html; charset=UTF-8");      
@@ -332,7 +372,34 @@ public class ReservInfoController {
 			
 			return "Ticket/changeTime";
 			}
+	}
+	
+	
+	@RequestMapping(value="/tChangeTimeComplete")//이용금액표
+	public String tChangeTimeComplete(HttpServletRequest request,HttpServletResponse response,Model model
+			,HttpSession session) {
 		
-
+		TodayTicketDao tdao = sqlSession.getMapper(TodayTicketDao.class);
+		MemberDao mdao = sqlSession.getMapper(MemberDao.class);
+		String sessionId = (String) session.getAttribute("userId");
+		memberDto dto=new memberDto();
+		seatDto seatdto=new seatDto();
+		
+		
+		//받아온 파라미터값들 request 객체로 받아 저장
+		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());	
+		String ticketName = request.getParameter("ticketName");
+		String selectedDate = request.getParameter("selectedDate");
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
+		int startTimeInt = Integer.parseInt(request.getParameter("startTime"));
+	    int endTimeInt = Integer.parseInt(request.getParameter("endTime"));
+	      
+		
+	    
+	    
+	    
+		
+		return "Ticket/ReservInfoList";
 	}
 }

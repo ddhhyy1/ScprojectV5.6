@@ -358,14 +358,5 @@ public class TodayTicketController {
 						return "Ticket/registTodayConfirm";
 					}	
 				}
-	@RequestMapping(value="/todayPayOk")
-	public String todayPayOk() {
-			
-	
-			
-			
-		
-		return "Ticket/todayPayOk";
-	}
 	
 }

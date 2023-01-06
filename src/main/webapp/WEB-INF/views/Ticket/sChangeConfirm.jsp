@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,12 +76,21 @@
 										${sDto.startTime}:00 ~ ${sDto.endTime}:00	> ${startTime}:00 ~ ${endTime}:00
 										</td>
 										</tr>
-										
-										<tr>
-											<td><span class="content_text01">지불할 포인트 :</span>
-											&nbsp;&nbsp;${PayingPoint}p
-											</td>
-										<td>
+										<tr class="seatTblTr">
+										<td><span class="content_text01">변경전 보유시간 :</span></td>		
+										<c:choose>
+													<c:when test="${result>0}}">											
+											 				<td><span class="content_text01">변경 후 보유시간 : +</span></td>											 								 		
+													 </c:when>
+													 <c:when test="${result==0}}">	
+															<td><span class="content_text01">같음</span></td>									 	
+													 </c:when>
+													 <c:otherwise>									 		
+															<td><span class="content_text01">변경 후 보유시간 : -</span></td>		
+													</c:otherwise>
+										</c:choose>
+										</tr>	
+									
 										
 										</td>
 									</tr>

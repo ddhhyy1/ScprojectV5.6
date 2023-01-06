@@ -34,9 +34,14 @@ public interface TodayTicketDao {
 	//내예약정보확인관련
 	public seatDto getReservInfo(String tempUsingNo); //내 예약정보 확인
 	public List<seatDto> getAllReservInfo(String userId);
+		//예약취소관련
 	public void cancelReservSeatTbl(String tempUsingNo); //seatTbl의 예약 취소
 	public void cancelReservResvTbl(String userId, String seatNo, String selectedDate);//reservTbl(좌석및 시간대) 예약 취소
 	public void cancelReservSaleTbl(String salesNo); //
 	public void returnUserPointTicket(String userId, String userPoint, String usingTicket);
 	public void returnRemainTime(String suserId, String sremainTime);
+		//예약변경관련
+	public void changeReservSeatTbl(String seatNo, String ticketName, String selectedDate,String tempUsingNo, String startTime, String endTime);
+
+
 }

@@ -111,4 +111,6 @@
 	<update id="returnRemainTime">
 		UPDATE SUBSCRIPTIONTBL SET SREMAINTIME = #{param2} WHERE SUSERID = #{param1} 
 	</update>
+	
+	
 </mapper>
