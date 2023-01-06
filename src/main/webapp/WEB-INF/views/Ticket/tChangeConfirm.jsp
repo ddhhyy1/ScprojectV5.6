@@ -107,17 +107,17 @@
 										</td>
 									</tr>
 									
-									<input type="hidden" name = "selectedDate" value="${selectedDate}">
-									<input type="hidden" name = "seatNo" value="${seatNo}">
-									<input type="hidden" name = "ticketName" value="${ticketName}">
-									<input type="hidden" name = "startTime" value="${startTime}">
-									<input type="hidden" name = "endTime" value="${endTime}">
-									<input type="hidden" name = "tempNo" value="${tempNo}">
-									<input type="hidden" name = "finalPoint" value="${finalPoint}"> 
-									<input type="hidden" name = "newPoint" value="${newPoint}">
+										<input type="hidden" name = "selectedDate" value="${selectedDate}">
+										<input type="hidden" name = "seatNo" value="${seatNo}">
+										<input type="hidden" name = "ticketName" value="${ticketName}">
+										<input type="hidden" name = "startTime" value="${startTime}">
+										<input type="hidden" name = "endTime" value="${endTime}">
+										<input type="hidden" name = "tempNo" value="${tempNo}">
+										<input type="hidden" name = "finalPoint" value="${finalPoint}"> 
+										<input type="hidden" name = "newPoint" value="${newPoint}">
 									<tr>
 										<td colspan="2">
-											<input class="button_type01" type="submit" value="결제하기" >&nbsp;&nbsp;
+											<input class="button_type01" type="submit" value="변경 완료" >&nbsp;&nbsp;
 											<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 										</td>
 									</tr>

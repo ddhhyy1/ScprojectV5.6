@@ -259,7 +259,6 @@ public class ReservInfoController {
 		
 		
 		String seatNo = request.getParameter("seatNo");
-		String ticketName = request.getParameter("ticketName");
 		String selectedDate = request.getParameter("selectedDate");
 		String [] selectedTime = request.getParameterValues("selectedTime");//체크박스값 String 배열로 저장
 		String tempNo = request.getParameter("tempNo");
@@ -285,13 +284,10 @@ public class ReservInfoController {
 		//환불or추가 지불할 포인트 계산
 		  String oldTicket= sDto.getTicketName().toString();
 		  int intOldTicket = Integer.parseInt(oldTicket);
-		  int intNewTicket = Integer.parseInt(ticketName);
+		  int intNewTicket = selectedTime.length;
 		  int result = intOldTicket - intNewTicket;
-		 
-		  int intticketName= Integer.parseInt(ticketName);//ticketname을 int로 변환 체크박스 갯수를 알아내기위해
-			
-		
-				
+		  String ticketName = Integer.toString(intNewTicket);
+		  
 				//-----------------방금 들어간 회원정보들을 결제 전 체크페이지에 전달	---------------------------		
 				//-------시작시간 종료시간 뽑아내기---------
 				int[] Times= new int[17];//8부터 24까지 문자배열생성

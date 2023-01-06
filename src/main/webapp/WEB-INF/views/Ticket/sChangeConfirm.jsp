@@ -120,7 +120,7 @@
 									
 									<tr>
 										<td colspan="2">
-											<input class="button_type01" type="submit" value="결제하기" >&nbsp;&nbsp;
+											<input class="button_type01" type="submit" value="변경 완료" >&nbsp;&nbsp;
 											<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 										</td>
 									</tr>

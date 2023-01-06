@@ -150,7 +150,7 @@ public class AdminController {
 		List<String> SalesForMonth = new ArrayList<String>();
 		for(int i=0; i<salesDto.size();i++) {
 			SalesForMonth.add(salesDto.get(i).getSumSales());
-			System.out.println(SalesForMonth.get(i));
+			
 			}
 		
 		 List<String> SalesForMonth2 = new ArrayList<String>();

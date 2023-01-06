@@ -63,16 +63,29 @@ public class SubcriptionTicketController {
 					out = response.getWriter();
 					out.println("<script>alert('시간제를 이미 사용중이십니다. 추가 충전은 예약정보란에서 가능합니다.'); history.go(-1);</script>");
 				    out.flush();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
-			}	else {
-				model.addAttribute("memberdto",memberdto);
-				return "Ticket/SubscriptionTicketBuy";
-			}
-		}
-		return "Ticket/SubscriptionTicketBuy";
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						} 
+						}	else if(uTicket >0 && uTicket <10 ) {
+										
+							try {
+								response.setContentType("text/html; charset=UTF-8");      
+						        PrintWriter out;
+								out = response.getWriter();
+								out.println("<script>alert('당일권을 이미 사용중이십니다. 당일권 종료나 취소후 구매해주세요!'); history.go(-1);</script>");
+							    out.flush();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} 
+			
+							}else{
+								model.addAttribute("memberdto",memberdto);
+								return "Ticket/SubscriptionTicketBuy";
+								}
+				}
+					return "Ticket/SubscriptionTicketBuy";
 	}
 	@RequestMapping(value="/SubscriptionTicketView")//구독이용권좌석선택
 	public String STicketView(HttpSession session,HttpServletResponse response) {

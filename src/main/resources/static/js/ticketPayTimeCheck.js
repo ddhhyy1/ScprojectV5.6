@@ -28,16 +28,16 @@ $(function(){
             }
         }
     });    
-});	
+});   
 
   function timeCheckOk3() {
-		
+      
 var count = 0; 
-var check = document.getElementsByName('selectedTime'); 
-for (var i = 0; i < check.length; i++) {    // 관심분야 검사 
-  if (check[i].checked) { 
-    count = 1; 
-    break; 
+var check_length = document.getElementsByName('selectedTime').length; 
+for (var i = 0; i < check_length; i++) {    // 관심분야 검사 
+  if (document.getElementsByName('selectedTime')[i].checked == true) { 
+    count = count+1; 
+    console.log(count);   
   } 
 } 
 if (count == 0) {  //관심분야 확인 
@@ -46,12 +46,14 @@ if (count == 0) {  //관심분야 확인
  
 } 
 
-if(document.timeCheckOk.ticketName.value != check.length) {
-		alert("지정한 선택시간과 이용시간이 일치하지 않습니다!");
-		return;
-	}
-			
-	
-			document.timeCheckOk.submit();
-	
+	if(document.timeCheckOk.ticketName.value != count) {
+     	 console.log(document.timeCheckOk.ticketName.value);
+   
+      	alert("지정한 선택시간과 이용시간이 일치하지 않습니다!");
+      	return;
+   			}
+   
+   
+         document.timeCheckOk.submit();
+   
 }
