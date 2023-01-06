@@ -28,7 +28,7 @@
 		<tr>
 			<td>
 				<center>
-				<form action="todayPay">
+				<form action="tChangeTimeComplete">
 				<table width="80%" border="0" cellspacing="0" cellpadding="10">
 					<tr class="contentbox">
 						<td class="content">
@@ -77,22 +77,30 @@
 										</td>
 										</tr>
 										<c:choose>
-													<c:when test="${result>0}}">
+													<c:when test="${result > 0}">
 														<tr class="seatTblTr">
-															<td><span class="content_text01">환불될 포인트 :</span>
+															<td><span class="content_text01">환불될 포인트 : ${returnPoint}</span>
 											 				</td>
 											 			</tr>
+											 				<tr class="seatTblTrReserved">
+															<td><span class="content_text01">변경 후 보유포인트 : ${finalPoint}</span>
+											 				</td>	
+														</tr>
 													 </c:when>
-													 <c:when test="${result==0}}">
+													 <c:when test="${result == 0}">
 														<tr class="seatTblTr">
-															<td><span class="content_text01">같음</span>
+															<td><span class="content_text01">포인트 변동 없음</span>
 															</td>
 											 			</tr>
 													 </c:when>
 													 <c:otherwise>
 											 			<tr class="seatTblTrReserved">
-															<td><span class="content_text01">추가 지불포인트 :</span>
-											 				</td>		
+															<td><span class="content_text01">추가 지불 포인트 :</span>
+											 				</td>	
+														</tr>
+														<tr class="seatTblTrReserved">
+															<td><span class="content_text01">변경 후 보유포인트 : ${finalPoint}</span>
+											 				</td>	
 														</tr>
 													</c:otherwise>
 										</c:choose>	
@@ -104,6 +112,9 @@
 									<input type="hidden" name = "ticketName" value="${ticketName}">
 									<input type="hidden" name = "startTime" value="${startTime}">
 									<input type="hidden" name = "endTime" value="${endTime}">
+									<input type="hidden" name = "tempNo" value="${tempNo}">
+									<input type="hidden" name = "finalPoint" value="${finalPoint}"> 
+									<input type="hidden" name = "newPoint" value="${newPoint}">
 									<tr>
 										<td colspan="2">
 											<input class="button_type01" type="submit" value="결제하기" >&nbsp;&nbsp;

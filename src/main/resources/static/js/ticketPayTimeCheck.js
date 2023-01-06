@@ -45,7 +45,11 @@ if (count == 0) {  //관심분야 확인
   return false; 
  
 } 
-	
+
+if(document.timeCheckOk.ticketName.value != check.length) {
+		alert("지정한 선택시간과 이용시간이 일치하지 않습니다!");
+		return;
+	}
 			
 	
 			document.timeCheckOk.submit();

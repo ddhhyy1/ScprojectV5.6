@@ -95,8 +95,9 @@
 	<select id="getAllReservInfo" resultType="com.studycafe.prac.dto.seatDto">
 		SELECT * FROM SCSEATTBL WHERE userId = #{param1}
 	</select>
-	
-	<delete id="cancelReservSeatTbl">
+		
+			<!-- 예약취소 관련 -->
+	<delete id="cancelReservSeatTbl"> 
 		DELETE FROM SCSEATTBL WHERE TEMPUSINGNO = #{param1}
 	</delete>
 	
@@ -111,6 +112,11 @@
 	<update id="returnRemainTime">
 		UPDATE SUBSCRIPTIONTBL SET SREMAINTIME = #{param2} WHERE SUSERID = #{param1} 
 	</update>
+	
+			<!-- 예약정보 변경관련 -->
+	<delete id="changeReservSalesTbl"> 
+		UPDATE SCSALESTBL SET PRICE = #{param2} WHERE SALESNO = #{param1} 
+	</delete>
 	
 	
 </mapper>

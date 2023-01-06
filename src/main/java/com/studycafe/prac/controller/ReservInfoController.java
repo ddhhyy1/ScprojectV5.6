@@ -145,7 +145,7 @@ public class ReservInfoController {
 				int returnedRemainTime= remainTime + ticketName;
 				String rrTime = Integer.toString(returnedRemainTime);
 				
-				tdao.cancelReservSeatTbl(tempNo); //전체적좌석 테이블 정보 제거
+				tdao.cancelReservSeatTbl(tempNo); //전체좌석 테이블 정보 제거
 				tdao.cancelReservResvTbl(sessionId, seatNo, selectedDate); //예약된 시간대 및 좌석 제거
 				tdao.returnRemainTime(sessionId, rrTime);
 			
@@ -191,16 +191,18 @@ public class ReservInfoController {
 	}
 	
 	@RequestMapping(value="/changeTime")
-	public String changeTime(HttpServletRequest request, Model model) {
+	public String changeTime(HttpServletRequest request, Model model,HttpSession session) {
 		
 		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
+		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
+		String sessionId = (String) session.getAttribute("userId");
 		
-		String userId = request.getParameter("userId");
+	
 		String selectedDate = request.getParameter("selectedDate");
 		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());
 		String tempNo = request.getParameter("tempNo");
 		
-		
+		memberDto mDto = mDao.getMemberInfo(sessionId);
 		seatDto sDto = dao.getReservInfo(tempNo);
 		int intSTime = Integer.parseInt(sDto.getStartTime().toString());
 		int intETime = Integer.parseInt(sDto.getEndTime().toString());
@@ -235,7 +237,7 @@ public class ReservInfoController {
 	    
 	
 		String strSeatNo = String.valueOf(seatNo);	
-		model.addAttribute("userId", userId);
+		model.addAttribute("userId", sessionId);
 		model.addAttribute("selectedDate", selectedDate);
 		model.addAttribute("seatNo", strSeatNo);
 		model.addAttribute("opTimes", OccupiedTimes);
@@ -243,7 +245,7 @@ public class ReservInfoController {
 		model.addAttribute("eTime", intETime);
 		model.addAttribute("tHour", totalHour);
 		model.addAttribute("tempNo", tempNo);
-		
+		model.addAttribute("mDto", mDto);
 		return "Ticket/changeTime";
 	}
 	
@@ -268,8 +270,8 @@ public class ReservInfoController {
 		int intSTime = Integer.parseInt(sDto.getStartTime().toString());
 		int intETime = Integer.parseInt(sDto.getEndTime().toString());
 		int totalHour = intETime - intSTime;
-		
 		int usingTicket = Integer.parseInt(mDto.getUsingTicket().toString());
+		int userPoint = Integer.parseInt(mDto.getUserPoint());
 		
 		//넘어온 체크박스값 정렬 후, 첫번째 값부터 마지막값까지 추출후 새 배열에 넣음
 		Arrays.sort(selectedTime);
@@ -281,16 +283,14 @@ public class ReservInfoController {
 		}
 		
 		//환불or추가 지불할 포인트 계산
-		  int intOldTicket = Integer.parseInt(sDto.getTicketName().toString());
+		  String oldTicket= sDto.getTicketName().toString();
+		  int intOldTicket = Integer.parseInt(oldTicket);
 		  int intNewTicket = Integer.parseInt(ticketName);
 		  int result = intOldTicket - intNewTicket;
-		  System.out.println(result);
-		  
+		 
+		  int intticketName= Integer.parseInt(ticketName);//ticketname을 int로 변환 체크박스 갯수를 알아내기위해
 			
 		
-		int intticketName= Integer.parseInt(ticketName);//ticketname을 int로 변환 체크박스 갯수를 알아내기위해
-			
-		if(intticketName==selectedTime.length) {//체크박스의 갯수와 ticketname의 숫자를 비교해서 일치하지 않으면 뒤로돌려보냄
 				
 				//-----------------방금 들어간 회원정보들을 결제 전 체크페이지에 전달	---------------------------		
 				//-------시작시간 종료시간 뽑아내기---------
@@ -319,15 +319,16 @@ public class ReservInfoController {
 						String[] TodayTime = {"1","2","4","6","8"};
 						for(t=0;t<5;t++) {
 							if(TodayTime[t].equals(ticketName)) {
-								int newPoint = TodayPrice[t]; //지불할 포인트 계산
-								if(TodayTime[t].equals(intOldTicket)) {
-									int oldPoint = TodayPrice[t];
+								int newPoint = TodayPrice[t]; //지불할 포인트 계산	
+									int oldPoint = TodayPrice[Arrays.asList(TodayTime).indexOf(oldTicket)];
 									int returnPoint = oldPoint-newPoint;
-									model.addAttribute("returnPoint",returnPoint);
-								}
+									int finalPoint = userPoint + returnPoint; 
+									model.addAttribute("returnPoint",Math.abs(returnPoint));
+									model.addAttribute("finalPoint",finalPoint);
+									model.addAttribute("newPoint",newPoint);
 							}
 						}
-					  
+				  
 					  model.addAttribute("selectedDate",selectedDate);
 					  model.addAttribute("startTime",startTime);
 					  model.addAttribute("endTime",endTime);
@@ -336,13 +337,17 @@ public class ReservInfoController {
 					  model.addAttribute("selectedTime",selectedTime);
 					  model.addAttribute("sDto",sDto);
 					  model.addAttribute("result", result);
+					  model.addAttribute("tempNo",tempNo);
+					  
 				//-----------------방금 들어간 회원정보들을 결제 전 체크페이지에 전달 끝	---------------------------
 				  return "Ticket/tChangeConfirm";
 				  
 				  }else {//시간권 유저는 sChangeConfirm으로 보냄
-						SubscriptionTicketDto sticketDto= dao.getSTicketInfo(sessionId);
-						String remainTime = sticketDto.getSremainTime();//유저 이용권의 남은시간 불러오기
-					  
+					  SubscriptionTicketDto sticketDto= dao.getSTicketInfo(sessionId);
+					  String remainTime = sticketDto.getSremainTime();//유저 이용권의 남은시간 불러오기
+					  int intRemainTime = Integer.parseInt(remainTime);
+					  int finalTime = intRemainTime + result;
+						
 					  model.addAttribute("selectedDate",selectedDate);
 					  model.addAttribute("startTime",startTime);
 					  model.addAttribute("endTime",endTime);
@@ -352,26 +357,18 @@ public class ReservInfoController {
 					  model.addAttribute("sDto",sDto);
 					  model.addAttribute("remainTime",remainTime);  
 					  model.addAttribute("result", result);
+					  model.addAttribute("changeTime", Math.abs(result));
+					  model.addAttribute("tempNo",tempNo);
+					  model.addAttribute("finalTime",finalTime);
 					  
 					  return "Ticket/sChangeConfirm";
-					  
-				  }
+				  }  
 				  
+
 				  
-			}else {
-			try {
-				response.setContentType("text/html; charset=UTF-8");      
-		        PrintWriter out;
-				out = response.getWriter();
-				out.println("<script>alert('이용시간과 선택한 지정시간이 일치하지 않습니다.'); history.go(-1);</script>");
-			    out.flush();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
+		
 			
-			return "Ticket/changeTime";
-			}
 	}
 	
 	
@@ -379,6 +376,9 @@ public class ReservInfoController {
 	public String tChangeTimeComplete(HttpServletRequest request,HttpServletResponse response,Model model
 			,HttpSession session) {
 		
+	
+		
+		//필요한 객체들 생성
 		TodayTicketDao tdao = sqlSession.getMapper(TodayTicketDao.class);
 		MemberDao mdao = sqlSession.getMapper(MemberDao.class);
 		String sessionId = (String) session.getAttribute("userId");
@@ -387,19 +387,141 @@ public class ReservInfoController {
 		
 		
 		//받아온 파라미터값들 request 객체로 받아 저장
-		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());	
+		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());
 		String ticketName = request.getParameter("ticketName");
 		String selectedDate = request.getParameter("selectedDate");
 		String startTime = request.getParameter("startTime");
 		String endTime = request.getParameter("endTime");
+		String tempNo = request.getParameter("tempNo");
+		String finalPoint = request.getParameter("finalPoint");
+		String newPoint = request.getParameter("newPoint");
 		int startTimeInt = Integer.parseInt(request.getParameter("startTime"));
 	    int endTimeInt = Integer.parseInt(request.getParameter("endTime"));
-	      
+	    int intFinalP = Integer.parseInt(finalPoint);
 		
+	    seatDto sDto = tdao.getReservInfo(tempNo);
+	    String salesNo = sDto.getSalesNo();
+	    String strSeatNo = Integer.toString(seatNo);
+	    String oldSelectedDate = sDto.getSelectedDate();
+	    int oldSeatNo = sDto.getSeatNo();
+	    String sOldSeatNo = Integer.toString(oldSeatNo);
 	    
+	    if (intFinalP <0 ) { //예약변경에 보유포인트가 부족하면 뒤로 돌려보냄
+	    	try {
+       			response.setContentType("text/html; charset=UTF-8");      
+       	        PrintWriter out;
+       			out = response.getWriter();
+       			out.println("<script>alert('포인트가 부족합니다!'); history.go(-1);</script>");
+       		    out.flush();
+       		} catch (IOException e) {
+       			// TODO Auto-generated catch block
+       			e.printStackTrace();
+       		}
+	    	
+	    }else {//포인트 충분시 변경진행
+	    			//업데이트 전 지워서 새로 갱신할 것들.
+		tdao.cancelReservSeatTbl(tempNo); //전체좌석 테이블 정보 제거
+		tdao.cancelReservResvTbl(sessionId, sOldSeatNo, oldSelectedDate); //예약된 시간대 및 좌석 제거
 	    
-	    
+					//삭제한 곳에 새로 들어갈 데이타
+		tdao.regist(seatNo, sessionId, ticketName, selectedDate, startTime, endTime, salesNo);//scseat테이블에 새로 저장
+		for(int i = startTimeInt;i<endTimeInt;i++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
+            tdao.makeReservation(seatNo, sessionId, selectedDate, i);//예약테이블에 체크박스 횟수만큼 새로 저장
+            }
+		mdao.updateUticketPoint(sessionId, finalPoint , ticketName);//멤버테이블에 포인트,이용권이름 갱신
+		tdao.changeReservSalesTbl(salesNo, newPoint);  //매출테이블에 매출변경
 		
-		return "Ticket/ReservInfoList";
-	}
+		try {
+   			response.setContentType("text/html; charset=UTF-8");      
+   	        PrintWriter out;
+   			out = response.getWriter();
+   			out.println("<script>alert('예약 변경 완료!'); window.location.href = 'ReservInfoList'</script>");
+   		    out.flush();
+   		} catch (IOException e) {
+   			// TODO Auto-generated catch block
+   			e.printStackTrace();
+   		}
+    	
+		
+		return "redirect:ReservInfoList";
+	    }return "redirect:ReservInfoList";
+	    }
+	
+	
+	@RequestMapping(value="/sChangeTimeComplete")//시간권 예약변경 완료 
+	public String sChangeTimeComplete(HttpServletRequest request,HttpServletResponse response,Model model
+			,HttpSession session) {
+		
+	
+		
+		//필요한 객체들 생성
+		TodayTicketDao tdao = sqlSession.getMapper(TodayTicketDao.class);
+		MemberDao mdao = sqlSession.getMapper(MemberDao.class);
+		String sessionId = (String) session.getAttribute("userId");
+		memberDto dto=new memberDto();
+		seatDto seatdto=new seatDto();
+		SubscriptionTicketDto subscrDto = tdao.getSTicketInfo(sessionId);
+		
+		//받아온 파라미터값들 request 객체로 받아 저장
+		int seatNo = Integer.parseInt(request.getParameter("seatNo").toString());
+		String ticketName = request.getParameter("ticketName");
+		String selectedDate = request.getParameter("selectedDate");
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
+		String tempNo = request.getParameter("tempNo");
+		String newPoint = request.getParameter("newPoint");
+		int startTimeInt = Integer.parseInt(request.getParameter("startTime"));
+	    int endTimeInt = Integer.parseInt(request.getParameter("endTime"));
+	    String strFinalTime = request.getParameter("finalTime");
+		int finalTime = Integer.parseInt(strFinalTime);
+	    
+	    seatDto sDto = tdao.getReservInfo(tempNo);
+	    String salesNo = sDto.getSalesNo();
+	    String strSeatNo = Integer.toString(seatNo);
+	    String oldSelectedDate = sDto.getSelectedDate();
+	    int oldSeatNo = sDto.getSeatNo();
+	    String sOldSeatNo = Integer.toString(oldSeatNo);
+	   
+	    
+	    if ( finalTime <0 ) {
+	    	
+	    	try {
+       			response.setContentType("text/html; charset=UTF-8");      
+       	        PrintWriter out;
+       			out = response.getWriter();
+       			out.println("<script>alert('시간제 남은시간이 부족합니다! 충전해주세요!'); history.go(-1);</script>");
+       		    out.flush();
+       		} catch (IOException e) {
+       			// TODO Auto-generated catch block
+       			e.printStackTrace();
+       		}
+	    	
+	    }else {
+		//업데이트 전 지워서 새로 갱신할 것들.
+		tdao.cancelReservSeatTbl(tempNo); //전체좌석 테이블 정보 제거
+		tdao.cancelReservResvTbl(sessionId, sOldSeatNo, oldSelectedDate); //예약된 시간대 및 좌석 제거
+	    
+		//삭제한 곳에 새로 들어갈 데이타
+		tdao.regist(seatNo, sessionId, ticketName, selectedDate, startTime, endTime, salesNo);//scseat테이블에 새로 저장
+		for(int i = startTimeInt;i<endTimeInt;i++) {//ST[i]배열의 값을 각각 체크박스 갯수만큼 데이타베이스(선택시간)에 넣음 
+            tdao.makeReservation(seatNo, sessionId, selectedDate, i);//예약테이블에 체크박스 횟수만큼 새로 저장
+            }
+
+		tdao.returnRemainTime(sessionId, strFinalTime);
+		
+		try {
+   			response.setContentType("text/html; charset=UTF-8");      
+   	        PrintWriter out;
+   			out = response.getWriter();
+   			out.println("<script>alert('예약 변경 완료!'); window.location.href = 'ReservInfoList'</script>");
+   		    out.flush();
+   		} catch (IOException e) {
+   			// TODO Auto-generated catch block
+   			e.printStackTrace();
+   		}
+    	
+		
+		return "redirect:ReservInfoList";
+	    }return "redirect:ReservInfoList";
+	    }
 }

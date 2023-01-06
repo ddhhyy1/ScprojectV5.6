@@ -28,7 +28,7 @@
 		<tr>
 			<td>
 				<center>
-				<form action="todayPay">
+				<form action="sChangeTimeComplete">
 				<table width="80%" border="0" cellspacing="0" cellpadding="10">
 					<tr class="contentbox">
 						<td class="content">
@@ -76,22 +76,35 @@
 										${sDto.startTime}:00 ~ ${sDto.endTime}:00	> ${startTime}:00 ~ ${endTime}:00
 										</td>
 										</tr>
-										<tr class="seatTblTr">
-										<td><span class="content_text01">변경전 보유시간 :</span></td>		
 										<c:choose>
-													<c:when test="${result>0}}">											
-											 				<td><span class="content_text01">변경 후 보유시간 : +</span></td>											 								 		
+													<c:when test="${result > 0}">
+														<tr class="seatTblTr">
+															<td><span class="content_text01">환불될 시간 : ${changeTime} 시간</span>
+											 				</td>
+											 			</tr>
+											 				<tr class="seatTblTrReserved">
+															<td><span class="content_text01">변경 후 보유시간 : ${finalTime}</span>
+											 				</td>	
+														</tr>
 													 </c:when>
-													 <c:when test="${result==0}}">	
-															<td><span class="content_text01">같음</span></td>									 	
+													 <c:when test="${result == 0}">
+														<tr class="seatTblTr">
+															<td><span class="content_text01">시간 변동 없음</span>
+															</td>
+											 			</tr>
 													 </c:when>
-													 <c:otherwise>									 		
-															<td><span class="content_text01">변경 후 보유시간 : -</span></td>		
+													 <c:otherwise>
+											 			<tr class="seatTblTrReserved">
+															<td><span class="content_text01">추가 결제시간 : ${changeTime} 시간</span>
+											 				</td>	
+														</tr>
+														<tr class="seatTblTrReserved">
+															<td><span class="content_text01">변경 후 보유시간 : ${finalTime}</span>
+											 				</td>	
+														</tr>
 													</c:otherwise>
-										</c:choose>
-										</tr>	
-									
-										
+										</c:choose>	
+										</tr>											
 										</td>
 									</tr>
 									<input type="hidden" name = "userId" value="<%= sessionId %>">
@@ -102,6 +115,9 @@
 									<input type="hidden" name = "selectedTime" value="${selectedTime}">
 									<input type="hidden" name = "startTime" value="${startTime}">
 									<input type="hidden" name = "endTime" value="${endTime}">
+									<input type="hidden" name = "finalTime" value="${finalTime}">
+									<input type="hidden" name = "tempNo" value="${tempNo}">
+									
 									<tr>
 										<td colspan="2">
 											<input class="button_type01" type="submit" value="결제하기" >&nbsp;&nbsp;

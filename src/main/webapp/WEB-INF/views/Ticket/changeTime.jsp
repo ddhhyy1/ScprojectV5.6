@@ -77,7 +77,15 @@
 				</span>
 			</td>
 		</tr>
-		
+
+					  <c:choose>
+						<c:when test="${mDto.usingTicket >= 50}">
+							<tr>
+							<td>
+							</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
 						<tr>
 							<td class="titlebox">
 								<span class="title02" name="ticketName2">이용시간:
@@ -92,6 +100,9 @@
 								</span>
 							</td>
 							</tr>
+							</c:otherwise>
+					  </c:choose>
+							
 							<tr class="seatTblTr">
 								<td>
 								<center>

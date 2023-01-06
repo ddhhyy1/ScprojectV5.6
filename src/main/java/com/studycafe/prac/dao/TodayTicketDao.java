@@ -41,7 +41,7 @@ public interface TodayTicketDao {
 	public void returnUserPointTicket(String userId, String userPoint, String usingTicket);
 	public void returnRemainTime(String suserId, String sremainTime);
 		//예약변경관련
-	public void changeReservSeatTbl(String seatNo, String ticketName, String selectedDate,String tempUsingNo, String startTime, String endTime);
+	public void changeReservSalesTbl(String salesNo, String price);
 
 
 }
