@@ -20,6 +20,7 @@ td.content {
 	text-align: center;
 }
 
+
 span.content_text01 {
 	font-family: malgun;
 	font-size: 20px;
@@ -30,7 +31,7 @@ span.content_text01 {
 input.input_type01 {
 	background-color: #ffffff;
 	border: 1px solid #FED39F;
-	width: 400px;
+	width: 200px;
 	font-family: Arial;
 	font-size: 20px;
 	color: #2a2a2a;
@@ -62,7 +63,30 @@ input.button_type01:hover {
 	cursor: pointer;
 }
 
+input.button_type02 {
+	background-color: #003333;
+	border: 2px solid #ffffff;
+	width: 140px;
+	height: 40px;
+	font-family: malgun;
+	font-size: 20px;
+	color: #ffffff;
+	font-weight: bold;
+	padding: 5px;
+}
 
+input.button_type02:hover {
+	background-color: #f94f46;
+	border: 2px solid #ffffff;
+	width: 140px;
+	height: 40px;
+	font-family: malgun;
+	font-size: 20px;
+	color: #ffffff;
+	font-weight: bold;
+	padding: 5px;
+	cursor: pointer;
+}
 
 textarea.textarea_a1 {
 	background-color: #ffffff;

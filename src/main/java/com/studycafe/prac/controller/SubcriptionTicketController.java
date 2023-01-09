@@ -61,7 +61,7 @@ public class SubcriptionTicketController {
 					response.setContentType("text/html; charset=UTF-8");      
 			        PrintWriter out;
 					out = response.getWriter();
-					out.println("<script>alert('시간제를 이미 사용중이십니다. 추가 충전은 예약정보란에서 가능합니다.'); history.go(-1);</script>");
+					out.println("<script>alert('시간제를 이미 사용중이십니다!'); history.go(-1);</script>");
 				    out.flush();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block

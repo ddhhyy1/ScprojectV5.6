@@ -53,7 +53,7 @@
 									
 									<tr>
 										<td><span class="content_text01">질문내용 : </span></td>
-										<td><textarea class="textarea_type01" rows="5" cols="30" name="bcontent">${qdto.bcontent}</textarea></td>
+										<td><textarea class="textarea_a1" rows="5" cols="30" name="bcontent">${qdto.bcontent}</textarea></td>
 									</tr>	
 									<tr>
 										<td colspan="2">

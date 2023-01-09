@@ -29,32 +29,41 @@
 					<tr class="contentbox">
 						<td class="content">
 							<center>						
-							<table border="0" cellspacing="0" cellpadding="10">
+							<table width="75%" border="0" cellspacing="0" cellpadding="20">
 								<form action="questionOk" method="post" name="board_frm">
 								
 									<tr>
-										<td colspan="2" align="center" class="content_text01" >
+										<td colspan="0" align="center" class="content_text01"><font size="6">
 										질문하기 
-										</td>
-									</tr>
-									<tr>
-									<td colspan="2" align="center" class="content_text01">
-										&nbsp;
-										</td>
-									</tr>
-									<tr>
-										<td><span class="content_text01">아 이 디 : </span></td>
-										<td><input class="input_type01" type="text" name="buserid" value="${userId }" readonly="readonly"></td>
+										</font></td>
 									</tr>
 									
 									<tr>
-										<td><span class="content_text01">제목 : </span></td>
-										<td><input class="input_type01" type="text" name="btitle"></td>
+										
+										<td><input class="input_type01" type="hidden" name="buserid" value="${userId }" readonly="readonly"></td>
+									</tr>
+								</table>
+									
+									<table border="0" cellspacing="0" cellpadding="10">
+										<center>
+									<tr>
+										
+										<td>
+										  <div class="input-box">
+                							<input type="text" name="btitle" placeholder="제목">
+                								<label for="btitle">제목</label>
+            								</div>
+										</td>
 									</tr>
 									
 									<tr>
-										<td><span class="content_text01">질문내용 : </span></td>
-										<td><textarea class="textarea_type01" rows="10" cols="30" name="bcontent"placeholder="질문하"></textarea></td>
+										 
+										<td>
+										
+										<textarea class="textarea_a1" style = "opacity:0.7" rows="10" cols="30" name="bcontent" placeholder="질문내용"></textarea>
+										
+											
+										</td>
 									</tr>									
 									
 									
@@ -65,7 +74,7 @@
 										</td>
 									</tr>
 								</form>							
-							</table>
+								</table>
 							</center>							
 						</td>						
 					</tr>
