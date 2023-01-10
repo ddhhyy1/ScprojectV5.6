@@ -27,7 +27,7 @@
 	<table width="75%" border="0" cellspacing="0" cellpadding="20">
 		<tr>
 			<td class="titlebox1">
-				<span class="title01">STUDY CAFE</span>
+				<span class="title01"><img src="${pageContext.request.contextPath} /resources/img/book.png" >STUDY CAFE</span>
 			</td>
 		</tr>
 		<tr>

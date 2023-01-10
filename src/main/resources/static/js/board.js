@@ -1,6 +1,3 @@
-/**
- * 
- */
  
 function boardCheck() {
    
@@ -15,4 +12,16 @@ function boardCheck() {
    }
    
    document.board_frm.submit();
+} 
+
+function replyCheck() {
+   
+   if(document.reply_frm.rcontent.value.length == 0) {
+      alert("댓글 내용을 입력해주세요.");
+      return;
+   }
+   
+   
+   
+   document.reply_frm.submit();
 } 

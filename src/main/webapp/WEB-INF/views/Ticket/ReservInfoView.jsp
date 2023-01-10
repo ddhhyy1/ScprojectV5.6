@@ -17,54 +17,53 @@
 <body>
 <%@ include file="../include/header.jsp" %>
 <center>
-	<table width="75%" border="0" cellspacing="0" cellpadding="20">
-		<tr>
-			<td class="titlebox1">
-				<span class="title01">STUDY CAFE</span>
-			</td>
-		</tr>
+	<table width="90%" border="0" cellspacing="0" cellpadding="20" align="center">
+		<div class="card text-bg-dark">
+  			<img src="${pageContext.request.contextPath} /resources/img/Cafe2.jpg" class="card-img" alt="...">
+  		<div class="card-img-overlay">
+   			 <h1 class="card-title">STUDY CAFE</h1>
+    		<p class="card-text">This is made by Nangcho_Team</p>   
+  		</div>
+		</div>
+		
 		
 		<tr>
 			<td>
 				<center>
-				<table width="90%" border="0" cellspacing="0" cellpadding="10">
+				<table width="50%" border="0" cellspacing="0" cellpadding="10">
 					<tr class="contentbox">
 						<td class="content">
-							<center>						
-							<table border="0" cellspacing="0" cellpadding="10">
-									<tr>
-										<td colspan="2" align="center" class="content_text01">
-										내 예약 정보 
+									<div class="card">
+ 										 <h3 class="card-header" align="center">&nbsp;&nbsp;내 예약 정보 &nbsp;</h3>
+  											<div class="card-body">
+   												<p class="card-text">
+   													<div class="innerCard">아 이 디 :<%= sessionId %></div>
+   													<br>		
+   													<span class="content_text01">예약 번호: </span>
+													${sDto.tempUsingNo}<br><br>
+  												 	<div class="innerCard">
+  												 	예약중인 날짜: ${year}년${month}월${day}일</div>
+  												 	<br>									
+													<div class="innerCard">예약중인 좌석: ${sDto.seatNo}번좌석</div>
+													<br>	
+									 						<div class="innerCard">예약 시간: 
+											${sDto.startTime}:00 ~ ${sDto.endTime}:00</div>
+													
+													</p>
+  												</div>
+											</div>
 										</td>
 									</tr>
+									
 									<tr>
-											<td><span class="content_text01">예약 번호: </span></td>
-											<td>${sDto.tempUsingNo}</td>
-									</tr>
-									<tr>
-											<td><span class="content_text01">예약중인 날짜: </span></td>
-											<td>${year}년${month}월${day}일</td>
-									</tr>
-									<tr>
-											<td><span class="content_text01">예약중인 좌석: </span></td>
-											<td>${sDto.seatNo}번좌석</td>
-									</tr>
-									<tr>
-											<td><span class="content_text01">예약 시간: </span></td>
-											<td>${sDto.startTime}:00 ~ ${sDto.endTime}:00</td>
-									</tr>
-									<tr>
-										<td>
+										<td colspan="2" align="center">
 											<input class="button_type01" type="button" value="예약 취소" onclick="script:window.location='cancelReserv?tempUsingNo=${sDto.tempUsingNo}&seatNo=${sDto.seatNo}&selectedDate=${selectedDate}'">
+											&nbsp;&nbsp;&nbsp;
+										<input class="button_type01" type="button" value="좌석 변경" onclick="script:window.location='changeDateSeat?tempUsingNo=${sDto.tempUsingNo}'">	
 										</td>
-										
-										<td>
-											<input class="button_type01" type="button" value="좌석 변경" onclick="script:window.location='changeDateSeat?tempUsingNo=${sDto.tempUsingNo}'">	
-										</td>
+											
 									</tr>
-		</table>
-		
-		</center>
+	
 		</td>
 		</tr>
 		</table>

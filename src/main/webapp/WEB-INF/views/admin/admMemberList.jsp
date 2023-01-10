@@ -46,10 +46,14 @@
 	<form >
 	<table width="50%" border="0" cellspacing="0" cellpadding="20">
 		<input type="hidden" name = "userId" value="">
-
+		<tr>
+			<td class="titlebox1">
+				<span class="title01"><img src="${pageContext.request.contextPath} /resources/img/book.png" >STUDY CAFE</span>
+			</td>
+		</tr>	
 		<tr>
 			<td class="titlebox">
-				<h1>회원목록</h1>
+				<h1 align="center">회원목록</h1>
 			</td>
 			<tr height="150">
 			&nbsp;

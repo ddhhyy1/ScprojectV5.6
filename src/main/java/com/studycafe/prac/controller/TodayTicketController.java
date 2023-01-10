@@ -37,7 +37,7 @@ public class TodayTicketController {
 	public String testpage() {
 		
 		
-		return "testpage";
+		return "test/testpage";
 	}
 	@RequestMapping(value="/testpage2")//이용금액표
 	public String testpage2(Model model) {
@@ -46,7 +46,7 @@ public class TodayTicketController {
 		
 		model.addAttribute("test",testarray);
 		
-		return "testpage2";
+		return "test/testpage2";
 	}
 	@RequestMapping(value="/tabletest")//이용금액표
 	public String talbetest() {

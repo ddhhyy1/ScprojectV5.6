@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/title.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/seatTable.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ReservInfoList.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/join.js"></script>
 <title>내 정보</title>
 <style>
@@ -26,66 +27,53 @@ table{
 	<table width="75%" border="0" cellspacing="0" cellpadding="20">
 		<tr>
 			<td class="titlebox1">
-				<span class="title01">STUDY CAFE</span>
+				<span class="title01"><img src="${pageContext.request.contextPath} /resources/img/book.png" >STUDY CAFE</span>
 			</td>
 		</tr>
 		
 		<tr>
 			<td>
 				<center>
-				<table width="90%" border="0" cellspacing="0" cellpadding="10">
+				<table width="40%" border="0" cellspacing="0" cellpadding="0">
 					<tr class="contentbox">
 						<td class="content">
-							<center>						
-							<table border="0" cellspacing="0" cellpadding="10">
-									<tr>
-										<td colspan="2" align="center" class="content_text01">
-										내 예약 정보 
-										</td>
-									</tr>
-									<tr>
-									<td colspan="2" align="center" class="content_text01">
-										&nbsp;
-										</td>
-									</tr>
-									<tr>
-										<td><span class="content_text01">아 이 디 : </span></td>
-										<td><%= sessionId %></td>		
-									<tr>
-										<td><span class="content_text01">보유 포인트 : </span></td>
-										<td>${memberDto.userPoint}</td>
-									</tr>
-									<!-- 사용중인 상품에 없거나 어떤 상품이냐에 따라 표시가 다름 -->
-									<c:choose>
-											<c:when test="${memberDto.usingTicket==0}">
-												<tr>
-													<td><span class="content_text01">사용중인 상품 : </span></td>
-													<td> 사용중인 상품이 없습니다.</td>
-												</tr>
-									
-											</c:when>
-											<c:when test="${memberDto.usingTicket>=50}">
-												<tr>
-													<td><span class="content_text01">사용중인 상품 : </span></td>
-													<td>시간권 ${memberDto.usingTicket}시간제 사용중</td>
-												</tr>
-											</c:when>
-									 		<c:otherwise>
-									 			<tr>
-													<td><span class="content_text01">사용중인 상품 : </span></td>
-													<td>당일권 사용중</td>
-												</tr>
-									
-									 		</c:otherwise>
-									</c:choose>
-									
-									<tr>
-										<td><span class="content_text01">남아있는 시간 : </span></td>
-										<td>${stDto.sremainTime}</td>
-									</tr>
-									</table>
-							
-					
+										<table class="table" width="200" text-align="center">
+  											<thead>
+    											<tr colspan="2">
+      												<th scope="col" colspan="2"><div align="center" >내 예약 정보</div></th>
+    											</tr>
+  											</thead>
+  											<tbody class="table-group-divider">
+    											<tr>
+      												<th scope="row">아이디 :</th>
+      												<td><%= sessionId %></td>
+  											    </tr>
+    											<tr>
+      												<th scope="row"> 보유 포인트 : </th>
+     											    <td>${memberDto.userPoint}</td> 
+    											</tr>
+    											<tr>
+    											<c:choose>
+													<c:when test="${memberDto.usingTicket==0}">									
+														<th scope="row">사용중인 상품 :</th>
+														<td>사용중인 상품이 없습니다.</td>
+													</c:when>
+													<c:when test="${memberDto.usingTicket>=50}">
+														<th scope="row">사용중인 상품 :</th>
+														<td>시간권 ${memberDto.usingTicket}시간제 사용중</td>
+													</c:when>
+									 				<c:otherwise>
+									 					<th scope="row">사용중인 상품 :</th>
+									 					<td>당일권 사용중</td>
+													</c:otherwise>
+												</c:choose>
+    											</tr>
+    											<tr>
+      												<th scope="row"> 남아있는 시간 : </th>
+     											    <td>${stDto.sremainTime}</td> 
+    											</tr>
+  												</tbody>
+												</table>
 					<tr>
 					<td>
 						<table class="innerTable" border="1" cellspacing="1" cellpadding="10" align="center">

@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/board.js"></script>
-
 <title>내 질문</title>
 </head>
 <body>	

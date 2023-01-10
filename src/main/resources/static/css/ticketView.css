@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.mainTitle{
+	align : center;
+	
+	
+}
+
+.upper	{
+	margin-left:15px;
+	font-style:malgun;
+	font-size:20px;
+	font-color:white;
+	font:bold;
+}
+
+table.first	{
+	
+	
+	border-radius: 100%;
+	
+}

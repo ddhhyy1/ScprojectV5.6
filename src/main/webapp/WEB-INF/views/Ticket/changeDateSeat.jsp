@@ -88,53 +88,39 @@
 <%@ include file="../include/header.jsp" %>
 	<center>
 	<form action="changeTime" name="searchSeatForm">
-	<table width="70%" border="0" cellspacing="0" cellpadding="20">
+	<table width="50%" border="0" cellspacing="0" cellpadding="20">
 		<tr>
 		<td>
-		<table width="1000" border="0" cellspacing="0" cellpadding="20">
-		<tr>
-			<td class="titlebox">
-				<h2>날짜&좌석 변경</h2>
-			</td>
-		</tr>
-		<tr>
-			<td class="titlebox">
-				<span class="title02">회원아이디:</span>
-				<span class="title02"><%= sessionId %></span>
-			</td>
-		</tr>
-		<tr>
-			<td class="titlebox" width="350">
-				<span class="title02">기존 예약 날짜:
-				${year}년 ${month}월 ${day}일
-				</span>
-			</td>
-			<td><img src="${pageContext.request.contextPath} /resources/img/arrow.png" >
-				
-			</td>
-			<td class="titlebox">
-				<span class="title02">변경 예약 날짜:
-				<input type="text" id="pickDate" name="selectedDate">
-				</span>
-			</td>
-		</tr>
-		<tr>
-			<td class="titlebox" width="300">
-				<span class="title02">기존 지정 좌석:
-  					${sDto.seatNo }번
-				</span>
-			</td>
-			<td><img src="${pageContext.request.contextPath} /resources/img/arrow.png" >	
-			</td>
-			<td class="titlebox">
-				<span class="title02">변경 예약 좌석:
-					<input type="text" name="seatNo">번
-				</span>
-			</td>
-		</tr>
-		</tr>
+		<table class="table"  width="300" height="380">
+  <thead>
+    <tr>
+      <th scope="col" colspan="5" ><div align="center"><h2>날짜&좌석 변경</span></h2></th>
+
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+    <tr>
+      <th scope="row" ><span class="title02">회원아이디:</span></th>
+      <td><span class="title02"><%= sessionId %></span></td>
+    
+    </tr>
+    <tr>
+      <th scope="row" ><span class="title02">기존 예약 날짜 :</span></th>
+      <td><span class="title02">${year}년 ${month}월 ${day}일</span></td>
+      <td><img src="${pageContext.request.contextPath} /resources/img/arrow.png" ></td>
+      <td><span class="title02">변경 예약 날짜 :</span></td>
+      <td><input type="text" id="pickDate" name="selectedDate"></td>
+    </tr>
+    <tr>
+      <th scope="row"><span class="title02">기존 지정 좌석:</span></th>
+      <td ><span class="title02">${sDto.seatNo }번</span></td>
+      <td><img src="${pageContext.request.contextPath} /resources/img/arrow.png" ></td>
+      <td><span class="title02">변경 예약 좌석 :</span></td>
+      <td><input type="text" name="seatNo">번</td>
+    </tr>
+  </tbody>
+</table>
 		
-		</table>
 		<tr>
 			<td>
 				<table width="70%" border="0" cellspacing="0" cellpadding="20">

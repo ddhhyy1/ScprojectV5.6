@@ -17,10 +17,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/title.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/seatTable.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ticketView.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
-<!-- jQuery  -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
 <!-- bootstrap JS -->
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>   
 <!-- bootstrap CSS -->
@@ -46,37 +45,50 @@
 		<input type="hidden" name = "selectedDate" value="<%=selectedDate%>">
 		<input type="hidden" name = "seatNo" value="<%=seatNo%>">
 		<tr>
-			<td class="titlebox">
-				<h1>시간권_예약하기</h1>
+			<td class="mainTitle">
+				<h1 class="display-3" align="center">시간권 예약</h1>
 			</td>
 		</tr>
 		<tr>
-			<td class="titlebox">
-				<span class="title02">회원아이디:</span>
-				<span class="title02"><%= sessionId %></span>
-			</td>
+			<td>
+			<table width="40%" border="0" cellspacing="0" cellpadding="20" width="100" align=center>
+				<tr>
+					<td width="400">
+					<div class="card">
+  						<div class="card-body">	
+    						<span class="upper">회원아이디	: &nbsp;&nbsp;<%= sessionId %></span>
+ 						 </div>
+					</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="400">
+					<div class="card">
+  						<div class="card-body">	
+    						<span class="upper">이용날짜:&nbsp;&nbsp;${selectedDate}
+							</span>
+ 						 </div>
+					</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="400">
+					<div class="card">
+  						<div class="card-body">	
+    						<span class="upper">지정좌석:&nbsp;&nbsp;${seatNo}
+							</span>
+ 						 </div>
+					</div>
+					</td>
+				</tr>
+		</table>
+		</td>
 		</tr>
-		<tr>
-			<td class="titlebox">
-				<span class="title02">이용날짜:
-				${selectedDate}
-				</span>
-			</td>
-		</tr>
-		<tr>
-			<td class="titlebox">
-				<span class="title02">좌석지정:
-  					${seatNo}
-				</span>
-			</td>
-		
-		</tr>
-		
 		<tr>
 			<td>
 				<center>
 					<div class="row">
-						<table class="innerTable" width="60%" border="1" cellspacing="1" cellpadding="10">
+						<table class="innerTable" width="60%" border="1" cellspacing="1" cellpadding="10" align="center">
 							<thead class="seatTblThead">
 									<tr class="seatTblTr">
 										<th class="seatTblTh">시간</th>
@@ -110,12 +122,13 @@
 									</c:forEach>
 							</tbody>
 					</table>
-							<tr>
-										<td colspan="3">
-											<input class="button_type01" type="button" value="다음단계로" onclick="timeCheckOk2()">
-											<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
-										</td>
-									</tr>
+						<tr>
+							<td align="center">
+								<button type="button" class="btn btn-primary btn-lg" onclick="timeCheckOk2()">다음 단계로</button>
+								<button type="button" class="btn btn-secondary btn-lg" onclick="window.history.back() ">뒤 로</button>
+							</td>
+						</tr>
+
 				</div>
 				</center>			
 			</td>

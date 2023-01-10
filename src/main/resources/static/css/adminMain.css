@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+
+.mainContent {
+  left: 620px;
+  width: 450px;
+  bottom: 480px;
+  font-size: 1.8em;
+  font-weight: bold;
+  position: absolute;
+  text-align: center;
+}
+.mainContent2 {
+  left: 1000px;
+  width: 450px;
+  bottom: 480px;
+  font-size: 1.8em;
+  font-weight: bold;
+  position: absolute;
+  text-align: center;
+}
+td.mainContent{
+  text-align: center;
+} 

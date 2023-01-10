@@ -88,32 +88,50 @@
 	<form action="searchsTicketSeat" name="searchSeatForm">
 	<table width="65%" border="0" cellspacing="0" cellpadding="20">
 		<tr>
-			<td class="titlebox">
-				<h1>시간권 좌석지정</h1>
-			</td>
-		</tr>
-		<tr>
-			<td class="titlebox">
-				<span class="title02">회원아이디:</span>
-				<span class="title02"><%= sessionId %></span>
-			</td>
-		</tr>
-		<tr>
-			<td class="titlebox">
-				<span class="title02">날짜지정:
-				<input type="text" id="pickDate" name="selectedDate">
-				</span>
-			</td>
-		</tr>
-		<tr>
-			<td class="titlebox">
-				<span class="title02">좌석지정:
-  					<input type="text" name="seatNo">
-				</span>
+			<td class="mainTitle">
+				<h1 class="display-3" align="center">시간권 예약</h1>
 			</td>
 		</tr>
 		<tr>
 			<td>
+			<table width="40%" border="0" cellspacing="0" cellpadding="20" width="100" align=center>
+				<tr>
+					<td width="400">
+					<div class="card">
+  						<div class="card-body">	
+    						<span class="upper">회원아이디	: &nbsp;&nbsp;<%= sessionId %></span>
+ 						 </div>
+					</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="400">
+					<div class="card">
+  						<div class="card-body">	
+    						<span class="upper">날짜지정:&nbsp;&nbsp;
+								<input type="text" id="pickDate" name="selectedDate" style="width:200px;height:30px;font-size:20px;">
+							</span>
+ 						 </div>
+					</div>
+					</td>
+				</tr>
+				<tr>
+					<td width="400">
+					<div class="card">
+  						<div class="card-body">	
+    						<span class="upper">좌석지정:&nbsp;&nbsp;
+  								<input type="text" name="seatNo" style="width:200px;height:30px;font-size:20px;">
+							</span>
+ 						 </div>
+					</div>
+					</td>
+				</tr>
+		</table>
+		</td>
+		</tr>
+		<table align=center>
+		<tr>
+		<td>
 				<img src="${pageContext.request.contextPath} /resources/img/CafeMap2.png" usemap="#cafeMap">
 				<map name="cafeMap"  id="cafeMap">
 				<div class="change1"><area shape="rect" coords="834,27,881,81" href=#></div>
@@ -154,10 +172,14 @@
 				<div class="change33"><area shape="rect" coords="774,202,822,257" href=#></div>
 			</td>
 		</tr>
+		</table>
+		</tr>
+		</td>
+		<br>
 		<tr>
-		<td>
-			<input class="button_type01" type="button" value="다음단계로" onclick="seatCheckOk()">
-			<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
+			<td>
+				<button type="button" class="btn btn-primary btn-lg" onclick="seatCheckOk()">다음 단계로</button>
+				<button type="button" class="btn btn-secondary btn-lg" onclick="window.history.back() ">뒤 로</button>
 			</td>
 		</tr>
 	</table>

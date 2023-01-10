@@ -28,7 +28,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "testpage3")
 	public String testpage3() {
-		return "testpage3";
+		return "test/testpage3";
 	}
 	@RequestMapping(value = "/")
 	public String home() {
