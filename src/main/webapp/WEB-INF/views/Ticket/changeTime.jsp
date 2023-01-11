@@ -31,6 +31,14 @@
 
 <meta charset="UTF-8">
 <title>예약시간 변경</title>
+
+<style>
+.changeTimeButton{
+	left: 650px;
+	position: absolute;
+}
+
+</style>
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
@@ -132,7 +140,7 @@
 										<input type="hidden" name = "seatNo" value="<%=seatNo%>">
 										<input type="hidden" name = "tempNo" value="${tempNo}">
 									<tr>
-										<td colspan="3">
+										<td class="changeTimeButton" colspan="2">
 									<c:choose>
 										<c:when test="${mDto.usingTicket >= 50}">
 											<input class="button_type01" type="button" value="다음단계로" onclick="timeCheckOk2()">

@@ -13,6 +13,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>스터디 카페</title>
     <link rel="stylesheet" href="/resources/css/slide.css" />
+    
+    
+    <style>
+    span.indexGuide{
+	    font-size: 50px;
+		color: rgb(0, 0, 0);
+		font-family: Arial;
+		font-weight: bold;
+    }
+    </style>
   </head>
 <body>
 <%@ include file="include/header.jsp" %>
@@ -72,7 +82,29 @@
 					</td>
 				</tr>
 			</table>
-								
+			<table align="center">
+				<tr>
+					<td>
+						<br><br><br><br><br><br><br><br><br><br><br>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<span class="indexGuide">찾아오시는 길</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<br><br><br>
+					</td>
+				</tr>
+				<tr>
+					<tr>
+						<td>
+							<img src="${pageContext.request.contextPath} /resources/img/GMAP3.png" >
+						</td>
+					</tr>
+			</table>					
 				
 				
 			</div>

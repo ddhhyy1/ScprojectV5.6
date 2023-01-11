@@ -75,6 +75,12 @@
 		order By substr(salesdate,1,7) asc
 	</select>
 	
+	<select id="getChartInfo2" resultType="com.studycafe.prac.dto.ScSalesDto">
+		SELECT SUM(PRICE) AS sumSales FROM scsalestbl
+		GROUP BY substr(salesdate,1,7)
+		order By substr(salesdate,1,7) DESC
+	</select>
+	
 	<select id="getSalesNo" resultType="com.studycafe.prac.dto.ScSalesDto">
 		select * from scsalestbl 
 		WHERE userId = #{param1}

@@ -45,45 +45,43 @@
 		<input type="hidden" name = "selectedDate" value="<%=selectedDate%>">
 		<input type="hidden" name = "seatNo" value="<%=seatNo%>">
 		<tr>
-			<td class="mainTitle">
-				<h1 class="display-3" align="center">시간권 예약</h1>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<table width="40%" border="0" cellspacing="0" cellpadding="20" width="100" align=center>
-				<tr>
-					<td width="400">
-					<div class="card">
+			<td class="mainTitle" align="center">
+				<table width="95%" border="0" cellspacing="0" cellpadding="20" align="center">
+	<hr>
+		<div class="card border-dark mb-3" style="max-width: 50rem; height:30rem;">
+  			<div class="card-header"><h1>시간권 예약</h1></div>
+  				<div class="card-body text-dark">
+    			<p class="card-text">
+    				<div class="card">
   						<div class="card-body">	
-    						<span class="upper">회원아이디	: &nbsp;&nbsp;<%= sessionId %></span>
+    						<span class="upper">
+    						회원아이디	: &nbsp;&nbsp;<%= sessionId %>
+    						</span>
  						 </div>
 					</div>
-					</td>
-				</tr>
-				<tr>
-					<td width="400">
+					<br>
 					<div class="card">
-  						<div class="card-body">	
-    						<span class="upper">이용날짜:&nbsp;&nbsp;${selectedDate}
+  						<div class="card-body">	&nbsp;&nbsp;&nbsp;
+    					<span class="upper">이용날짜:&nbsp;&nbsp;${selectedDate}
 							</span>
  						 </div>
 					</div>
-					</td>
-				</tr>
-				<tr>
-					<td width="400">
+					<br>
 					<div class="card">
   						<div class="card-body">	
     						<span class="upper">지정좌석:&nbsp;&nbsp;${seatNo}
 							</span>
  						 </div>
 					</div>
-					</td>
-				</tr>
-		</table>
+					<br>
+					
+    				</p>
+ 					</div>
+					</div>
+		
 		</td>
 		</tr>
+		</table>
 		<tr>
 			<td>
 				<center>
@@ -124,8 +122,8 @@
 					</table>
 						<tr>
 							<td align="center">
-								<button type="button" class="btn btn-primary btn-lg" onclick="timeCheckOk2()">다음 단계로</button>
-								<button type="button" class="btn btn-secondary btn-lg" onclick="window.history.back() ">뒤 로</button>
+								<input class="button_type01" type="button" value="다음 단계로" onclick="timeCheckOk2()">&nbsp;&nbsp;
+								<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 							</td>
 						</tr>
 

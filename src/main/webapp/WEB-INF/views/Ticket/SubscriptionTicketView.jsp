@@ -29,7 +29,7 @@
 
 
 		<!--      달력 추가 js 시작       -->
-    $(document).ready(function () {
+		$(document).ready(function () {
             $.datepicker.setDefaults($.datepicker.regional['ko']); 
             $( "#pickDate" ).datepicker({
             	 showOn: "button",
@@ -76,9 +76,11 @@
     
    
     <!--      달력 추가 js 끝       -->
+
 </script>
 <meta charset="UTF-8">
 <title>시간권 좌석지정</title>
+
 <style>
 .upper{
 	font-size:20px;
@@ -87,6 +89,7 @@
 }
 
 </style>
+
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
@@ -173,8 +176,8 @@
 		<br>
 		<tr>
 			<td>
-				<button type="button" class="btn btn-primary btn-lg" onclick="seatCheckOk()">다음 단계로</button>
-				<button type="button" class="btn btn-secondary btn-lg" onclick="window.history.back() ">뒤 로</button>
+				<input class="button_type01" type="button" value="다음 단계로" onclick="seatCheckOk()">&nbsp;&nbsp;
+				<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">	
 			</td>
 		</tr>
 	</table>

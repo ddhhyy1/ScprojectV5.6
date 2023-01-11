@@ -171,7 +171,7 @@
 		</tr>
 		<tr>
 		<input type="hidden" name = "tempNo" value="${tempNo}">
-		<td>
+		<td align="center">
 			<input class="button_type01" type="button" value="다음단계로" onclick="seatCheckOk()">
 			<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 			</td>

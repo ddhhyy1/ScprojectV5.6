@@ -8,7 +8,7 @@
             var sticketName = loginForm.sticketName.value;
             
             if(!sticketName){
-                alert("요금제 선택하셈!");
+                alert("요금제를 선택해주세요!");
                 return;
 			}
 

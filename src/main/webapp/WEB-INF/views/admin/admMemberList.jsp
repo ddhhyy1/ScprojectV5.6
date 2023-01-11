@@ -44,8 +44,8 @@
 %>
 	<center>
 	<form >
-	<table width="50%" border="0" cellspacing="0" cellpadding="20">
-		<input type="hidden" name = "userId" value="">
+	<table width="80%" border="0" cellspacing="0" cellpadding="20">
+		
 		<tr>
 			<td class="titlebox1">
 				<span class="title01"><img src="${pageContext.request.contextPath} /resources/img/book.png" >STUDY CAFE</span>
@@ -60,7 +60,7 @@
 			</tr>
 				<center>
 					<div>
-						<table class="innerTable" border="1" cellspacing="1" cellpadding="10">
+						<table class="innerTable2" border="1" cellspacing="1" cellpadding="10">
 							<thead class="seatTblThead">
 									<tr class="seatTblTr">
 										<th class="seatTblTh">아이디</th>

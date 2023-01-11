@@ -28,8 +28,10 @@ public interface TodayTicketDao {
 	
 	//매출관련
 	public void addSalesInfo(String userId, String payingPoint); //당일권,시간권 결제시 매출테이블에추가
-	public List<ScSalesDto> getChartInfo(); //월별로 그룹화 하여 매출액 총합 가져오기
+	public List<ScSalesDto> getChartInfo(); //월별로 그룹화 하여 매출액 총합 가져오기 ASC
+	public List<ScSalesDto> getChartInfo2(); //월별로 그룹화 하여 매출액 총합 가져오기 DESC
 	public List<ScSalesDto> getSalesNo(String userId);//아이디 그룹화하여 가장 최신에 등록된 매출번호 가져오기
+	
 	
 	//내예약정보확인관련
 	public seatDto getReservInfo(String tempUsingNo); //내 예약정보 확인

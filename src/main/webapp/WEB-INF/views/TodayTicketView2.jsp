@@ -132,8 +132,8 @@
 					</table>
 						<tr>
 							<td align="center">
-								<button type="button" class="btn btn-primary btn-lg" onclick="timeCheckOk3()">다음 단계로</button>
-								<button type="button" class="btn btn-secondary btn-lg" onclick="window.history.back() ">뒤 로</button>
+								<input class="button_type01" type="button" value="다음 단계로" onclick="timeCheckOk3()">&nbsp;&nbsp;
+								<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 							</td>
 						</tr>
 

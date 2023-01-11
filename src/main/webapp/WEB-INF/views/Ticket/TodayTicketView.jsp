@@ -18,8 +18,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ticketView.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
-<!-- jQuery  -->
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
 <!-- bootstrap JS -->
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>   
 <!-- bootstrap CSS -->
@@ -29,7 +28,7 @@
 
 
 		<!--      달력 추가 js 시작       -->
-    $(document).ready(function () {
+		$(document).ready(function () {
             $.datepicker.setDefaults($.datepicker.regional['ko']); 
             $( "#pickDate" ).datepicker({
             	 showOn: "button",
@@ -172,8 +171,8 @@
 		<br>
 		<tr>
 			<td>
-				<button type="button" class="btn btn-primary btn-lg" onclick="seatCheckOk()">다음 단계로</button>
-				<button type="button" class="btn btn-secondary btn-lg" onclick="window.history.back() ">뒤 로</button>
+				<input class="button_type01" type="button" value="다음 단계로" onclick="seatCheckOk()">&nbsp;&nbsp;
+				<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
 			</td>
 		</tr>
 	</table>

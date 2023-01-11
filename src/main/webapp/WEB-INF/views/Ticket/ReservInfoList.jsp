@@ -99,6 +99,14 @@ table{
 											</c:forEach>
 										</tbody>
 									</table>
+										<tr>
+											<td><br>
+											</td>
+										</tr>
+									<tr>
+										<td align="center"><span class="content_text01">*예약정보를 변경하시려면, 해당 예약번호를 클릭해주세요!</span>
+										</td>
+									</tr>
 		
 		</center>
 		</td>
