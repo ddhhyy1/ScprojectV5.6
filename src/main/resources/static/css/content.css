@@ -39,7 +39,7 @@ input.input_type01 {
 }
 
 input.button_type01 {
-	background-color: #003333;
+	background-color: #2b2b2b;
 	border: 2px solid #ffffff;
 	width: 180px;
 	height: 40px;
@@ -51,7 +51,7 @@ input.button_type01 {
 }
 
 input.button_type01:hover {
-	background-color: #f94f46;
+	background-color: #000040;
 	border: 2px solid #ffffff;
 	width: 180px;
 	height: 40px;
@@ -64,7 +64,7 @@ input.button_type01:hover {
 }
 
 input.button_type02 {
-	background-color: #003333;
+	background-color: #2b2b2b;
 	border: 2px solid #ffffff;
 	width: 140px;
 	height: 40px;

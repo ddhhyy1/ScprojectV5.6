@@ -41,10 +41,10 @@
 %>
 	<center>
 	<form action="changeConfirm" name="timeCheckOk">
-		<table width="35%" border="0" cellspacing="0" cellpadding="20">
+		<table width="55%" border="0" cellspacing="0" cellpadding="20">
 			<tr>	
-				<td>
-				<table class="table" width="200" height="350">
+				<td align="center">
+				<table width="60%" height="350">
  				 <thead>
   	  				<tr>
     				  	<th scope="col" colspan="2"><div align="center"><h2>예약시간 변경</h2></div></th>
@@ -95,7 +95,7 @@
 			<td>
 		</tr>
 		<tr>
-			<td>
+			<td align="center">
 				<table class="innerTable" width="70%" border="1" cellspacing="1" cellpadding="10">
 										<thead class="seatTblThead">
 											<tr class="seatTblTr">

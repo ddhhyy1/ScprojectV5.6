@@ -19,7 +19,7 @@
 <center>
 	<table width="90%" border="0" cellspacing="0" cellpadding="20" align="center">
 		<div class="card text-bg-dark">
-  			<img src="${pageContext.request.contextPath} /resources/img/Cafe2.jpg" class="card-img" alt="...">
+  			<img src="${pageContext.request.contextPath} /resources/img/Cafe5.jpg" class="card-img" alt="...">
   		<div class="card-img-overlay">
    			 <h1 class="card-title">STUDY CAFE</h1>
     		<p class="card-text">This is made by Nangcho_Team</p>   
@@ -30,7 +30,7 @@
 		<tr>
 			<td>
 				<center>
-				<table width="50%" border="0" cellspacing="0" cellpadding="10">
+				<table width="40%" border="0" cellspacing="0" cellpadding="10">
 					<tr class="contentbox">
 						<td class="content">
 									<div class="card">

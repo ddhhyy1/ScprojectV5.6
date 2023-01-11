@@ -89,38 +89,28 @@
 	<center>
 	<form action="searchSeat" name="searchSeatForm">
 	<table class= "first" width="25%" border="1" cellspacing="0" cellpadding="20" radius="3">
-		<tr>
-			<td class="mainTitle">
-				<h1 class="display-4" align="center">당일권 예약</h1>
-			</td>
-		</tr>
-		
-		<hr>
-		<tr>
-			<td>
-			<table width="95%" border="0" cellspacing="0" cellpadding="20" width="100" align=center>
-				<tr>
-					<td width="400">
-					<div class="card">
+		<table width="35%" border="1" cellspacing="0" cellpadding="20">
+	<hr>
+		<div class="card border-dark mb-3" style="max-width: 50rem; height:35rem;">
+  			<div class="card-header"><h1>당일권 예약</h1></div>
+  				<div class="card-body text-dark">
+    			<p class="card-text">
+    				<div class="card">
   						<div class="card-body">	
-    						<span class="upper">회원아이디	: &nbsp;&nbsp;<%= sessionId %></span>
+    						<span class="upper">
+    						회원아이디	: &nbsp;&nbsp;<%= sessionId %>
+    						</span>
  						 </div>
 					</div>
-					</td>
-				</tr>
-				<tr>
-					<td width="400">
+					<br>
 					<div class="card">
-  						<div class="card-body">	
+  						<div class="card-body">	&nbsp;&nbsp;&nbsp;
     						<span class="upper">날짜지정:&nbsp;&nbsp;
 								<input type="text" id="pickDate" name="selectedDate" style="width:200px;height:30px;font-size:20px;">
 							</span>
  						 </div>
 					</div>
-					</td>
-				</tr>
-				<tr>
-					<td width="400">
+					<br>
 					<div class="card">
   						<div class="card-body">	
     						<span class="upper">좌석지정:&nbsp;&nbsp;
@@ -128,11 +118,9 @@
 							</span>
  						 </div>
 					</div>
-					</td>
-				</tr>
-		</table>
-		</td>
-		</tr>
+    				</p>
+ 					</div>
+					</div>
 		
 		<table align=center>
 		<hr>

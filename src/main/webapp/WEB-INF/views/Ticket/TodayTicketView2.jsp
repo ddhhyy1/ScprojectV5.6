@@ -44,46 +44,35 @@
 		
 		<input type="hidden" name = "selectedDate" value="<%=selectedDate%>">
 		<input type="hidden" name = "seatNo" value="<%=seatNo%>">
-		<tr>
-			<td class="mainTitle">
-				<h1 class="display-3" align="center">시간권 예약</h1>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<table width="40%" border="0" cellspacing="0" cellpadding="20" width="100" align=center>
-				<tr>
-					<td width="400">
-					<div class="card">
+		<table width="35%" border="0" cellspacing="0" cellpadding="20">
+	<hr>
+		<div class="card border-dark mb-3" style="max-width: 50rem; height:38rem;">
+  			<div class="card-header"><h1>당일권 예약</h1></div>
+  				<div class="card-body text-dark">
+    			<p class="card-text">
+    				<div class="card">
   						<div class="card-body">	
-    						<span class="upper">회원아이디	: &nbsp;&nbsp;<%= sessionId %></span>
+    						<span class="upper">
+    						회원아이디	: &nbsp;&nbsp;<%= sessionId %>
+    						</span>
  						 </div>
 					</div>
-					</td>
-				</tr>
-				<tr>
-					<td width="400">
+					<br>
 					<div class="card">
-  						<div class="card-body">	
-    						<span class="upper">이용날짜:&nbsp;&nbsp;${selectedDate}
+  						<div class="card-body">	&nbsp;&nbsp;&nbsp;
+    					<span class="upper">이용날짜:&nbsp;&nbsp;${selectedDate}
 							</span>
  						 </div>
 					</div>
-					</td>
-				</tr>
-				<tr>
-					<td width="400">
+					<br>
 					<div class="card">
   						<div class="card-body">	
     						<span class="upper">지정좌석:&nbsp;&nbsp;${seatNo}
 							</span>
  						 </div>
 					</div>
-					</td>
-				</tr>
-				<tr>
-					<td class="titlebox">
-						<div class="card">
+					<br>
+					<div class="card">
   						<div class="card-body">	
 						<span class="upper" name="ticketName2">이용시간:
   							<select name="ticketName" >
@@ -97,11 +86,12 @@
 						</span>
 						</div>
 					</div>
-					</td>
-				</tr>
-		</table>
-		</td>
-		</tr>
+    				</p>
+ 					</div>
+					</div>
+		
+		
+		
 		<tr>
 			<td>
 				<center>

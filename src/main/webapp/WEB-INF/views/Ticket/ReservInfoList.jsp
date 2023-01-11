@@ -24,15 +24,15 @@ table{
 <body>
 <%@ include file="../include/header.jsp" %>
 <center>
-	<table width="75%" border="0" cellspacing="0" cellpadding="20">
-		<tr>
-			<td class="titlebox1">
-				<span class="title01"><img src="${pageContext.request.contextPath} /resources/img/book.png" >STUDY CAFE</span>
-			</td>
-		</tr>
+	<table width="90%" border="0" cellspacing="0" cellpadding="20" align="center">
+		<div class="card text-bg-dark">
+  			<img src="${pageContext.request.contextPath} /resources/img/Cafe4.jpg" class="card-img" alt="...">
+  		<div class="card-img-overlay">
+   			 <h1 class="card-title">STUDY CAFE</h1>
+    		<p class="card-text">This is made by Nangcho_Team</p>   
+  		</div>
+		</div>
 		
-		<tr>
-			<td>
 				<center>
 				<table width="40%" border="0" cellspacing="0" cellpadding="0">
 					<tr class="contentbox">
@@ -40,7 +40,8 @@ table{
 										<table class="table" width="200" text-align="center">
   											<thead>
     											<tr colspan="2">
-      												<th scope="col" colspan="2"><div align="center" >내 예약 정보</div></th>
+      												<th scope="col" colspan="2"><div align="center" >
+      												<h2>내 예약 정보</h2></div></th>
     											</tr>
   											</thead>
   											<tbody class="table-group-divider">
@@ -74,33 +75,31 @@ table{
     											</tr>
   												</tbody>
 												</table>
-					<tr>
-					<td>
-						<table class="innerTable" border="1" cellspacing="1" cellpadding="10" align="center">
-							<thead class="seatTblThead">
-									<tr class="seatTblTr">
-										<th class="seatTblTh">예약번호</th>
-										<th class="seatTblTh">예약날짜</th>
-										<th class="seatTblTh">예약좌석</th>
-										<th class="seatTblTh">예약시간</th>
-									</tr>
-							</thead>
-							<tbody class="seatTblBody">
-								<c:forEach items="${AllReservInfo}" var="Dto">									
-									<tr>
-									<td class="skillbox" >
-									<a href="ReservInfoView?tempUsingNo=${Dto.tempUsingNo}">
-									${Dto.tempUsingNo}</a></td>
-									<td class="skillbox" >${Dto.selectedDate}</td>
-									<td class="skillbox" >${Dto.seatNo}번 좌석</td>
-									<td class="skillbox" >${Dto.startTime}:00 ~ ${Dto.endTime}:00</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-					</table>
-				</tr>
-				</td>					
-				
+										<br>
+									<table class="innerTable" border="1" cellspacing="1" cellpadding="10" align="center">
+										<thead class="seatTblThead">
+											<tr class="seatTblTr">
+												<th class="seatTblTh">예약번호</th>
+												<th class="seatTblTh">예약날짜</th>
+												<th class="seatTblTh">예약좌석</th>
+												<th class="seatTblTh">예약시간</th>
+											</tr>
+										</thead>
+										<tbody class="seatTblBody">
+											<c:forEach items="${AllReservInfo}" var="Dto">									
+											<tr>
+												<td class="skillbox" >
+													<a href="ReservInfoView?tempUsingNo=${Dto.tempUsingNo}">
+													${Dto.tempUsingNo}</a></td>
+													<td class="skillbox" >${Dto.selectedDate}</td>
+													<td class="skillbox" >${Dto.seatNo}번 좌석</td>
+													<td class="skillbox" >${Dto.startTime}:00 ~ ${Dto.endTime}:00
+												</td>
+											</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+		
 		</center>
 		</td>
 		</tr>

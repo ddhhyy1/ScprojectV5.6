@@ -30,7 +30,7 @@
 		<div class="lndTxt wow fadeInUp">
 			<div class="lndTxtPadding1">
 				<div class='my-div'>
-	  				스터디 카페 프로젝트
+	  				STUDY CAFE
 				</div>
 			<table width=100%>
    
@@ -38,7 +38,7 @@
       				<td width=50%>
 						<div style = "float:right;">
 							<ul>
-								<li><img src="/resources/img/c5.PNG"); class="cp"></li>
+								<li><img src="/resources/img/c7.jPG"); class="cp"></li>
 							</ul>
 						</div>
       				</td>
@@ -50,12 +50,31 @@
 						</div>
       				</td>
 				</tr>
+				<tr>
+      				<td width=50%>
+						<div style = "float:right;">
+							<ul>
+								<li><img src="/resources/img/c8.jpg"); class="cp"></li>
+							</ul>
+						</div>
+      				</td>
+      				<td width=50%>
+						<div class="imgBox2">
+							<ul>
+								<li><img src="/resources/img/c9.jpg"); class="cp"></li>
+							</ul>
+						</div>
+      				</td>
+				</tr>
+				<tr>
+					<td>
+				
+					</td>
+				</tr>
 			</table>
 								
 				
-				<div class="txtBox tac">
-									
-				</div>
+				
 			</div>
 		</div>
 	</div>				

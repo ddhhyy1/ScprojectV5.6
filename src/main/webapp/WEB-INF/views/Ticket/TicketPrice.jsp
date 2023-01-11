@@ -24,17 +24,15 @@
 <body>
 <%@ include file="../include/header.jsp" %>
 <center>
-	<table width="75%" border="0" cellspacing="0" cellpadding="20">
-		<tr>
-			<td class="titlebox1">
-				<span class="title01"><img src="${pageContext.request.contextPath} /resources/img/book.png" >STUDY CAFE</span>
-			</td>
-		</tr>
-		<tr>
-			<td class="titlebox1">
-				<span class="title02"></span>
-			</td>
-		</tr>
+	<table width="90%" border="0" cellspacing="0" cellpadding="20" align="center">
+		<div class="card text-bg-dark">
+  			<img src="${pageContext.request.contextPath} /resources/img/Cafe3.jpg" class="card-img" alt="...">
+  		<div class="card-img-overlay">
+   			 <h1 class="card-title">STUDY CAFE</h1>
+    		<p class="card-text">This is made by Nangcho_Team</p>   
+  		</div>
+		</div>
+
 		<tr>
 			<td>
 				<center>
