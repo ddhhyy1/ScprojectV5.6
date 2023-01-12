@@ -38,7 +38,7 @@ public class ReservInfoController {
 
 		String sessionId = (String) session.getAttribute("userId");
 		TodayTicketDao tdao = sqlSession.getMapper(TodayTicketDao.class);
-		
+		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
 		
 		List<seatDto> sDto= tdao.getAllSeatInfo(cri);
 		
@@ -55,9 +55,16 @@ public class ReservInfoController {
 			reservNo.add(sDto.get(i).getTempUsingNo());
 			userIds.add(sDto.get(i).getUserId());
 			if(selectedDate.get(i) < nToday) {
-				System.out.println(i+"번째"+reservNo.get(i));
+//				System.out.println(i+"번째"+reservNo.get(i));
 //				tdao.transferData(reservNo.get(i));		
-				
+				memberDto mDto = mDao.getMemberInfo(userIds.get(i));
+				System.out.println(userIds.get(i));
+				int uTicket = Integer.parseInt(mDto.getUsingTicket());
+				if(uTicket<50) {
+					tdao.transferData(reservNo.get(i));
+					
+					tdao.deleteTransferedData(reservNo.get(i));
+				}
 //				tdao.deleteTransferedData(reservNo.get(i));
 			}
 		}

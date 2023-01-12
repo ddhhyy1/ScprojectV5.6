@@ -28,10 +28,22 @@ td.board_content02{
 }
 
 table.reply{
-	background-color : #F8F4EA;
+
 	
 }
 
 td.reply2{
-	border-bottom:1px solid silver;
+	
 }
+
+tr.reply3{
+	background-color :#F2F3F5;
+	width:600px;
+}
+
+div.x{
+	background-color : #F2F3F5;
+  border-radius: 50px 50px 50px 50px;
+  width:400px;
+}
+

@@ -14,26 +14,31 @@
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
+
 <center>
 	<table width="75%" border="0" cellspacing="0" cellpadding="20">
-		<tr>
-			<td class="titlebox1">
-				<span class="title01">STUDY CAFE</span>
-			</td>
-		</tr>
+		<div class="card text-bg-dark">
+           <img src="${pageContext.request.contextPath} /resources/img/01.PNG" class="card-img" alt="...">
+        <div class="card-img-overlay">
+             <h1 class="card-title">STUDY CAFE</h1>
+          <p class="card-text">This is made by Nangcho_Team</p>   
+        </div>
+      </div>
 		
 		<tr>
+	
 			<td>
 				<center>
 				<table width="90%" border="0" cellspacing="0" cellpadding="10">
 					<tr class="contentbox">
 						<td class="content">
 							<center>						
-							<table border="0" cellspacing="0" cellpadding="10">
+							<table border="3" cellspacing="10" cellpadding="20">
+								
 									<tr>
-										<td colspan="2" align="center" class="content_text01">
+										<td colspan="2" align="center" class="content_text01"><font size="6">
 										내 정보 
-										</td>
+										</font></td>
 									</tr>
 									<tr>
 									<td colspan="2" align="center" class="content_text01">
@@ -63,16 +68,19 @@
 										<td>${memberDto.userPoint }</td>
 									</tr>
 									
+									<td>
+									</td>
 									
 									<tr>
 										<td colspan="2">
-											<input class="button_type01" type="button" value="정보 수정" onclick="script:window.location='memberModify'">
+											<input class="button_type02" type="button" value="정보 수정" onclick="script:window.location='memberModify'">
+											<input class="button_type02" type="button" value="회원 탈퇴" onclick="script:window.location='memberDelete'">
 										</td>
 									</tr>
-							
+						
 		
 		</table>
-		</form>
+		
 		</center>
 		</td>
 		</tr>

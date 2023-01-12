@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,29 +40,42 @@ public class BoardController {
 			
 		String sessionId = (String) session.getAttribute("userId");
 		
-		if(sessionId == null) {//로그인 상태 확인
-			model.addAttribute("userId", "GUEST");
-		} else {
-			model.addAttribute("userId", sessionId);
-		}
-		
 		return "question";
 	}
 	
 	@RequestMapping(value = "/questionOk")
-	public String questionOk(HttpServletRequest request) {
+	public String questionOk(HttpServletResponse response, HttpServletRequest request, HttpSession session, Model model ) {
 		
 		String btitle = request.getParameter("btitle");//질문 제목
 		String bcontent = request.getParameter("bcontent");//질문 내용
 		String buserid = request.getParameter("buserid");//글쓴유저 아이디
 		
+		String sessionId = (String) session.getAttribute("userId");
+		
+		if(sessionId == null) {//참이면 로그인이 안된 상태
+			PrintWriter out;
+			try {
+				response.setContentType("text/html;charset=utf-8");
+				out = response.getWriter();
+				out.println("<script>alert('로그인하지 않으면 질문할 수 없습니다!');history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} else {
+		
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		
 		dao.writeQuestion(btitle, bcontent, buserid);
 		
+		}
 		return "redirect:list";
 	}
-	
+
+
+
 	@RequestMapping(value = "list")
 	public String list(Model model, Criteria cri, HttpServletRequest request) {
 		
@@ -95,18 +109,22 @@ public class BoardController {
 	
 	@RequestMapping(value = "/questionView")
 	public String questionView(HttpServletRequest request, Model model, HttpSession session) {
-		
+		String userId = request.getParameter("userId");
 		String bnum = request.getParameter("bnum");
+		
+		String sessionId = (String) session.getAttribute("userId");
 		
 		BoardDao dao = sqlSession.getMapper(BoardDao.class);
 		
 		BoardDto rfboardDto = dao.rfboardView(bnum);
-		System.out.println(rfboardDto.getBuserid());
 		ArrayList<replyDto> replyDtos = dao.rlist(bnum);
+		
+		
 		
 		model.addAttribute("qdto", rfboardDto);
 		model.addAttribute("replylist", replyDtos);
 		model.addAttribute("buserid", rfboardDto.getBuserid());//글쓴 유저의 id값 전송
+		
 		
 		
 		return "questionView";
@@ -193,23 +211,106 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "replyDelete")
-	public String replyDelete(HttpServletRequest request, Model model) {
+	public String replyDelete(HttpServletRequest request, Model model,HttpSession session, HttpServletResponse response) {
 		
 		String rnum = request.getParameter("rnum");//댓글 고유번호
 		String rorinum = request.getParameter("bnum");//댓글이 달린 원글의 고유번호
 		
-		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		String sessionId = (String) session.getAttribute("userId");
 		
-		dao.rdelete(rnum);//댓글 삭제
-		dao.brcountMinus(rorinum);//해당 글의 댓글 갯수 1감소
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		replyDto rDto = dao.replyView(rnum);
+		String repId = rDto.getRid();
+		
+		if((sessionId.equals(repId))) {
+			
+			dao.rdelete(rnum);//댓글 삭제
+			dao.brcountMinus(rorinum);//해당 글의 댓글 갯수 1감소
+		}
+		else {
+			PrintWriter out;
+			try {
+				response.setContentType("text/html;charset=utf-8");
+				out = response.getWriter();
+				out.println("<script>alert('댓글 작성자가 아닙니다.');history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	
 		
 		BoardDto rfboardDto = dao.rfboardView(rorinum);
 		ArrayList<replyDto> replyDtos = dao.rlist(rorinum);
+		
 		
 		model.addAttribute("qdto", rfboardDto);//원글의 게시글 내용 전부
 		model.addAttribute("replylist", replyDtos);//해당 글에 달린 댓글 리스트
 		
 		return "questionView";
 	}
+	
+	@RequestMapping(value = "/replyModify")
+	public String replyModify(HttpServletRequest request, Model model, HttpSession session,HttpServletResponse response) {
+		String userId = request.getParameter("userId");
+		String bnum = request.getParameter("bnum");
+		String rnum = request.getParameter("rnum");
+		
+		
+		
+		String sessionId = (String) session.getAttribute("userId");
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		
+		BoardDto rfboardDto = dao.rfboardView(bnum);
+		
+		
+		replyDto rDto = dao.replyCall(rnum,bnum);
+		
+		model.addAttribute("rDto", rDto);
+		model.addAttribute("qdto", rfboardDto);
+		model.addAttribute("rnum", rnum);
+		model.addAttribute("buserid", rfboardDto.getBuserid());//글쓴 유저의 id값 전송
+		
+		replyDto rDto2 = dao.replyView(rnum);
+		String repId = rDto.getRid();
+		
+		if((sessionId.equals(repId))) {
+			
+		
+			
+		}
+		else {
+			PrintWriter out;
+			try {
+				response.setContentType("text/html;charset=utf-8");
+				out = response.getWriter();
+				out.println("<script>alert('댓글 작성자가 아닙니다.');history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
+	}
+		return "replyModify";
+	}
+	
+	@RequestMapping(value = "/replyModifyOk")
+	public String replyModifyOk(HttpServletRequest request,HttpSession session) {
+		
+		String rnum = request.getParameter("rnum");
+		String rcontent = request.getParameter("rcontent");
+		
+		
+		BoardDao dao = sqlSession.getMapper(BoardDao.class);
+		dao.replyModify(rnum, rcontent);
+		
+		return "redirect:list";
+	}
+	
 }
 
+		
+	

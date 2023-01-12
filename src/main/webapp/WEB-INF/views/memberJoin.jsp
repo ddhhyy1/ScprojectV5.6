@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/title.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login.css">
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/join.js"></script>
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
 </head>
@@ -17,7 +18,7 @@
 	<table width="75%" border="0" cellspacing="0" cellpadding="20">
 		<tr>
 			<td class="titlebox1">
-				<span class="title01">STUDY CAFE</span>
+				<span class="title01"><img src="${pageContext.request.contextPath} /resources/img/book.png" >STUDY CAFE</span>
 			</td>
 		</tr>
 		
@@ -28,12 +29,13 @@
 					<tr class="contentbox">
 						<td class="content">
 							<center>
-							<form action="JoinOk">						
+												
 							<table border="0" cellspacing="0" cellpadding="10">
+							<form action="JoinOk" method="post" name= "join_frm">					
 									<tr>
-										<td colspan="2" align="center" class="content_text01">
+										<td colspan="2" align="center" class="content_text01"><font size="6">
 										회원가입
-										</td>
+										</font></td>
 									</tr>
 									<tr>
 									<td colspan="2" align="center" class="content_text01">
@@ -42,12 +44,18 @@
 									</tr>
 									<tr>
 										<td>
+										
 										  <div class="input-box">
 										  <input id="username" type="text" name="userId" placeholder="아이디">
 										  <label for="userId">아이디</label>
+										  <input  type="submit" value="아이디 확인">
+										  
 										  </div>
+										
 										</td>
 									</tr>
+									
+									
 									<tr>
 										<td>
 										  <div class="input-box">
@@ -57,6 +65,14 @@
 										</td>
 									</tr>
 									
+									<tr>
+										<td>
+										  <div class="input-box">
+										  <input id="password" type="password" name="userPw_check" placeholder="비밀번호">
+										  <label for="userPw_check">비밀번호체크</label>
+										  </div>
+										</td>
+									</tr>
 									<tr>
 										<td>
 										  <div class="input-box">
@@ -85,13 +101,14 @@
 									<input type="hidden" name = "usingTicket" value="0">
 									<tr>
 										<td colspan="">
-											<button type="submit" class="btn btn-primary btn-lg">회원가입</button>
+			
+											<input class="button_type01" type="button" value="회원가입" onclick="joinCheck()">&nbsp;&nbsp;
 										</td>
 	
 									</tr>
-		
-		</table>
 		</form>
+		</table>
+		
 		</center>
 		</td>
 		</tr>

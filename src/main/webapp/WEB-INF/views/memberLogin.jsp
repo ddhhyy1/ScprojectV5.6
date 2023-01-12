@@ -21,7 +21,7 @@
 	<table width="75%" border="0" cellspacing="0" cellpadding="20">
 		<tr>
 			<td class="titlebox1">
-				<span class="title01">STUDY CAFE</span>
+				<span class="title01"><img src="${pageContext.request.contextPath} /resources/img/book.png" >STUDY CAFE</span>
 			</td>
 		</tr>
 		
@@ -36,9 +36,9 @@
 							<form action="loginOk">						
 							<table border="0" cellspacing="0" cellpadding="10">
 									<tr>
-										<td colspan="2" align="center" class="content_text01">
-										회원 로그인
-										</td>
+										<td colspan="2" align="center" class="content_text01"><font size="6">
+										로그인
+										</font></td>
 									</tr>
 									<tr>
 										<td colspan="2" align="center" class="content_text01">

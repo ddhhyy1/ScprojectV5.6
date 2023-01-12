@@ -31,6 +31,10 @@
 		SELECT * FROM scboardtbl WHERE bnum=#{param1}
 	</select>
 	
+	<select id="replyCall" resultType="com.studycafe.prac.dto.replyDto">
+		SELECT * FROM screplytbl WHERE rnum = #{param1} and rorinum = #{param2}
+	</select>
+	
 	<update id="questionModify">
 		UPDATE scboardtbl SET btitle=#{param2}, bcontent=#{param3}, buserid=#{param4} WHERE bnum=#{param1}
 	</update>
@@ -39,7 +43,7 @@
 		DELETE FROM scboardtbl WHERE bnum=#{param1}
 	</delete>
 	
-	<select id="boardAllCount" resultType="int">
+	<select id="boardAllCount" resultType ="int">
 		SELECT COUNT(*) FROM scboardtbl
 	</select>
 	
@@ -65,5 +69,15 @@
 	<update id="brcountMinus">
 		UPDATE scboardtbl SET rcount=rcount-1 WHERE bnum=#{param1}
 	</update>
+	
+	<select id="replyView" resultType="com.studycafe.prac.dto.replyDto">
+		SELECT * FROM screplytbl WHERE rnum=#{param1}
+	</select>
+	
+	<update id="replyModify">
+		UPDATE screplytbl SET rcontent=#{param2} WHERE rnum=#{param1}
+	</update>
+	
+	
 	
 </mapper>

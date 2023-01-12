@@ -7,11 +7,6 @@ tr.contentbox {
   	border-radius: 20px;
 }
 
-
-
-
-
-
 td.content {
 	font-family: malgun;
 	font-size: 20px;
@@ -19,6 +14,17 @@ td.content {
 	color: #303030;
 	text-align: center;
 }
+
+td.content2 {
+	font-family: malgun;
+	font-size: 20px;
+	font-weight: bold;
+	color: #303030;
+	text-align: center;
+	vertical-align: top;
+}
+
+
 
 
 span.content_text01 {
@@ -36,6 +42,17 @@ input.input_type01 {
 	font-size: 20px;
 	color: #2a2a2a;
 	padding: 5px;
+}
+
+input.input_type02 {
+	background-color: #ffffff;
+	border: 1px solid #FED39F;
+	width: 200px;
+	font-family: Arial;
+	font-size: 20px;
+	color: #2a2a2a;
+	padding: 5px;
+	size:50;
 }
 
 input.button_type01 {
@@ -107,6 +124,17 @@ textarea.textarea_type01 {
 	width: 400px;
 	font-family: Arial;
 	font-size: 20px;
+	color: #2a2a2a;;
+	padding: 5px;
+}
+
+textarea.textarea_type02 {
+	background-color: #ffffff;
+	border:1px solid #FED39F;
+	width: 400px;
+	height:80px;
+	font-family: Arial;
+	font-size: 8px;
 	color: #2a2a2a;;
 	padding: 5px;
 }

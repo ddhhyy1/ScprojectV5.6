@@ -18,7 +18,7 @@
 	<table width="75%" border="0" cellspacing="0" cellpadding="20">
 		<tr>
 			<td class="titlebox1">
-				<span class="title01">STUDY CAFE</span>
+				<span class="title01"><img src="${pageContext.request.contextPath} /resources/img/book.png" >STUDY CAFE</span>
 			</td>
 		</tr>
 		
@@ -33,8 +33,8 @@
 								<form action="questionOk" method="post" name="board_frm">
 								
 									<tr>
-										<td colspan="0" align="center" class="content_text01"><font size="6">
-										질문하기 
+										<td colspan="2" align="center" class="content_text01"><font size="6">
+										질문게시판
 										</font></td>
 									</tr>
 									

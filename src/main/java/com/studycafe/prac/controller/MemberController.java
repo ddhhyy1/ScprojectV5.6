@@ -1,9 +1,12 @@
 package com.studycafe.prac.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.http.HttpRequest;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,7 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import com.studycafe.prac.dao.BoardDao;
 import com.studycafe.prac.dao.MemberDao;
 import com.studycafe.prac.dao.TodayTicketDao;
 import com.studycafe.prac.dto.memberDto;
@@ -66,7 +69,7 @@ public class MemberController {
 			
 			session.setAttribute("userId", userId);
 			memberDto memberDto = dao.getMemberInfo(userId);
-			
+			session.setAttribute("userPw", userPw);
 			model.addAttribute("memberDto", memberDto);
 			model.addAttribute("userId", userId);
 		}
@@ -102,21 +105,14 @@ public class MemberController {
 		
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		
-		int joinFlag = dao.joinMember(uId, uPw, uName, uPhone ,uEmail, uPoint,uTicket);
+		dao.joinMember(uId, uPw, uName, uPhone ,uEmail, uPoint,uTicket);
 		
-		if(joinFlag == 1) {//회원가입 성공시 바로 로그인 진행
-			session.setAttribute("memberId", uId);
-			session.setAttribute("memberName", uName);
 			
-			model.addAttribute("uName", uName);
-			model.addAttribute("uId", uId);
 			
-			return "JoinOk";
-		} else { //회원가입 실패
-			return "JoinFail";
-		}	
+			return "redirect:index";
+		} 
 		
-	} 
+	
 	
 
 	@RequestMapping(value = "/memberInfo")
@@ -172,42 +168,55 @@ public class MemberController {
 	}
 	
 	
-	
 	@RequestMapping(value = "/memberDelete")
-	public String memberDelete(Model model,HttpSession session) {
-		
-		String sessionId = (String) session.getAttribute("userId");
-		String sessionPw = (String) session.getAttribute("userPw");
-		
-		MemberDao dao = sqlSession.getMapper(MemberDao.class);
-		
-		memberDto memberDto = dao.getMemberInfo(sessionId);
-		
-		model.addAttribute("memberDto", memberDto);
+	public String memberDelete(HttpServletRequest request, HttpSession session) {
 		
 		return "memberDelete";
+	
 	}
 	
 	@RequestMapping(value = "/memberDeleteOk")
-	public String memberDeleteOk(HttpServletRequest request, HttpSession session) {
+	public String memberDeleteOk(HttpServletRequest request, HttpSession session, HttpServletResponse response,Model model ) {
 		
-		String userId = request.getParameter("userId");
-		String userPw = request.getParameter("userPw");
+		String userId= request.getParameter("userId");
+		String userPw= request.getParameter("userPw");
+		
+		
+		String sessionId = (String) session.getAttribute("userId");
 		
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		
+		memberDto mDto = dao.getMemberInfo(sessionId);
+		String sessionPw = mDto.getUserPw();
 		
 		
-	
 		
-		return "memberDeleteOk";
+		if(!(userPw.equals(sessionPw))) {//비밀번호 일치 여부
+			PrintWriter out;
+			try {
+				response.setContentType("text/html;charset=utf-8");
+				out = response.getWriter();
+				out.println("<script>alert('비밀번호가 일치하지 않습니다.');history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} else {
+			
+			dao.memberDelete(userPw);//회원 정보 삭제
+			session.invalidate();
+			
+		}
+		
+		return "redirect:index";
 	}
 	
-	
-
-	
-	
-	
-	
+	@RequestMapping(value="/CheckId")
+	public String CheckId() {
+		
+		return "CheckId";
+	}
 }
-
+	

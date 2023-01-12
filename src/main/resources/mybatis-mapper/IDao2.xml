@@ -28,6 +28,10 @@
 		UPDATE scmemberTBL SET userPw=#{param2}, userName=#{param3}, userPhone=#{param4}, userEmail=#{param5}, userPoint=#{param6} WHERE userId=#{param1}
 	</update>
 	
+	<delete id="memberDelete">
+		DELETE FROM scmemberTBL WHERE userPw = #{param1, jdbcType=VARCHAR} 
+	</delete>
+	
 	<update id="updateUticketPoint">
 		UPDATE scmemberTBL SET userPoint=#{param2}, usingTicket=#{param3} WHERE userId=#{param1}
 	</update>
@@ -36,6 +40,9 @@
 		SELECT COUNT(*) FROM scmemberTBL
 	</select>
 	
+	<select id="CheckId" resultType="com.studycafe.prac.dto.memberDto">
+		SELECT userId FROM scmemberTBL where userId = #{param1}
+	</select>
 	
 	<!-- 관리자 관련  -->
 	<select id="getAllMemberInfo" resultType="com.studycafe.prac.dto.memberDto">
@@ -47,7 +54,7 @@
 	</select>
 	
 	<delete id="admMemberKick">
-		DELETE FROM SCMEMBERTBL WHERE userID=#{param1}
+		DELETE FROM SCMEMBERTBL WHERE userID=#{param1} 
 	
 	</delete>
 	

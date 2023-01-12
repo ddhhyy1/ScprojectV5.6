@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/title.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/join.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/modify.js"></script>
 <title>내 정보</title>
 </head>
 <body>
@@ -18,7 +18,7 @@
 	<table width="75%" border="0" cellspacing="0" cellpadding="20">
 		<tr>
 			<td class="titlebox1">
-				<span class="title01">STUDY CAFE</span>
+				<span class="title01"><img src="${pageContext.request.contextPath} /resources/img/book.png" >STUDY CAFE</span>
 			</td>
 		</tr>
 		
@@ -32,11 +32,11 @@
 							<center>
 												
 							<table border="0" cellspacing="0" cellpadding="10">
-							<form action="memberModifyOk" method="post" name="join_frm">
+							<form action="memberModifyOk" method="post" name="modify_frm">
 									<tr>
-										<td colspan="2" align="center" class="content_text01">
-										내 정보 
-										</td>
+										<td colspan="2" align="center" class="content_text01"><font size="6">
+										정보 수정 
+										</font></td>
 									</tr>
 									<tr>
 									<td colspan="2" align="center" class="content_text01">
@@ -74,7 +74,7 @@
 									</tr>
 									<tr>
 										<td colspan="2">
-											<input class="button_type01" type="button" value="수정완료" onclick="joinCheck()">&nbsp;&nbsp;
+											<input class="button_type01" type="button" value="수정완료" onclick="modifyCheck()">&nbsp;&nbsp;
 											<input class="button_type01" type="button" value="수정취소" onclick="script:window.location='index'">
 										</td>
 									</tr>		

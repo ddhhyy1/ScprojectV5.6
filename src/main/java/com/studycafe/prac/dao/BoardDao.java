@@ -26,4 +26,9 @@ public interface BoardDao {
 	public void brcount(String rorinum);//댓글 등록시 해당글의 댓글갯수 1증가 
 	public void rdelete(String rnum);//댓글 삭제
 	public void brcountMinus(String rorinum);//댓글 삭제시 해당글의 댓글갯수 1감소
+	public replyDto replyView(String rnum);
+	public void replyModify(String rnum, String rcontent);
+	public replyDto replyCall(String rnum, String rorinum);
 }
+	
+

@@ -16,15 +16,17 @@
 <body>	
 	<%@ include file="include/header.jsp" %>
 	<center>
-	<table width="75%" border="0" cellspacing="0" cellpadding="20">
+	<table width="75%" border="0" cellspacing="0" cellpadding="20"><div class="card text-bg-dark">
+           <img src="${pageContext.request.contextPath} /resources/img/01.PNG" class="card-img" alt="...">
+        <div class="card-img-overlay">
+             <h1 class="card-title">STUDY CAFE</h1>
+          <p class="card-text">This is made by Nangcho_Team</p>   
+        </div>
+      </div>
+		
 		<tr>
-			<td class="titlebox1">
-				<span class="title01">STUDY CAFE</span>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center" class="content_text01"><font size="6">
-				내 질문
+			<td colspan="2" align="center" class="content_text01"><font size="6" style="font-weight:bold">
+				질문
 			</font></td>
 		</tr>
 		<tr>
@@ -113,18 +115,13 @@
         <input type="hidden" name="bnum" value="${qdto.bnum }">
 									<tr>
 										<td><span class="content_text01">댓 글 :  </span></td>
-										<td><input class="input_type01" type="text" name="rcontent"></td>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+										<td><input class="input_type01" type="text" name="rcontent" ></td>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+										<td><input class="btn btn-primary btn-lg" type="button" value="작성" onclick="replyCheck()"></td>
 									</tr>	
 									
-									<tr>
-										<td colspan="2">
-										&nbsp;
-											<center>
-											
-											<input class="button_type01" type="button" value="댓글등록" onclick="replyCheck()">
-											</center>
-										</td>
-									</tr>
+									
 						</form>
 									</table>
        <tr>
@@ -132,31 +129,37 @@
 										&nbsp;
 									</td>
 									</tr>	
-										
+		 <br><br><br><br>								
         
-		<table class= "reply" border="0" cellpadding="0" cellspacing="0" width="750">
+		
+		
         	<c:forEach items="${replylist }" var="replyDtoa">
-        	
-        	<tr>
-        		<td class = "reply2" width="100">
-					 			
-        		</td>
-        		<td class = "reply2" width=550>
-        			<font size ="6">${replyDtoa.rid } </font>&nbsp; &nbsp; &nbsp;
+        	<font size ="6">${replyDtoa.rid } </font>&nbsp; &nbsp; &nbsp;
         			${replyDtoa.rdate } <br><br>
-        			<font size ="4">${replyDtoa.rcontent }</font>
+        <div class ="x">
+        	<tr class = "reply3" width="550">
+        		
+        		<br><br>
+        	<font size ="5">${replyDtoa.rcontent }</font>	
+        		<br><br><br>
+
+        	</div>	
+      			<br>
+        		
+        		<td class = "reply2" width="50" >
+        			<a href="replyModify?rnum=${replyDtoa.rnum }&bnum=${qdto.bnum }"><b><font size ="4">수정</font></b></a>
+        			&nbsp;&nbsp;&nbsp;
+        			<a href="replyDelete?rnum=${replyDtoa.rnum }&bnum=${qdto.bnum }"><b><font size ="4">삭제</font></b></a> <br><br>
         		</td>
-        		<td class = "reply2">
-        			<a href="replyDelete?rnum=${replyDtoa.rnum }&bnum=${qdto.bnum }">삭제</a>
-        		</td>
-        		<tr>
-									<td colspan="2" align="center" class="content_text01">
-										&nbsp;
-									</td>
-									</tr>	
+        		
+									
+									
         	</tr>
+     
+        	<br><br>
         	</c:forEach>
-        	</table>
+        	
+      
         	<tr>
 			<td colspan="2" align="center" class="content_text01">
 				&nbsp;

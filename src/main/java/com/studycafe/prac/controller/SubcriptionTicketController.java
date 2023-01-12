@@ -275,6 +275,7 @@ public class SubcriptionTicketController {
 	@RequestMapping(value="/sTicketReservComplete") //시간권 최종결제
 	public String sTicketReservComplete(HttpServletRequest request,HttpServletResponse response,Model model
 			,HttpSession session) {
+		
 		TodayTicketDao tdao = sqlSession.getMapper(TodayTicketDao.class);
 		
 		String sessionId = (String) session.getAttribute("userId");

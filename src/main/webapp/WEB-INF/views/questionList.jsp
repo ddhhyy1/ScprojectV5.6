@@ -18,14 +18,16 @@
 	<%@ include file="include/header.jsp" %>
 	<center>
 	<table width="75%" border="0" cellspacing="0" cellpadding="20">
+		<div class="card text-bg-dark">
+           <img src="${pageContext.request.contextPath} /resources/img/02.PNG" class="card-img" alt="...">
+        <div class="card-img-overlay">
+             <h1 class="card-title">STUDY CAFE</h1>
+          <p class="card-text">This is made by Nangcho_Team</p>   
+        </div>
+      </div>
 		<tr>
-			<td class="titlebox1">
-				<span class="title01">STUDY CAFE</span>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center" class="content_text01"><font size="6">
-				질문게시판
+			<td colspan="2" align="center" class="content_text01"><font size="6" style="font-weight:bold">
+				질문 게시판
 			</font></td>
 		</tr>
 		<tr>

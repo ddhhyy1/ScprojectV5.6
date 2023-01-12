@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,57 +17,44 @@
 	<%@ include file="include/header.jsp" %>
 	<center>
 	<table width="75%" border="0" cellspacing="0" cellpadding="20">
-		<tr>
-			<td class="titlebox1">
-				<span class="title01"><img src="${pageContext.request.contextPath} /resources/img/book.png" >STUDY CAFE</span>
-			</td>
-		</tr>
+		<div class="card text-bg-dark">
+           <img src="${pageContext.request.contextPath} /resources/img/06.PNG" class="card-img" alt="...">
+        <div class="card-img-overlay">
+             <h1 class="card-title">STUDY CAFE</h1>
+          <p class="card-text">This is made by Nangcho_Team</p>   
+        </div>
+      </div>
 		<tr>
 			<td colspan="2" align="center" class="content_text01"><font size="6" style="font-weight:bold">
-				질문 수정
+				댓글 수정
 			</font></td>
 		</tr>
-			<tr>
+			
+		<tr>
 				<td colspan="2" align="center" class="content_text01">
 					&nbsp;
 				</td>
-			</tr>
+		</tr>
 		<tr>
 			<td>
 				<center>
 				<table width="80%" border="0" cellspacing="0" cellpadding="10">
 					<tr class="contentbox">
-						<td class="content">
+						<td class="content2">
 							<center>						
 							<table border="0" cellspacing="0" cellpadding="10">
-								<form action="questionModifyOk" method="post" name="board_frm">
-									<input type="hidden" value="${qdto.bnum }" name="bnum">
-									<input type="hidden" value="${qdto.buserid }" name="buserid">
-									<tr>
-									<td>
-										
-                							<input class="input_type02" type="text" name="btitle" value="${qdto.btitle }" >
-                								<label for="btitle"></label>
-            								
-										</td>
-									</tr>
-									
-									
-									<tr>
-										 
-										<td>
-										
-										<textarea class="textarea_a1" rows="10" cols="50" name="bcontent">${qdto.bcontent }</textarea>
+								<form action="replyModifyOk" method="post" >
+									<input type="hidden" value="${rnum }" name="rnum">
+	
+										<textarea class="textarea_a1" name="rcontent" >${rDto.rcontent}</textarea>
 										
 											
-										</td>
-									</tr>	
-									<tr>
+																			<tr>
 										<td colspan="2">
 										
 										<input class="button_type01" type="submit" value="수정완료">&nbsp;&nbsp;										
-										<input class="button_type01" type="button" value="삭제" onclick="script:window.location='questionDelete?bnum=${qdto.bnum}'">
-										<input class="button_type01" type="button" value="글목록" onclick="script:window.location='list'">										
+				
+										<input class="button_type01" type="button" value="취소" onclick="script:window.location='list'">										
 										
 										</td>
 									</tr>
