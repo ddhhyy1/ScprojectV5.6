@@ -61,11 +61,12 @@ public class ReservInfoController {
 			if(selectedDate.get(i) < nToday) {//만약 불러온 날짜들이 오늘보다 이전 날짜들이면 기능	
 				memberDto mDto = mDao.getMemberInfo(userIds.get(i));
 				int uTicket = Integer.parseInt(mDto.getUsingTicket());
+				tdao.transferData(reservNo.get(i));//현재 예약 테이블에서 과거 예약 테이블로 옮김
+				tdao.deleteTransferedData(reservNo.get(i));//현재 예약테이블에 과거 예약들은 삭제
 					if(uTicket<50) { //50시간 이하의 당일권 유저들만 0시간으로 돌려보냄
 						String zero="0";
-						tdao.transferData(reservNo.get(i));//현재 예약 테이블에서 과거 예약 테이블로 옮김
 						tdao.updateUticket(userIds.get(i),zero);
-						tdao.deleteTransferedData(reservNo.get(i));//현재 예약테이블에 과거 예약들은 삭제
+						
 					}
 
 			}
