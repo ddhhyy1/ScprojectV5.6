@@ -121,6 +121,10 @@
 		delete from scseattbl where tempusingno = #{param1}
 	</delete>
 	
+	<update id="updateUticket">
+		UPDATE SCMEMBERTBL SET USINGTICKET =#{param2} WHERE USERID=#{param1}
+	</update>
+	
 	<!-- 내 예약정보확인 관련 -->
 	
 	<select id="getReservInfo" resultType="com.studycafe.prac.dto.seatDto">

@@ -40,32 +40,34 @@ public class ReservInfoController {
 		TodayTicketDao tdao = sqlSession.getMapper(TodayTicketDao.class);
 		MemberDao mDao = sqlSession.getMapper(MemberDao.class);
 		
+		
+		//로그인시 지난 예약날짜의 예약데이터들 과거예약테이블로 옮기고 삭제 후 개인정보 갱신
 		List<seatDto> sDto= tdao.getAllSeatInfo(cri);
 		
 		LocalDate now = LocalDate.now();
 		String strNow = now.toString(); 
 		String today = strNow.substring(0,4)+strNow.substring(5,7)+strNow.substring(8,10);
-		int nToday = Integer.parseInt(today);
+		int nToday = Integer.parseInt(today);//오늘날짜 구하기
 		 
+			//새 곳에 담을 리스트들 생성
 		List<Integer> selectedDate = new ArrayList<Integer>();
 		List<Integer> reservNo = new ArrayList<Integer>();
 		List<String> userIds= new ArrayList<String>(); 
+			//반복문으로 각 리스트에 필요한 데이터들 인덱스 맞춰 추출
 		for(int i=0;i<sDto.size();i++ ) {
 			selectedDate.add(Integer.parseInt(sDto.get(i).getSelectedDate()));
 			reservNo.add(sDto.get(i).getTempUsingNo());
 			userIds.add(sDto.get(i).getUserId());
-			if(selectedDate.get(i) < nToday) {
-//				System.out.println(i+"번째"+reservNo.get(i));
-//				tdao.transferData(reservNo.get(i));		
+			if(selectedDate.get(i) < nToday) {//만약 불러온 날짜들이 오늘보다 이전 날짜들이면 기능	
 				memberDto mDto = mDao.getMemberInfo(userIds.get(i));
-				System.out.println(userIds.get(i));
 				int uTicket = Integer.parseInt(mDto.getUsingTicket());
-				if(uTicket<50) {
-					tdao.transferData(reservNo.get(i));
-					
-					tdao.deleteTransferedData(reservNo.get(i));
-				}
-//				tdao.deleteTransferedData(reservNo.get(i));
+					if(uTicket<50) { //50시간 이하의 당일권 유저들만 0시간으로 돌려보냄
+						String zero="0";
+						tdao.transferData(reservNo.get(i));//현재 예약 테이블에서 과거 예약 테이블로 옮김
+						tdao.updateUticket(userIds.get(i),zero);
+						tdao.deleteTransferedData(reservNo.get(i));//현재 예약테이블에 과거 예약들은 삭제
+					}
+
 			}
 		}
 		

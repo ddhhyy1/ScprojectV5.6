@@ -40,7 +40,7 @@ public interface TodayTicketDao {
 	public int getAllOldSeatCount();
 	public void transferData(int tempUsingNo);
 	public void deleteTransferedData(int tempUsingNo);
-	
+	public void updateUticket(String userId, String usingTicket);
 	
 	//내예약정보확인관련
 	public seatDto getReservInfo(String tempUsingNo); //내 예약정보 확인
