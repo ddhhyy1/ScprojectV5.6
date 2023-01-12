@@ -5,11 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class seatDto {
+@NoArgsConstructor
+public class oldSeatDto {
 	
-	private int tempUsingNo;
+	private int reservNo;
 	private int seatNo;
 	private String userId;
 	private String ticketName;
@@ -18,4 +18,6 @@ public class seatDto {
 	private String endTime;	
 	private String salesNo;
 	private String reservDate;
+	
+	
 }

@@ -92,6 +92,35 @@
 		
 	</delete>
 	
+	<select id="getAllSeatInfo" resultType="com.studycafe.prac.dto.seatDto">
+		SELECT * FROM SCSEATTBL
+	</select>
+	
+	<select id="getAllOldSeatInfo" resultType="com.studycafe.prac.dto.oldSeatDto">
+		SELECT * FROM SCOLDSEATTBL
+	</select>
+	
+	<select id="getAllSeatCount" resultType="int">
+		SELECT COUNT(*) FROM SCSEATTBL
+	</select>
+	
+	<select id="getAllOldSeatCount" resultType="int">
+		SELECT COUNT(*) FROM SCOLDSEATTBL
+	</select>
+	
+	<insert id="transferData">
+		INSERT INTO scoldseattbl("RESERVNO", "SEATNO", "USERID","TICKETNAME",
+			"SELECTEDDATE","STARTTIME","ENDTIME","SALESNO","RESERVDATE")
+    			SELECT SCSEATTBL.TEMPUSINGNO, SCSEATTBL.SEATNO, SCSEATTBL.USERID,
+    			SCSEATTBL.TICKETNAME, SCSEATTBL.SELECTEDDATE, SCSEATTBL.STARTTIME,
+    			SCSEATTBL.ENDTIME,SCSEATTBL.SALESNO,SCSEATTBL.RESERVDATE
+        		FROM SCSEATTBL WHERE TEMPUSINGNO = #{param1}
+	</insert>
+	
+	<delete id="deleteTransferedData">
+		delete from scseattbl where tempusingno = #{param1}
+	</delete>
+	
 	<!-- 내 예약정보확인 관련 -->
 	
 	<select id="getReservInfo" resultType="com.studycafe.prac.dto.seatDto">

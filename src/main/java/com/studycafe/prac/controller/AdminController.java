@@ -22,6 +22,7 @@ import com.studycafe.prac.dto.Criteria;
 import com.studycafe.prac.dto.PageDto;
 import com.studycafe.prac.dto.ScSalesDto;
 import com.studycafe.prac.dto.memberDto;
+import com.studycafe.prac.dto.seatDto;
 
 @Controller
 public class AdminController {
@@ -37,12 +38,65 @@ public class AdminController {
 		
 		return "admin/adminMain";
 	}
+	@RequestMapping(value="/admReservList")//관리자메인페이지
+	public String admReservList(HttpSession session, Model model,HttpServletRequest request, Criteria cri) {
+		
+		TodayTicketDao tDao = sqlSession.getMapper(TodayTicketDao.class);
+		
+		//페이징 관련
+		int totalRecord = tDao.getAllSeatCount();
+		
+		
+		int pageNumInt = 0;
+		if(request.getParameter("pageNum") == null ) {
+			System.out.print(request.getParameter("pageNum"));
+			pageNumInt = 1;
+			cri.setPageNum(pageNumInt);
+			
+		}	else {	
+			
+			pageNumInt = Integer.parseInt( request.getParameter("pageNum"));
+			cri.setPageNum(pageNumInt);
+			
+		}
+//		cri.setPageNum();
+	
+		cri.setStartNum(cri.getPageNum()-1*cri.getAmount());
+		PageDto pageDto= new PageDto(cri, totalRecord );
+		
+		List<seatDto> sDto= tDao.getAllSeatInfo(cri);
+		
+		model.addAttribute("sDto",sDto);
+		model.addAttribute("pageMaker", pageDto);
+		model.addAttribute("currPage",pageNumInt);
+		return "admin/admReservList";
+	}
+	
+	@RequestMapping(value="/admOldReservList")//관리자메인페이지
+	public String admOldReservList(Model model,HttpServletRequest request, Criteria cri) {
+		
+		TodayTicketDao tDao = sqlSession.getMapper(TodayTicketDao.class);
+		
+		int totalRecord = tDao.getAllOldSeatCount();
+		
+		
+		List<seatDto> sDto= tDao.getAllOldSeatInfo(cri);
+		
+		
+		model.addAttribute("sDto",sDto);
+		
+		
+		return "admin/admOldReservList";
+	}
+	
 	@RequestMapping(value="/admMemberList")//회원관리페이지
 	public String admMemberList(HttpSession session, Model model,HttpServletRequest request, Criteria cri) {
 			
 		String sessionId = (String) session.getAttribute("userId");
 		
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		
+		//페이징 관련
 		int totalRecord = dao.memberAllCount();
 		
 		int pageNumInt = 0;
@@ -62,6 +116,10 @@ public class AdminController {
 		cri.setStartNum(cri.getPageNum()-1*cri.getAmount());
 		PageDto pageDto= new PageDto(cri, totalRecord );
 		
+		
+		//페이징 관련 끝
+		
+		
 		List<memberDto> qboardDtos = dao.getAllMemberInfo(cri);
 		
 		model.addAttribute("pageMaker", pageDto);
@@ -69,7 +127,7 @@ public class AdminController {
 		ArrayList<memberDto> memberDto = dao.getAllMemberInfo(cri);
 		
 		model.addAttribute("memberDto", memberDto);
-			
+		model.addAttribute("currPage",pageNumInt);	
 		
 		return "admin/admMemberList";
 	}

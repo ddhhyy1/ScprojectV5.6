@@ -51,12 +51,12 @@ public class SubcriptionTicketController {
 			} 
 			}
 		
-		if(sessionId !=null) {
+		if(sessionId !=null) {//로그인한 유저만 이용가능
 		memberDto memberdto = dao.getMemberInfo(sessionId);
 		String usingTicket = memberdto.getUsingTicket();
 		int uTicket = Integer.parseInt(usingTicket);
-		System.out.print(uTicket);
-			if(uTicket>=50) {
+		
+			if(uTicket>=50) {//로그인 한 유저중 이미 시간권 보유중인 유저는 못 쓰게함
 				try {
 					response.setContentType("text/html; charset=UTF-8");      
 			        PrintWriter out;
@@ -67,7 +67,7 @@ public class SubcriptionTicketController {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 						} 
-						}	else if(uTicket >0 && uTicket <10 ) {
+						}	else if(uTicket >0 && uTicket <10 ) {//당일권 유저 중복예약 방지
 										
 							try {
 								response.setContentType("text/html; charset=UTF-8");      
@@ -105,11 +105,11 @@ public class SubcriptionTicketController {
 				e.printStackTrace();
 			} 
 			}
-		if(sessionId!= null) {
+		if(sessionId!= null) {//로그인한 상태에서
 			
 			int subCount= dao.getSubscrCount(sessionId);
 			
-				if(subCount == 1) {
+				if(subCount == 1) {//시간권 유저이면 통과 아니면 구매해야함
 					return "Ticket/SubscriptionTicketView";
 					} else {
 						try {
@@ -154,7 +154,7 @@ public class SubcriptionTicketController {
 		}
 		return "Ticket/SubscriptionTicketView";
 	}
-	@RequestMapping(value="/searchsTicketSeat")
+	@RequestMapping(value="/searchsTicketSeat")//시간권 좌석 검색
 	public String searchsTicketSeat(HttpServletRequest request, Model model,HttpSession session) {
 		
 		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
@@ -202,7 +202,7 @@ public class SubcriptionTicketController {
 		
 		return "Ticket/SubscriptionTicketView2";
 	}
-	@RequestMapping(value="/registsTicketConfirm")
+	@RequestMapping(value="/registsTicketConfirm") //시간권 최종확인
 	public String registsTicketConfirm(HttpServletRequest request, Model model,HttpServletResponse response,HttpSession session) {
 		
 		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
@@ -272,7 +272,7 @@ public class SubcriptionTicketController {
 
 		
 	}
-	@RequestMapping(value="/sTicketReservComplete")
+	@RequestMapping(value="/sTicketReservComplete") //시간권 최종결제
 	public String sTicketReservComplete(HttpServletRequest request,HttpServletResponse response,Model model
 			,HttpSession session) {
 		TodayTicketDao tdao = sqlSession.getMapper(TodayTicketDao.class);

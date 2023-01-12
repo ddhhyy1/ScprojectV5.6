@@ -78,6 +78,14 @@
     <!--      달력 추가 js 끝       -->
 
 </script>
+
+<script type="text/javascript">
+date = new Date();
+var thisMonth = date.toLocaleString();
+
+date.setDay(date.getMonth() - 1);
+document.write(aMonth.substr(0,8) + '<br>');
+</script>
 <meta charset="UTF-8">
 <title>시간권 좌석지정</title>
 

@@ -43,7 +43,7 @@
  String seatNo=request.getParameter("seatNo");
 %>
 	<center>
-	<form >
+	
 	<table width="80%" border="0" cellspacing="0" cellpadding="20">
 		
 		<tr>
@@ -130,7 +130,7 @@
 		</tr>
 	</table>
 	
-	</form>
+	
 	</center>
 	<%@ include file="../include/footer.jsp" %>
 	

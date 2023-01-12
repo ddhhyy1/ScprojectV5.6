@@ -2,6 +2,7 @@ package com.studycafe.prac.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.studycafe.prac.dao.MemberDao;
 import com.studycafe.prac.dao.TodayTicketDao;
+import com.studycafe.prac.dto.Criteria;
 import com.studycafe.prac.dto.ScreservDto;
 import com.studycafe.prac.dto.SubscriptionTicketDto;
 import com.studycafe.prac.dto.memberDto;
@@ -31,18 +33,44 @@ public class ReservInfoController {
 	private SqlSession sqlSession;
 	
 	
-	@RequestMapping(value="/ReservInfoList")
-	public String ReservInfoList(Model model,HttpSession session) {
-	
-		
+	@RequestMapping(value="/ReservInfoList") //예약 목록 정보
+	public String ReservInfoList(Model model,HttpSession session,HttpServletRequest request, Criteria cri) {
+
 		String sessionId = (String) session.getAttribute("userId");
 		TodayTicketDao tdao = sqlSession.getMapper(TodayTicketDao.class);
 		
+		
+		List<seatDto> sDto= tdao.getAllSeatInfo(cri);
+		
+		LocalDate now = LocalDate.now();
+		String strNow = now.toString(); 
+		String today = strNow.substring(0,4)+strNow.substring(5,7)+strNow.substring(8,10);
+		int nToday = Integer.parseInt(today);
+		 
+		List<Integer> selectedDate = new ArrayList<Integer>();
+		List<Integer> reservNo = new ArrayList<Integer>();
+		List<String> userIds= new ArrayList<String>(); 
+		for(int i=0;i<sDto.size();i++ ) {
+			selectedDate.add(Integer.parseInt(sDto.get(i).getSelectedDate()));
+			reservNo.add(sDto.get(i).getTempUsingNo());
+			userIds.add(sDto.get(i).getUserId());
+			if(selectedDate.get(i) < nToday) {
+				System.out.println(i+"번째"+reservNo.get(i));
+//				tdao.transferData(reservNo.get(i));		
+				
+//				tdao.deleteTransferedData(reservNo.get(i));
+			}
+		}
+		
+		
+		
+		
+		//구독권 정보와 해당 회원의 모든 예약정보 불러오기
 		MemberDao mdao = sqlSession.getMapper(MemberDao.class);
 		SubscriptionTicketDto stDto = tdao.getSTicketInfo(sessionId);
 		List<seatDto> AllReservInfo= tdao.getAllReservInfo(sessionId);
 		
-		
+		//모델에 실어서 정보들 보내주기
 		memberDto memberDto = mdao.getMemberInfo(sessionId);
 		model.addAttribute("memberDto", memberDto);
 		model.addAttribute("stDto", stDto);
@@ -52,7 +80,7 @@ public class ReservInfoController {
 		return "Ticket/ReservInfoList";
 		
 	}
-	@RequestMapping(value="/ReservInfoView")
+	@RequestMapping(value="/ReservInfoView") //예약 정보 보기
 	public String ReservInfoView(Model model,HttpSession session,HttpServletRequest request) {
 
 		
@@ -65,7 +93,7 @@ public class ReservInfoController {
 		
 		seatDto sDto = tdao.getReservInfo(tempNo);
 
-		String selectedDate = sDto.getSelectedDate();
+		String selectedDate = sDto.getSelectedDate();//예약정보 날짜 가져오기
 		
 		String year= selectedDate.substring(0, 4);
 		String month= selectedDate.substring(4, 6);
@@ -80,7 +108,7 @@ public class ReservInfoController {
 			return "Ticket/ReservInfoView";
 		
 }	
-	@RequestMapping(value="/cancelReserv")
+	@RequestMapping(value="/cancelReserv")//예약캔슬
 	public String cancelReserv2(HttpSession session,HttpServletRequest request,HttpServletResponse response) {
 		
 		String sessionId = (String) session.getAttribute("userId");
@@ -139,7 +167,7 @@ public class ReservInfoController {
            			e.printStackTrace();
            		}
 				
-			}else {		
+			}else {		//시간권 유저 예약취소시 정보 변경
 				
 				int remainTime = Integer.parseInt(subscrDto.getSremainTime().toString());
 				int returnedRemainTime= remainTime + ticketName;
@@ -165,7 +193,7 @@ public class ReservInfoController {
 	}
 	
 
-	@RequestMapping(value = "changeDateSeat")
+	@RequestMapping(value = "changeDateSeat")//예약변경에서 좌석과 날짜 변경
 	public String changeDateSeat(HttpSession session,HttpServletRequest request,HttpServletResponse response,Model model) {
 		
 		
@@ -190,7 +218,7 @@ public class ReservInfoController {
 		return "Ticket/changeDateSeat";
 	}
 	
-	@RequestMapping(value="/changeTime")
+	@RequestMapping(value="/changeTime") //예약시간 변경
 	public String changeTime(HttpServletRequest request, Model model,HttpSession session) {
 		
 		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
@@ -249,7 +277,7 @@ public class ReservInfoController {
 		return "Ticket/changeTime";
 	}
 	
-	@RequestMapping(value="/changeConfirm")
+	@RequestMapping(value="/changeConfirm") //예약변경 최종확인
 	public String changeConfirm(HttpServletRequest request,HttpServletResponse response,Model model,HttpSession session) {
 		
 		
@@ -368,7 +396,7 @@ public class ReservInfoController {
 	}
 	
 	
-	@RequestMapping(value="/tChangeTimeComplete")//이용금액표
+	@RequestMapping(value="/tChangeTimeComplete")//당일권 예약변경 최종완료
 	public String tChangeTimeComplete(HttpServletRequest request,HttpServletResponse response,Model model
 			,HttpSession session) {
 		
@@ -479,7 +507,7 @@ public class ReservInfoController {
 	    String sOldSeatNo = Integer.toString(oldSeatNo);
 	   
 	    
-	    if ( finalTime <0 ) {
+	    if ( finalTime <0 ) {//바꾸려는 시간이 보유시간보다 많을경우 보유시간 부족으로 통과안됨
 	    	
 	    	try {
        			response.setContentType("text/html; charset=UTF-8");      

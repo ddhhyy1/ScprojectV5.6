@@ -64,15 +64,15 @@
       					<td><span class="title02"><%= sessionId %></span></td>     
     			  </tr>
     			  <tr>
-      					<th scope="row"><span class="title02">변경된 날짜</span></th>
+      					<th scope="row"><span class="title02">변경된 날짜 :</span></th>
       					<td><span class="title02">${selectedDate}</span></td>
     			  </tr>
     			  <tr>
-      					<th scope="row"><span class="title02">변경된 좌석</span></th>
+      					<th scope="row"><span class="title02">변경된 좌석 :</span></th>
       					<td><span class="title02">${seatNo}</span></td>
         		  </tr>
     			  <tr>
-      					<th scope="row"><span class="title02">기존 이용 시간</span></th>
+      					<th scope="row"><span class="title02">기존 이용 시간 :</span></th>
      					<td>	<span class="title02">${sTime}:00 ~ ${eTime}:00 &nbsp; -- &nbsp;${tHour}시간</span> </td>
     			  </tr>
     			  <c:choose>

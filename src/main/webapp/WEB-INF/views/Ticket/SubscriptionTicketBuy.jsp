@@ -38,8 +38,8 @@ userPoint = parseInt(userPoint);
 <script type="text/javascript">
 $(function(){
 	
-    $('.change50').click(function(e){
-    	event.stopPropagation();
+    $('.change50').off().on("click",function(){
+    	
     	$('input[name=sticketName]').attr('value',"65,000");
     	userPoint = userPoint-65000;
     	$('input[name=afterPayingPoint]').attr('value',userPoint);

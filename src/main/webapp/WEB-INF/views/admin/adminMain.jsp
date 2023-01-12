@@ -53,6 +53,14 @@
   												</div> 							
   								 			 </div>
   									</td>
+  									<td class="tdMainContent">
+  								 		<div class="mainContent3">
+  								  			<div class="card text-bg-light mb-3" style="max-width: 18rem;">
+  												<div class="card-header" style="background-color: #999999;">
+  													<a href="admReservList">예약목록&현황</a>
+  												</div> 							
+  								 			 </div>
+  									</td>
   								<tr>  
 							</div>
 					</table>

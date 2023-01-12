@@ -33,13 +33,13 @@ public class TodayTicketController {
 	private SqlSession sqlSession;
 	
 	
-	@RequestMapping(value="/testpage")//이용금액표
+	@RequestMapping(value="/testpage")
 	public String testpage() {
 		
 		
 		return "test/testpage";
 	}
-	@RequestMapping(value="/testpage2")//이용금액표
+	@RequestMapping(value="/testpage2")
 	public String testpage2(Model model) {
 		
 		String [] testarray = {"0","1","0","1","0","0","1","0","0","1"};
@@ -48,14 +48,14 @@ public class TodayTicketController {
 		
 		return "test/testpage2";
 	}
-	@RequestMapping(value="/tabletest")//이용금액표
+	@RequestMapping(value="/tabletest")
 	public String talbetest() {
 		
 		
 		return "test/tabletest";
 	}
 	
-	@RequestMapping(value="/loginpage")//이용금액표
+	@RequestMapping(value="/loginpage")//로그인 페이지
 	public String loginpage() {
 		
 		
@@ -76,7 +76,7 @@ public class TodayTicketController {
 		return "Ticket/ChooseTicket";
 	}
 	
-	@RequestMapping(value="/TodayTicketView")
+	@RequestMapping(value="/TodayTicketView")//당일권결제전 날짜,좌석 선택
 	public String TodayTicketView(HttpServletResponse response,HttpSession session) {
 		
 		String sessionId = (String) session.getAttribute("userId");
@@ -99,7 +99,7 @@ public class TodayTicketController {
 		memberDto userP = dao2.getMemberInfo(sessionId);
 		String usingTicket = userP.getUsingTicket();
 		int uTicket = Integer.parseInt(usingTicket);
-			if(uTicket>=50) {
+			if(uTicket>=50) { //멤버중 시간권 유저는 중복구매 못하게
 				try {
 					response.setContentType("text/html; charset=UTF-8");      
 			        PrintWriter out;
@@ -122,7 +122,7 @@ public class TodayTicketController {
 		return "Ticket/TodayTicketView";
 	}
 	
-	@RequestMapping(value="/searchSeat")
+	@RequestMapping(value="/searchSeat")//당일권 좌석찾기
 	public String searchSeat(HttpServletRequest request, Model model) {
 		
 		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
@@ -179,7 +179,7 @@ public class TodayTicketController {
 		return "Ticket/TodayTicketView2";
 	}
 	
-	@RequestMapping(value="/registToday")
+	@RequestMapping(value="/registToday")//당일권 결제전 정보들 보내기
 	public String regist(HttpServletRequest request,HttpServletResponse response,Model model) {
 		
 		String seatNo = request.getParameter("seatNo");
@@ -271,7 +271,7 @@ public class TodayTicketController {
 		
 		return "Ticket/registTodayConfirm";
 	}
-	@RequestMapping(value="/todayPay")
+	@RequestMapping(value="/todayPay") //당일권 최종결제
 	public String todayPay(HttpServletRequest request,HttpServletResponse response,Model model
 			,HttpSession session) {
 
