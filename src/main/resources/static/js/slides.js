@@ -204,4 +204,7 @@ slide.addEventListener("mouseout", () => {
     nextMove();
   }, 3000);
 });
+
+	
+
     

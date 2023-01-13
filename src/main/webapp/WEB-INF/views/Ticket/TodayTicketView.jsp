@@ -77,7 +77,11 @@
     <!--      달력 추가 js 끝       -->
 
 </script>
+ <script type="text/javascript">
+ document.write('1달 전 : ' + date.toLocaleString() + '<br>');
+ document.write(aMonth.substr(0,8) + '<br>');
 
+</script>
     
 <meta charset="UTF-8">
 <title>당일권 예약등록</title>
@@ -105,7 +109,7 @@
 					<div class="card">
   						<div class="card-body">	&nbsp;&nbsp;&nbsp;
     						<span class="upper">날짜지정:&nbsp;&nbsp;
-								<input type="text" id="pickDate" name="selectedDate" style="width:200px;height:30px;font-size:20px;">
+								<input type="text" id="pickDate" name="selectedDate" style="width:200px;height:30px;font-size:20px;" readonly>
 							</span>
  						 </div>
 					</div>

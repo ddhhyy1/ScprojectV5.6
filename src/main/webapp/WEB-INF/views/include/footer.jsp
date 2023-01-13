@@ -13,21 +13,11 @@
 			&nbsp;
 			<br>
 		</tr>
-		<tr class="footerline02">
-			<td class="footerbox02">Nangcho StudyCafe </td>
-		</tr>
 			<tr class="footerline02">
-			<td class="footerbox02">대표번호:010-1234-5678 </td>
+			<td class="footerbox02">대표번호:010-1234-5678 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일:nangcho@naver.com </td>
 		</tr>
 		<tr class="footerline02">
 			<td class="footerbox02">Copyright ⓒ NangchoCompany. All Rights Reserved</td>
-		</tr>
-	
-		<tr class="footerline02">
-			<td class="footerbox02">This homepage is built with Spring Framework.</td>
-		</tr>
-		<tr class="footerline02">
-			<td class="footerbox02">Made by Nangcho. </td>
 		</tr>
 	</table>
 </body>

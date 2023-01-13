@@ -120,7 +120,7 @@ document.write(aMonth.substr(0,8) + '<br>');
 					<div class="card">
   						<div class="card-body">	&nbsp;&nbsp;&nbsp;
     						<span class="upper">날짜지정:&nbsp;&nbsp;
-								<input type="text" id="pickDate" name="selectedDate" style="width:200px;height:30px;font-size:20px;">
+								<input type="text" id="pickDate" name="selectedDate" style="width:200px;height:30px;font-size:20px;" readonly>
 							</span>
  						 </div>
 					</div>

@@ -221,7 +221,7 @@ public class AdminController {
 		
 		TodayTicketDao dao = sqlSession.getMapper(TodayTicketDao.class);
 		
-		List<ScSalesDto> salesDto = dao.getChartInfo(); //ASC로 월별 그룹화 하여 매출 가져옴
+		
 		List<ScSalesDto> salesDto2 = dao.getChartInfo2(); //DESC로 월별 그룹화 하여 매출 가져옴
 		
 		//DESC로 시도

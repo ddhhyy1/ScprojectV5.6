@@ -17,6 +17,11 @@
 		alert("좌석을 선택해주세요!");
 		return;
 	}
+	if(document.searchSeatForm.selectedDate.value == 0 ){
+		alert("좌석을 선택해주세요!");
+		return;
+	}
+	
 	
 	
 	document.searchSeatForm.submit();

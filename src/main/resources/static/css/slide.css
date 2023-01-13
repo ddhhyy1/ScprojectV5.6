@@ -122,10 +122,11 @@ li {
   flex-shrink: 0;
   transition: left 0.15s;
 }
+@import url('https://fonts.googleapis.com/css2?family=Prosto+One&display=swap');
 .my-div {
-  color: #6f6f6f;
+  color: #000040;
   font-size:70px;
-  font-family:"굴림";
+  font-family: 'Prosto One', cursive;
   height : 400px;
   text-align : center;
   padding : 150px 0;	
