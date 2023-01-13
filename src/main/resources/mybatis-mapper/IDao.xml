@@ -36,6 +36,8 @@
 	
 	<!-- 당일 이용권 끝  -->
 	
+	
+	
 	<!-- 시간 이용권 관련 -->
 	<insert id="BuySTicket">
 		INSERT INTO SUBSCRIPTIONTBL(sticketNo, sticketName, suserId, sremainTime)
@@ -62,18 +64,14 @@
 	
 	<!-- 시간 이용권 끝 -->
 	
+	
+	
 	<!-- 관리자 및 매출관련 -->
 	
 	<insert id="addSalesInfo">
 		INSERT INTO SCSALESTBL (salesNo, userId, price)
 		VALUES (SALES_seq.nextval, #{param1}, #{param2})
 	</insert>
-	
-	<select id="getChartInfo" resultType="com.studycafe.prac.dto.ScSalesDto">
-		SELECT SUM(PRICE) AS sumSales FROM scsalestbl
-		GROUP BY substr(salesdate,1,7)
-		order By substr(salesdate,1,7) asc
-	</select>
 	
 	<select id="getChartInfo2" resultType="com.studycafe.prac.dto.ScSalesDto">
 		SELECT SUM(PRICE) AS sumSales FROM scsalestbl
@@ -93,11 +91,19 @@
 	</delete>
 	
 	<select id="getAllSeatInfo" resultType="com.studycafe.prac.dto.seatDto">
-		SELECT * FROM SCSEATTBL
+		SELECT * FROM
+			(SELECT A.*,Floor((ROWNUM-1)/#{amount}+1)PAGE,ROWNUM
+			FROM
+			(SELECT * FROM SCSEATTBL ORDER BY TEMPUSINGNO DESC)A) 
+		WHERE PAGE= #{pageNum}
 	</select>
 	
 	<select id="getAllOldSeatInfo" resultType="com.studycafe.prac.dto.oldSeatDto">
-		SELECT * FROM SCOLDSEATTBL
+		SELECT * FROM
+			(SELECT A.*,Floor((ROWNUM-1)/#{amount}+1)PAGE,ROWNUM
+			FROM
+			(SELECT * FROM SCOLDSEATTBL ORDER BY RESERVNO DESC)A) 
+		WHERE PAGE= #{pageNum}
 	</select>
 	
 	<select id="getAllSeatCount" resultType="int">
@@ -124,6 +130,8 @@
 	<update id="updateUticket">
 		UPDATE SCMEMBERTBL SET USINGTICKET =#{param2} WHERE USERID=#{param1}
 	</update>
+	
+	
 	
 	<!-- 내 예약정보확인 관련 -->
 	

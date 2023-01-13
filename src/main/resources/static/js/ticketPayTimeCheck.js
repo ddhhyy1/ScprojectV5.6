@@ -54,6 +54,8 @@ if (count == 0) {  //관심분야 확인
    			}
    
    
+   
+   
          document.timeCheckOk.submit();
    
 }

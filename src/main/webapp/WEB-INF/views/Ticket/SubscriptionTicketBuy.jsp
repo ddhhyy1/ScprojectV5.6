@@ -17,29 +17,21 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/seatTable.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ticketView.css">
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
 <!-- bootstrap JS -->
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>   
 <!-- bootstrap CSS -->
 <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 <title>시간권 구매</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
-<script type="text/javascript">
-function reply_click(cliked_id)
-{
-alert(clicked_id);	
-}
-</script>
-<script type="text/javascript"> 
-var userPoint = '${memberdto.userPoint}';
-userPoint = parseInt(userPoint);
-</script>
+
+
 <script type="text/javascript">
 $(function(){
 	
     $('.change50').off().on("click",function(){
-    	
+    	var userPoint = '${memberdto.userPoint}';
+    	userPoint = parseInt(userPoint);
     	$('input[name=sticketName]').attr('value',"65,000");
     	userPoint = userPoint-65000;
     	$('input[name=afterPayingPoint]').attr('value',userPoint);
@@ -47,6 +39,8 @@ $(function(){
 });
 $(function(){
     $('.change100').click(function(){
+    	var userPoint = '${memberdto.userPoint}';
+    	userPoint = parseInt(userPoint);
     	$('input[name=sticketName]').attr('value',"120,000");
     	userPoint = userPoint-120000  
     	$('input[name=afterPayingPoint]').attr('value',userPoint);
@@ -54,6 +48,8 @@ $(function(){
 });
 $(function(){
     $('.change150').click(function(){
+    	var userPoint = '${memberdto.userPoint}';
+    	userPoint = parseInt(userPoint);
     	$('input[name=sticketName]').attr('value',"160,000");
     	userPoint = userPoint-160000
     	$('input[name=afterPayingPoint]').attr('value',userPoint);
@@ -61,6 +57,8 @@ $(function(){
 });
 $(function(){
     $('.change200').click(function(){
+    	var userPoint = '${memberdto.userPoint}';
+    	userPoint = parseInt(userPoint);
     	$('input[name=sticketName]').attr('value',"200,000");
     	userPoint = userPoint-200000
     	$('input[name=afterPayingPoint]').attr('value',userPoint);

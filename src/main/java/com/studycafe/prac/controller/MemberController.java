@@ -113,7 +113,7 @@ public class MemberController {
 		String uPoint = request.getParameter("userPoint");
 		String uTicket = request.getParameter("usingTicket");
 		System.out.println(uId);
-		int userIdCount = dao.getUserIdCount("uId");
+		int userIdCount = dao.getUserIdCount(uId);
 		
 		System.out.print(userIdCount);
 		if(userIdCount == 0) {
