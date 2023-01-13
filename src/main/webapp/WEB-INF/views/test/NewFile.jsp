@@ -38,7 +38,7 @@
   //주소창에서 입력한 값들 저장
  String selectedDate=request.getParameter("selectedDate");
  String seatNo=request.getParameter("seatNo");
-%>
+%>gdgdgd
 
 
 

@@ -41,7 +41,7 @@
 	<form action="registToday" name="timeCheckOk">
 	<table width="1000" border="0" cellspacing="0" cellpadding="20">
 		
-		
+		gdsaggasggdsagadsgsagadsgdg
 		<input type="hidden" name = "selectedDate" value="<%=selectedDate%>">
 		<input type="hidden" name = "seatNo" value="<%=seatNo%>">
 		<tr>

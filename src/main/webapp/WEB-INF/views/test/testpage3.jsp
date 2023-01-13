@@ -24,7 +24,7 @@
    
    <script language="javascript"> 
   function btn(){  
-     alert(가즈앗);
+     alert(가fsdfdsfds즈앗);
      script:window.location='index'
   } 
  </script> 
