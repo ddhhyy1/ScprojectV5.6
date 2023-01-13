@@ -3,12 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="<%=request.getContextPath() %>/resource/js/jquery-3.4.1.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/title.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/join.js"></script>
+
 <meta charset="UTF-8">
 <title>회원가입 페이지</title>
 </head>
@@ -48,10 +50,8 @@
 										  <div class="input-box">
 										  <input id="username" type="text" name="userId" placeholder="아이디">
 										  <label for="userId">아이디</label>
-										  <input  type="submit" value="아이디 확인">
-										  
 										  </div>
-										
+					
 										</td>
 									</tr>
 									

@@ -38,7 +38,7 @@ public class AdminController {
 		
 		return "admin/adminMain";
 	}
-	@RequestMapping(value="/admReservList")//관리자메인페이지
+	@RequestMapping(value="/admReservList")//관리자 예약목록 확인
 	public String admReservList(HttpSession session, Model model,HttpServletRequest request, Criteria cri) {
 		
 		TodayTicketDao tDao = sqlSession.getMapper(TodayTicketDao.class);
@@ -72,7 +72,7 @@ public class AdminController {
 		return "admin/admReservList";
 	}
 	
-	@RequestMapping(value="/admOldReservList")//관리자메인페이지
+	@RequestMapping(value="/admOldReservList")//관리자 과거 예약목록
 	public String admOldReservList(Model model,HttpServletRequest request, Criteria cri) {
 		
 		TodayTicketDao tDao = sqlSession.getMapper(TodayTicketDao.class);
@@ -80,11 +80,30 @@ public class AdminController {
 		int totalRecord = tDao.getAllOldSeatCount();
 		
 		
+		int pageNumInt = 0;
+		if(request.getParameter("pageNum") == null ) {
+			System.out.print(request.getParameter("pageNum"));
+			pageNumInt = 1;
+			cri.setPageNum(pageNumInt);
+			
+		}	else {	
+			
+			pageNumInt = Integer.parseInt( request.getParameter("pageNum"));
+			cri.setPageNum(pageNumInt);
+			
+		}
+//		cri.setPageNum();
+	
+		cri.setStartNum(cri.getPageNum()-1*cri.getAmount());
+		PageDto pageDto= new PageDto(cri, totalRecord );
+		
+		
 		List<seatDto> sDto= tDao.getAllOldSeatInfo(cri);
 		
 		
 		model.addAttribute("sDto",sDto);
-		
+		model.addAttribute("pageMaker", pageDto);
+		model.addAttribute("currPage",pageNumInt);
 		
 		return "admin/admOldReservList";
 	}
@@ -121,11 +140,10 @@ public class AdminController {
 		
 		
 		List<memberDto> qboardDtos = dao.getAllMemberInfo(cri);
-		
-		model.addAttribute("pageMaker", pageDto);
-		
+
 		ArrayList<memberDto> memberDto = dao.getAllMemberInfo(cri);
 		
+		model.addAttribute("pageMaker", pageDto);
 		model.addAttribute("memberDto", memberDto);
 		model.addAttribute("currPage",pageNumInt);	
 		
@@ -219,9 +237,7 @@ public class AdminController {
 		    for(int f = 0; f<SalesForMonthR.size();f++) {
 		    	SalesForMonth2.add(SalesForMonthR.get(f));
 		    }
-		    for(int z=0; z<SalesForMonth2.size();z++) {
-				System.out.println(SalesForMonth2.get(z));
-			}
+		    
 		 model.addAttribute("SalesForMonth2",SalesForMonth2);
 		return "admin/admCheckSales";
 	}

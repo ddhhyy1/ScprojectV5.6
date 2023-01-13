@@ -58,4 +58,8 @@
 	
 	</delete>
 	
+	<select id="getUserIdCount" resultType="int">
+		SELECT COUNT(*) FROM SCMEMBERTBL WHERE USERID = #{param1}
+	</select>
+	
 </mapper>

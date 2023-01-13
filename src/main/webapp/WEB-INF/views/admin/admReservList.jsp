@@ -84,8 +84,12 @@
 									
 								</td>
 							</tr>
-				
-				
+							<tr>
+								<td align="center">
+									<input class="button_type01" type="button" value="과거예약목록" onclick="script:window.location='admOldReservList'">&nbsp;&nbsp;
+									<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">	
+								</td>
+							</tr>
 				
 				
 				

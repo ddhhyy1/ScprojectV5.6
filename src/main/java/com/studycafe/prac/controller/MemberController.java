@@ -15,6 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.studycafe.prac.dao.BoardDao;
 import com.studycafe.prac.dao.MemberDao;
@@ -86,14 +88,22 @@ public class MemberController {
 		return "memberLogin";
 	}
 	
+
 	@RequestMapping(value = "/memberJoin")//사용자 회원가입
-	public String memberJoin() {
-				
+	public String memberJoin(HttpSession session) {
+		
+		
+	    
+		
 		return "memberJoin";
 	}
 	
 	@RequestMapping(value = "/JoinOk")
-	public String JoinOk(HttpServletRequest request, HttpSession session, Model model) {
+	public String JoinOk(HttpServletRequest request, HttpSession session, Model model,HttpServletResponse response) {
+		
+	
+		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		
 		
 		String uId = request.getParameter("userId");
 		String uPw = request.getParameter("userPw");
@@ -102,10 +112,28 @@ public class MemberController {
 		String uEmail = request.getParameter("userEmail");
 		String uPoint = request.getParameter("userPoint");
 		String uTicket = request.getParameter("usingTicket");
+		System.out.println(uId);
+		int userIdCount = dao.getUserIdCount("uId");
 		
-		MemberDao dao = sqlSession.getMapper(MemberDao.class);
+		System.out.print(userIdCount);
+		if(userIdCount == 0) {
+			
+			dao.joinMember(uId, uPw, uName, uPhone ,uEmail, uPoint,uTicket);
+		}else {
+			
+			try {
+				response.setContentType("text/html; charset=UTF-8");      
+		        PrintWriter out;
+				out = response.getWriter();
+				out.println("<script>alert('중복된 아이디입니다. 다른 아이디로 설정해주세요!'); history.go(-1);</script>");
+			    out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		}
 		
-		dao.joinMember(uId, uPw, uName, uPhone ,uEmail, uPoint,uTicket);
+		
 		
 			
 			
@@ -215,6 +243,9 @@ public class MemberController {
 	
 	@RequestMapping(value="/CheckId")
 	public String CheckId() {
+		
+		
+		
 		
 		return "CheckId";
 	}

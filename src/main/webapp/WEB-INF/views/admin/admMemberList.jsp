@@ -115,9 +115,15 @@
 									
 								</td>
 							</tr>
-							<tr height="150">
+						
+							<tr height="10">
 							<td>&nbsp;</td>
-							</tr><br><br><br><br>
+							</tr><br><br>
+							<tr>
+										<td align="center"><span class="content_text01">*회원정보를 변경하시려면, 해당 회원아이디를 클릭해주세요!</span>
+										</td>
+									</tr>
+									<br><br>
 							<tr>
 										<td colspan="3">
 			

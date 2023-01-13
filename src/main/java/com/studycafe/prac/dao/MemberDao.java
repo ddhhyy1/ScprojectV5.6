@@ -31,5 +31,6 @@ public interface MemberDao {
 	
 	public void admMemberKick(String userId);
 	
+	public int getUserIdCount(String userId);
 
 }

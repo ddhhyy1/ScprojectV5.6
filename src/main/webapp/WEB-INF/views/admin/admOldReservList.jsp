@@ -50,7 +50,7 @@
 				  <tbody class="table-group-divider">
 				    <c:forEach items="${sDto}" var="sdto">									
 						<tr class="seatTblTr">	
-							<th scope="row">${sdto.tempUsingNo}</th>
+							<th scope="row">${sdto.reservNo}</th>
 							<td>${sdto.seatNo}번</td>
 							<td>${sdto.userId}</td>
 							<td>${sdto.ticketName}시간</td>
@@ -63,7 +63,7 @@
 				<tr>
 								<td colspan="6" align="center">
 									<c:if test="${pageMaker.prev}">
-										<a href="admReservList?pageNum=${pageMaker.startPage-5 }"> Prev</a>&nbsp;&nbsp;&nbsp;
+										<a href="admOldReservList?pageNum=${pageMaker.startPage-5 }"> Prev</a>&nbsp;&nbsp;&nbsp;
 									</c:if>
 								 
 									<c:forEach begin = "${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
@@ -72,19 +72,24 @@
 									 		<u>${num}</u>&nbsp;&nbsp;&nbsp;
 										</c:when>
 										<c:otherwise>
-											<a href="admReservList?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
+											<a href="admOldReservList?pageNum=${num }">${num }</a>&nbsp;&nbsp;&nbsp;
 										</c:otherwise>
 										
 										</c:choose>
 									</c:forEach>
 									
 									<c:if test="${pageMaker.next}">
-										<a href="admReservList?pageNum=${pageMaker.startPage+5 }"> Next </a>
+										<a href="admOldReservList?pageNum=${pageMaker.startPage+5 }"> Next </a>
 									</c:if>
 									
 								</td>
 							</tr>
-				
+							
+							<tr>
+								<td align="center">
+									<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">	
+								</td>
+							</tr>
 				
 				
 				
