@@ -127,8 +127,8 @@ public class MemberController {
 				
 				model.addAttribute("uName", uName);
 				model.addAttribute("uId", userId);
-				
-				
+				System.out.println("성공!");
+			}
 		}else {
 			
 			try {
@@ -146,7 +146,7 @@ public class MemberController {
 		
 		
 			
-		} 
+		
 		return "redirect:index";
 	}
 	
