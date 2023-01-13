@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,83 +14,82 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/title.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/board.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+<!-- bootstrap JS -->
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>   
+<!-- bootstrap CSS -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 <title>질문하기</title>
 </head>
 <body>
 	<%@ include file="include/header.jsp" %>
+	
+	
 	<center>
-	<table width="75%" border="0" cellspacing="0" cellpadding="20">
-		<tr>
-			<td class="titlebox1">
-				<span class="title01"><img src="${pageContext.request.contextPath} /resources/img/book.png" >STUDY CAFE</span>
-			</td>
-		</tr>
-		
-		<tr>
-			<td>
-				<center>
-				<table width="80%" border="0" cellspacing="0" cellpadding="10">
-					<tr class="contentbox">
-						<td class="content">
-							<center>						
-							<table width="75%" border="0" cellspacing="0" cellpadding="20">
-								<form action="questionOk" method="post" name="board_frm">
-								
-									<tr>
-										<td colspan="2" align="center" class="content_text01"><font size="6">
-										질문게시판
-										</font></td>
-									</tr>
-									
-									<tr>
-										
-										<td><input class="input_type01" type="hidden" name="buserid" value="${userId }" readonly="readonly"></td>
-									</tr>
-								</table>
-									
-									<table border="0" cellspacing="0" cellpadding="10">
-										<center>
-									<tr>
-										
-										<td>
-										  <div class="input-box">
-                							<input type="text" name="btitle" placeholder="제목">
-                								<label for="btitle">제목</label>
-            								</div>
-										</td>
-									</tr>
-									
-									<tr>
+	<table width="35%" border="0" cellspacing="0" cellpadding="20">
+	<div class="card text-bg-dark">
+	<img src="${pageContext.request.contextPath} /resources/img/06.PNG" class="card-img" alt="...">
+        <div class="card-img-overlay">
+             <h1 class="card-title">STUDY CAFE</h1>
+          <p class="card-text">This is made by Nangcho_Team</p>   
+        </div>
+      </div>
+<td class="content">
+		<center>	
+		<form action="questionOk" method="post" name="board_frm">
+			<table class="table" width="200" text-align="center">
+			<input type="hidden" value="${qdto.bnum }" name="bnum">
+  				<thead>
+    				<tr colspan="2">
+      					<th scope="col" colspan="2"><div align="center" >
+      						
+      												<h3>질문하기</h3></div></th>
+      												<input class="input_type01" type="hidden" name="buserid" value="${userId }" readonly="readonly">
+    											</tr>
+  											</thead>
+  											<tbody class="table-group-divider">
+  											
+  											<tr>
+      												<th scope="row"><span class="content_text01">&nbsp;&nbsp;&nbsp;제목 : &nbsp;&nbsp;&nbsp;&nbsp;</span>
+													<td>
 										 
+                							<input type="text" name="btitle" placeholder="제목" size = 50> 
+                								
+            								
+										</td>
+    											</tr>
+    											
+    											
+    											<tr>
+										 <th scope="row"><span class="content_text01">&nbsp;&nbsp;&nbsp;내용 : </span>
 										<td>
 										
-										<textarea class="textarea_a1" style = "opacity:0.7" rows="10" cols="30" name="bcontent" placeholder="질문내용"></textarea>
+										<textarea class="textarea_a1" style = "opacity:0.7" rows="10" cols="30" name="bcontent" placeholder="내용"></textarea>
 										
 											
 										</td>
-									</tr>									
-									
+									</tr>			
 									
 									<tr>
-										<td colspan="2">
+										<td colspan="2" align = "center">
+										<br>
 											<input class="button_type01" type="button" value="질문하기" onclick="boardCheck()">&nbsp;&nbsp;
 											<input class="button_type01" type="button" value="글목록" onclick="script:window.location='list'">
 										</td>
 									</tr>
-								</form>							
-								</table>
-							</center>							
-						</td>						
-					</tr>
-					
-				</table>
-				</center>			
-			</td>
-		</tr>
-	</table>
-	</center>
+    											
+  												</tbody>
+												</table>	
+												
+			
+								</form>
+		</center>
+		</td>
+		</table>
+		</center>
 
 	<%@ include file="include/footer.jsp" %>
 </body>

@@ -105,20 +105,30 @@ public class MemberController {
 		MemberDao dao = sqlSession.getMapper(MemberDao.class);
 		
 		
-		String uId = request.getParameter("userId");
+		String userId = request.getParameter("userId");
 		String uPw = request.getParameter("userPw");
 		String uName = request.getParameter("userName");
 		String uPhone = request.getParameter("userPhone");
 		String uEmail = request.getParameter("userEmail");
 		String uPoint = request.getParameter("userPoint");
 		String uTicket = request.getParameter("usingTicket");
-		System.out.println(uId);
-		int userIdCount = dao.getUserIdCount(uId);
-		
-		System.out.print(userIdCount);
+		System.out.println(userId);
+
+		int userIdCount = dao.getUserIdCount(userId);
+		System.out.println(userIdCount);
+
 		if(userIdCount == 0) {
 			
-			dao.joinMember(uId, uPw, uName, uPhone ,uEmail, uPoint,uTicket);
+			int joinFlag =dao.joinMember(userId, uPw, uName, uPhone ,uEmail, uPoint,uTicket);
+			
+			if(joinFlag == 1) {//회원가입 성공시 바로 로그인 진행
+				session.setAttribute("userId", userId);
+				session.setAttribute("uName", uName);
+				
+				model.addAttribute("uName", uName);
+				model.addAttribute("uId", userId);
+				
+				
 		}else {
 			
 			try {
@@ -136,11 +146,9 @@ public class MemberController {
 		
 		
 			
-			
-			return "redirect:index";
 		} 
-		
-	
+		return "redirect:index";
+	}
 	
 
 	@RequestMapping(value = "/memberInfo")

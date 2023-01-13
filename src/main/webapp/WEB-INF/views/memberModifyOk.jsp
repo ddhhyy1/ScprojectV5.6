@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,69 +17,67 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/login.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/join.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+<!-- bootstrap JS -->
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>   
+<!-- bootstrap CSS -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 <title>내 정보</title>
 </head>
 <body>
 <%@ include file="include/header.jsp" %>
+
 <center>
-	<table width="75%" border="0" cellspacing="0" cellpadding="20">
-		<table width="75%" border="0" cellspacing="0" cellpadding="20">
+	<table width="35%" border="0" cellspacing="0" cellpadding="20">
 		<div class="card text-bg-dark">
-           <img src="${pageContext.request.contextPath} /resources/img/07.PNG" class="card-img" alt="...">
+           <img src="${pageContext.request.contextPath} /resources/img/01.PNG" class="card-img" alt="...">
         <div class="card-img-overlay">
              <h1 class="card-title">STUDY CAFE</h1>
           <p class="card-text">This is made by Nangcho_Team</p>   
         </div>
       </div>
-		
-		<tr>
-			<td>
-				<center>
-				<table width="90%" border="0" cellspacing="0" cellpadding="10">
-					<tr class="contentbox">
+      
 						<td class="content">
-							<center>						
-							<table border="3" cellspacing="10" cellpadding="25">
-									<tr>
-										<td colspan="2" align="center" class="content_text01"><font size="6">
-										내 정보 
-										</font></td>
-									</tr>
-									<tr>
-									<td colspan="2" align="center" class="content_text01">
-										&nbsp;
+							<center>	
+							<table class="table" width="350" text-align="center">
+  											<thead>
+    											<tr colspan="2">
+      												<th scope="col" colspan="2"><div align="center" >
+      												<h3>내 정보</h3></div></th>
+    											</tr>
+  											</thead>
+  											<tbody class="table-group-divider">
+    											<tr>
+      												<th scope="row"> <span class="content_text01">아이디 :</span></th>
+      												<td> <span class="content_text01">${memberDto.userId }</span></td>
+  											    </tr>
+    											<tr>
+      												<th scope="row"> <span class="content_text01">이&nbsp;&nbsp;&nbsp;&nbsp;름: </span></th>
+													<td> <span class="content_text01">${memberDto.userName }</span></td>
+    											<tr>																
+														<th scope="row"><span class="content_text01">전화번호 : </span></th>
+														<td><span class="content_text01">${memberDto.userPhone }</span></td>
+    											</tr>
+    											<tr>
+      												<th scope="row"><span class="content_text01">이메일 : </span>
+													<td><span class="content_text01">${memberDto.userEmail }</span></td>
+    											</tr>
+    											<tr>
+      												<th scope="row"><span class="content_text01">잔여 포인트 : </span>
+													<td><span class="content_text01">${memberDto.userPoint }</span></td>
+    											</tr>
+    											
+  												</tbody>
+												</table>	
+												
+			<tr>
+										<td colspan="2" align="center">
+											<input class="button_type01" type="button" value="정보 수정" onclick="script:window.location='memberModify'">
+											<input class="button_type01" type="button" value="회원 탈퇴" onclick="script:window.location='memberDelete'">
 										</td>
 									</tr>
-									<tr>
-										<td><span class="content_text01">아 이 디 : </span></td>
-										<td>${memberDto.userId }</td>
-									<tr>
-										<td><span class="content_text01">비밀번호 </span></td>
-										<td>${memberDto.userPw }</td>
-									</tr>
-							
-									<tr>
-										<td><span class="content_text01">이&nbsp;&nbsp;&nbsp;&nbsp;름 : </span></td>
-										<td>${memberDto.userName }</td>
-									</tr>
-									<tr>
-										<td><span class="content_text01">전화번호 : </span></td>
-										<td>${memberDto.userPhone }</td>
-									</tr>
-									<tr>
-										<td><span class="content_text01">이 메 일 : </span></td>
-										<td>${memberDto.userEmail }</td>
-									</tr>
-									
-									<tr>
-										<td colspan="2">
-											<input class="button_type01" type="button" value="확인" onclick="script:window.location='index'">
-										</td>
-									</tr>
-							
 		
-		</table>
-		</form>
 		</center>
 		</td>
 		</tr>

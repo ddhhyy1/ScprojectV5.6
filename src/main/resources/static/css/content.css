@@ -34,10 +34,17 @@ span.content_text01 {
 	color: #003333;	
 }
 
+span.content_text02 {
+	font-family: malgun;
+	font-size: 20px;
+	font-weight: bold;
+	color: #000000;	
+}
+
 input.input_type01 {
 	background-color: #ffffff;
 	border: 1px solid #FED39F;
-	width: 200px;
+	width: 400px;
 	font-family: Arial;
 	font-size: 20px;
 	color: #2a2a2a;
@@ -107,7 +114,7 @@ input.button_type02:hover {
 
 textarea.textarea_a1 {
 	background-color: #ffffff;
-	border: 1px solid #FED39F;
+	border: 1px solid #B2B2B2;
 	width: 400px;
 	font-family: Arial;
 	font-size: 20px;

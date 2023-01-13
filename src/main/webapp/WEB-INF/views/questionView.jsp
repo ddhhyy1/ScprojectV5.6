@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,75 +16,61 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/board.css">
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/board.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+<!-- bootstrap JS -->
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>   
+<!-- bootstrap CSS -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 <title>내 질문</title>
 </head>
 <body>	
 	<%@ include file="include/header.jsp" %>
 	<center>
-	<table width="75%" border="0" cellspacing="0" cellpadding="20"><div class="card text-bg-dark">
-           <img src="${pageContext.request.contextPath} /resources/img/01.PNG" class="card-img" alt="...">
+	<table width="35%" border="0" cellspacing="0" cellpadding="20">
+	<div class="card text-bg-dark">
+	<img src="${pageContext.request.contextPath} /resources/img/01.PNG" class="card-img" alt="...">
         <div class="card-img-overlay">
              <h1 class="card-title">STUDY CAFE</h1>
           <p class="card-text">This is made by Nangcho_Team</p>   
         </div>
       </div>
-		
-		<tr>
-			<td colspan="2" align="center" class="content_text01"><font size="6" style="font-weight:bold">
-				질문
-			</font></td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center" class="content_text01">
-				&nbsp;
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<center>
-				<table width="80%" border="0" cellspacing="0" cellpadding="10">
-					
-					<tr class="contentbox">
-						<td class="content">
-								<center>					
-							<table border="0" cellspacing="0" cellpadding="10">
-								
-								<form action="questionModify" method="post" name="board_frm">
-									<input type="hidden" value="${qdto.bnum }" name="bnum">
-									
-									<table border="0" cellspacing="0" cellpadding="10">
-										
-									<tr>
-										
-										<td>
-										  <div class="input-box">
-                							<input class="input_type01" type="text" name="btitle" value="${qdto.btitle }" readonly="readonly">
-                								<label for="btitle"></label>
-            								</div>
-										</td>
-									</tr>
-										
-									<tr>
-										 
-										<td>
-										
-										<textarea class="textarea_a1" rows="10" cols="50" name="bcontent" readonly="readonly">${qdto.bcontent }</textarea>
-										
-											
-										</td>
-									</tr>	
-										
-									</table>	
-									<table border="0" cellspacing="0" cellpadding="10">												
-									<tr>
-										<td><span class="content_text01">아 이 디 : </span></td>
-										<td><input class="input_type01" type="text" name="buserid" value="${qdto.buserid }" readonly="readonly"></td>
-									</tr>
-									<tr>
-										<td><span class="content_text01">등 록 일 : </span></td>
-										<td><input class="input_type01" type="text" name="bdate" value="${qdto.bdate }" readonly="readonly"></td>
-									</tr>
-									<tr>
+<td class="content">
+		<center>	
+		<form action="questionModify" method="post" name="board_frm">
+			<table class="table" width="200" text-align="center">
+			<input type="hidden" value="${qdto.bnum }" name="bnum">
+  				<thead>
+    				<tr colspan="2">
+      					<th scope="col" colspan="2"><div align="center" >
+      												<h3>질문</h3></div></th>
+    											</tr>
+  											</thead>
+  											<tbody class="table-group-divider">
+  											
+  											<tr>
+      												<th scope="row"><span class="content_text01">제목 : </span>
+													<td><span class="content_text01" name="btitle" readonly="readonly">${qdto.btitle }</span></td>
+    											</tr>
+    											<tr>
+      												<th scope="row"> <span class="content_text01">아이디 :</span></th>
+      												<td> <span class="content_text01" name="buserid" readonly="readonly">${qdto.buserid }</span></td>
+  											    </tr>
+    											
+    											<tr>																
+														<th scope="row"><span class="content_text01">작성시간 : </span></th>
+														<td><span class="content_text01" name="bdate" readonly="readonly">${qdto.bdate }</span></td>
+    											</tr>
+    											
+    											<tr>
+      												
+													<td><span class="content_text02" name="bcontent" readonly="readonly" font-style:solid> ${qdto.bcontent }</span></td>
+    											</tr>
+    											
+  												</tbody>
+												</table>	
+												
+			<tr align="center">
 										<td colspan="2">
 										
 										<%
@@ -87,8 +78,8 @@
 											if((sessionId != null ) && (sessionId.equals(boardId))) {
 										%>
 											<input class="button_type01" type="submit" value="수정">&nbsp;&nbsp;
-											<input class="button_type01" type="button" value="삭제" onclick="script:window.location='questionDelete?bnum=${qdto.bnum}'">
 											<input class="button_type01" type="button" value="글목록" onclick="script:window.location='list'">
+											<input class="button_type01" type="button" value="삭제" onclick="script:window.location='questionDelete?bnum=${qdto.bnum}'">
 										<%
 											} else {
 										%>
@@ -98,12 +89,12 @@
 										%>
 										</td>
 									</tr>
-									</table>
 								</form>
-								
-								</table>
-								</center>
-			
+		</center>
+		</td>
+		</table>
+		</center>
+		
 			<tr>
 									<td colspan="2" align="center" class="content_text01">
 										&nbsp;
@@ -114,6 +105,7 @@
         	<form action="replyOk" method="post" name="reply_frm">
         <input type="hidden" name="bnum" value="${qdto.bnum }">
 									<tr>
+									<br><br><br>
 										<td><span class="content_text01">댓 글 :  </span></td>
 										<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 										<td><input class="input_type01" type="text" name="rcontent" ></td>
@@ -132,15 +124,16 @@
 		 <br><br><br><br>								
         
 		
-		
+		<div>
+
         	<c:forEach items="${replylist }" var="replyDtoa">
-        	<font size ="6">${replyDtoa.rid } </font>&nbsp; &nbsp; &nbsp;
-        			${replyDtoa.rdate } <br><br>
-        <div class ="x">
-        	<tr class = "reply3" width="550">
+        	<font size ="6" >${replyDtoa.rid } </font>&nbsp; &nbsp; &nbsp;
+        			${replyDtoa.rdate } &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;<br><br>
+        <div class ="x" >
+        	
         		
         		<br><br>
-        	<font size ="5">${replyDtoa.rcontent }</font>	
+        	&nbsp;&nbsp;&nbsp;<font size ="5">${replyDtoa.rcontent }</font>	&nbsp;&nbsp;&nbsp;
         		<br><br><br>
 
         	</div>	
@@ -157,8 +150,10 @@
         	</tr>
      
         	<br><br>
-        	</c:forEach>
         	
+        	</c:forEach>
+        	</div>
+
       
         	<tr>
 			<td colspan="2" align="center" class="content_text01">

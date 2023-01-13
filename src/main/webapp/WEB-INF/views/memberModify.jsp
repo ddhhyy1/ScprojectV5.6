@@ -32,7 +32,7 @@
 							<center>
 												
 							<table border="0" cellspacing="0" cellpadding="10">
-							<form action="memberModifyOk" method="post" name="modify_frm">
+							<form action="memberInfo" method="post" name="modify_frm">
 									<tr>
 										<td colspan="2" align="center" class="content_text01"><font size="6">
 										정보 수정 
