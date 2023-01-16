@@ -108,24 +108,35 @@
 							<tbody class="seatTblBody">									
 									<c:forEach begin="8" end="23" step="1" var="l" >
 												<c:choose>
-													<c:when test="${opTimes[l-8]==0}">
+														<c:when test="${opTimes[l-8]==0}">
+															 <c:if test="${l <= rightNow}">
+	            												<tr class="seatTblTr">
+																<td class="seatTblTdReserved">${l}:00 ~ ${l+1}:00</td>
+																<td class="seatTblTdReserved"> 예약 불가</td>
+																<td class="seatTblTdReserved"></td>
+												 			</tr>
+														        </c:if>
+														        <c:if test="${l >= rightNow}">
+														           <tr class="seatTblTr">
+																   <td class="seatTblTd">${l}:00 ~ ${l+1}:00</td>
+																   <td class="seatTblTd"> 예약가능</td>
+																   <td class="seatTblTd">
+																	<label>
+																		<input class=checkTime type="checkbox" name="selectedTime" value="${l-8}">
+																	</label>
+																   </td>
+											 					   </tr>
+														        </c:if>
+													 </c:when>
+													<c:otherwise>
 														<tr class="seatTblTr">
-															<td class="seatTblTd">${l}:00 ~ ${l+1}:00</td>
-															<td class="seatTblTd"> 예약 가능</td>
-															<td class="seatTblTd">
-															<label>
-																<input class=checkTime type="checkbox" name="selectedTime" value="${l-8}">
-															</label>		 					 				
+															<td class="seatTblTdReserved">${l}:00 ~ ${l+1}:00</td>
+															<td class="seatTblTdReserved"> 예약 불가</td>
+															<td class="seatTblTdReserved">
+																	 					 				
 															</td>
 											 			</tr>
-													 </c:when>
-													 <c:otherwise>
-											 			<tr class="seatTblTrReserved">
-															<td class="seatTblTdReserved">${l}:00 ~ ${l+1}:00</td>
-															<td class="seatTblTdReserved">이미 예약됨</td>	
-															<td class="seatTblTdReserved"></td>						
-														</tr>
-													</c:otherwise>
+													 </c:otherwise>											
 												</c:choose>
 									</c:forEach>
 							</tbody>

@@ -2,8 +2,10 @@ package com.studycafe.prac.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -182,16 +184,37 @@ public class SubcriptionTicketController {
 			        }
 			        
 			    List<String> OccupiedTimes = new ArrayList<String>();
-			    for(f = 1; f<=17;f++) {
+			    for(f = 8; f<24;f++) {
 			    	if(IntDBselectedTimes.contains(f)) {
 			    		OccupiedTimes.add("1");
 			    	}else {
 			    		OccupiedTimes.add("0");
 			    	}
+	
 			    }
-		model.addAttribute("selectedDate", selectedDate);
-		model.addAttribute("seatNo", seatNo);
-		model.addAttribute("opTimes",OccupiedTimes);
+			    for(int i=1; i<OccupiedTimes.size();i++) {
+		    		System.out.print(OccupiedTimes.get(i));
+		    	}
+			    //오늘 날짜와 시간 구해서, 오늘 날짜와 시간 이전인 예약좌석 예약불가
+			    Date now = new Date();
+				System.out.println(now);
+				String strNow = now.toString(); 
+				String rightNow = strNow.substring(11,13);
+				LocalDate now2 = LocalDate.now();
+				String Date = now2.toString(); 
+				String today = Date.substring(0,4)+Date.substring(5,7)+Date.substring(8,10);
+				
+				
+				if(selectedDate.equals(today)) {	    
+					model.addAttribute("rightNow",rightNow);
+					}else {
+					rightNow = "0";
+					model.addAttribute("rightNow",rightNow);
+					}
+				
+					model.addAttribute("selectedDate", selectedDate);
+					model.addAttribute("seatNo", seatNo);
+					model.addAttribute("opTimes",OccupiedTimes);
 		
 		return "Ticket/SubscriptionTicketView2";
 	

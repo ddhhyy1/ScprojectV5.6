@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
@@ -12,13 +12,13 @@
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/ticketPayTimeCheck.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/ticketPayTimeCheck2.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/searchSeatForm.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/seatjs.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/title.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/seatTable.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/content.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/ticketView.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+
 <!-- bootstrap JS -->
 <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>   
 <!-- bootstrap CSS -->
@@ -26,134 +26,172 @@
 
 <script type="text/javascript">
 
+
+		<!--      달력 추가 js 시작       -->
+		$(document).ready(function () {
+            $.datepicker.setDefaults($.datepicker.regional['ko']); 
+            $( "#pickDate" ).datepicker({
+            	 showOn: "button",
+                 buttonImage:"${pageContext.request.contextPath }/resources/img/cal.png",
+                 buttonImageOnly: true,
+                 changeMonth: true, 
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달', 
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yymmdd",
+                 minDate: 0,
+                 maxDate: "+10Y",                       // 선택할수있는 최소날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+                 onClose: function( selectedDate ) {    
+                      //시작일(startDate) datepicker가 닫힐때
+                      //종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+                     $("#endDate").datepicker( "option", "minDate", selectedDate );
+                 }    
+ 
+            });
+            $( "#endDate" ).datepicker({
+                 changeMonth: true, 
+                 changeYear: true,
+                 nextText: '다음 달',
+                 prevText: '이전 달', 
+                 dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'], 
+                 monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                 dateFormat: "yymmdd",
+                 
+                 maxDate: "+2Y",                       // 선택할수있는 최대날짜, ( 0 : 오늘 이후 날짜 선택 불가)
+                 onClose: function( selectedDate ) {    
+                     // 종료일(endDate) datepicker가 닫힐때
+                     // 시작일(startDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 시작일로 지정
+                     $("#startDate").datepicker( "option", "maxDate", selectedDate );
+                 }    
+ 
+            });    
+    });
+    
+   
+    <!--      달력 추가 js 끝       -->
+
 </script>
+ <script type="text/javascript">
+ document.write('1달 전 : ' + date.toLocaleString() + '<br>');
+ document.write(aMonth.substr(0,8) + '<br>');
 
-
+</script>
+    
 <meta charset="UTF-8">
-<title>당일권 사용&예약등록</title>
+<title>시간권 좌석지정</title>
+
+<style>
+.upper{
+	font-size:20px;
+	font-family: malgun;
+	font-weight: bold;
+}
+</style>
+
 </head>
 <body>
 <%@ include file="../include/header.jsp" %>
-<%
-  //주소창에서 입력한 값들 저장
- String selectedDate=request.getParameter("selectedDate");
- String seatNo=request.getParameter("seatNo");
-%>
 	<center>
-	<form action="changeConfirm" name="timeCheckOk">
-		<table width="35%" border="0" cellspacing="0" cellpadding="20">
-			<tr>	
-				<td>
-				<table class="table" width="200" height="350">
- 				 <thead>
-  	  				<tr>
-    				  	<th scope="col" colspan="2"><div align="center"><h2>예약시간 변경</h2></div></th>
-    				</tr>
-  				</thead>
-  				<tbody class="table-group-divider">
-  				  <tr>
-      					<th scope="row"><span class="title02">회원 아이디 :</span></th>
-      					<td><span class="title02"><%= sessionId %></span></td>     
-    			  </tr>
-    			  <tr>
-      					<th scope="row"><span class="title02">변경된 날짜</span></th>
-      					<td><span class="title02">${selectedDate}</span></td>
-    			  </tr>
-    			  <tr>
-      					<th scope="row"><span class="title02">변경된 좌석</span></th>
-      					<td><span class="title02">${seatNo}</span></td>
-        		  </tr>
-    			  <tr>
-      					<th scope="row"><span class="title02">기존 이용 시간</span></th>
-     					<td>	<span class="title02">${sTime}:00 ~ ${eTime}:00 &nbsp; -- &nbsp;${tHour}시간</span> </td>
-    			  </tr>
-    			  <c:choose>
-						<c:when test="${mDto.usingTicket >= 50}">
-							<tr>
-							<td>
-							</td>
-							</tr>
-						</c:when>
-						<c:otherwise>
-						<tr>
-								<th scope="row"><span class="title02">이용시간:</span></th>
-  									<span class="title02"><td>
-  									<select name="ticketName" style="font-size:20px">
-   						 				<option value="none" name="usingTIME">=== 선택 ===</option>
-   						 				<option value="1" selected>1시간 - 2,000p</option>
-    					 				<option value="2">2시간 - 3,000p</option>
-    									<option value="4">4시간 - 5,000p</option>
-    								    <option value="6">6시간 - 6,000p</option>
-    					 				<option value="8">8시간 - 7,000p</option>
- 					 				</select>
-									</span></td>
-							</tr>
-							</c:otherwise>
-					  </c:choose>
-  					</tbody>
-				</table>
-			<td>
+	<form action="searchsTicketSeat" name="searchSeatForm">
+	<table class= "first" width="25%" border="1" cellspacing="0" cellpadding="20" radius="3">
+		<table width="35%" border="1" cellspacing="0" cellpadding="20">
+	<hr>
+		<div class="card border-dark mb-3" style="max-width: 50rem; height:35rem;">
+  			<div class="card-header"><h1>시간권 예약</h1></div>
+  				<div class="card-body text-dark">
+    			<p class="card-text">
+    				<div class="card">
+  						<div class="card-body">	
+    						<span class="upper">
+    						회원아이디	: &nbsp;&nbsp;<%= sessionId %>
+    						</span>
+ 						 </div>
+					</div>
+					<br>
+					<div class="card">
+  						<div class="card-body">	&nbsp;&nbsp;&nbsp;
+    						<span class="upper">날짜지정:&nbsp;&nbsp;
+								<input type="text" id="pickDate" name="selectedDate" style="width:200px;height:30px;font-size:20px;" readonly>
+							</span>
+ 						 </div>
+					</div>
+					<br>
+					<div class="card">
+  						<div class="card-body">	
+    						<span class="upper">좌석지정:&nbsp;&nbsp;
+  								<input type="text" name="seatNo" style="width:200px;height:30px;font-size:20px;">
+							</span>
+ 						 </div>
+					</div>
+    				</p>
+ 					</div>
+					</div>
+		
+		<table align=center>
+		<hr>
+		<tr>
+		<td>
+				<img src="${pageContext.request.contextPath} /resources/img/CafeMap2.png" usemap="#cafeMap">
+				<map name="cafeMap"  id="cafeMap">
+				<div class="change1"><area shape="rect" coords="834,27,881,81" href="javascript:void(0);"></div>
+				<div class="change2"><area shape="rect" coords="776,27,821,81" href="javascript:void(0);"></div>
+				<div class="change3"><area shape="rect" coords="717,27,764,81" href="javascript:void(0);"></div>
+				<div class="change4"><area shape="rect" coords="658,27,705,81" href="javascript:void(0);"></div>
+				<div class="change5"><area shape="rect" coords="600,27,645,81" href="javascript:void(0);"></div>
+				<div class="change6"><area shape="rect" coords="541,27,586,81" href="javascript:void(0);"></div>
+				<div class="change7"><area shape="rect" coords="480,27,529,81" href="javascript:void(0);"></div>
+				<div class="change8"><area shape="rect" coords="420,27,471,81" href="javascript:void(0);"></div>
+				<div class="change9"><area shape="rect" coords="360,27,411,81" href="javascript:void(0);"></div>
+				<div class="change10"><area shape="rect" coords="306,27,353,81" href="javascript:void(0);"></div>
+				
+				<div class="change11"><area shape="rect" coords="246,27,295,81" href="javascript:void(0);"></div>
+				<div class="change12"><area shape="rect" coords="172,27,225,78" href="javascript:void(0);"></div>
+				<div class="change13"><area shape="rect" coords="171,87,226,137" href="javascript:void(0);"></div>
+				<div class="change14"><area shape="rect" coords="171,147,225,197" href="javascript:void(0);"></div>
+				<div class="change15"><area shape="rect" coords="172,206,225,257" href="javascript:void(0);"></div>
+				<div class="change16"><area shape="rect" coords="171,260,225,316" href="javascript:void(0);"></div>
+				<div class="change17"><area shape="rect" coords="172,320,225,376" href="javascript:void(0);"></div>
+				<div class="change18"><area shape="rect" coords="19,54,79,126" href="javascript:void(0);"></div>
+				<div class="change19"><area shape="rect" coords="17,141,78,212" href="javascript:void(0);"></div>
+				<div class="change20"><area shape="rect" coords="18,226,78,298" href="javascript:void(0);"></div>
+				
+				<div class="change21"><area shape="rect" coords="17,310,78,383" href="javascript:void(0);"></div>
+				<div class="change22"><area shape="rect" coords="18,397,78,470" href="javascript:void(0);"></div>	
+				<div class="change23"><area shape="rect" coords="24,530,77,576" href="javascript:void(0);"></div>
+				<div class="change24"><area shape="rect" coords="95,530,145,576" href="javascript:void(0);"></div>
+				<div class="change25"><area shape="rect" coords="162,530,213,576" href="javascript:void(0);"></div>
+				
+				<div class="change26"><area shape="rect" coords="591,270,642,325" href="javascript:void(0);"></div>
+				<div class="change27"><area shape="rect" coords="651,270,700,325" href="javascript:void(0);"></div>
+				<div class="change28"><area shape="rect" coords="711,270,762,325" href="javascript:void(0);"></div>
+				<div class="change29"><area shape="rect" coords="771,270,822,325" href="javascript:void(0);"></div>		
+				<div class="change30"><area shape="rect" coords="591,202,642,257" href="javascript:void(0);"></div>
+				<div class="change31"><area shape="rect" coords="654,202,702,257" href="javascript:void(0);"></div>
+				<div class="change32"><area shape="rect" coords="714,202,762,257" href="javascript:void(0);"></div>
+				<div class="change33"><area shape="rect" coords="774,202,822,257" href="javascript:void(0);"></div>
+			</td>
 		</tr>
+		</table>
+		</tr>
+		</td>
+		<br>
 		<tr>
 			<td>
-				<table class="innerTable" width="70%" border="1" cellspacing="1" cellpadding="10">
-										<thead class="seatTblThead">
-											<tr class="seatTblTr">
-												<th class="seatTblTh">시간</th>
-												<th class="seatTblTh">${seatNo}번 좌석현황</th>
-												<th class="seatTblTh">시간지정</th>	
-											</tr>
-										</thead>
-										<tbody class="seatTblBody">									
-											<c:forEach begin="8" end="23" step="1" var="l" >
-												<c:choose>
-													<c:when test="${opTimes[l-8]==0}">
-													 	<tr class="seatTblTr">
-															<td class="seatTblTd">${l}:00 ~ ${l+1}:00</td>
-															<td class="seatTblTd"> 예약 가능</td>
-															<td class="seatTblTd">
-															<label>
-															<input class="checkTime" type="checkbox" name="selectedTime" value="${l-8}">
-															</label></td>
-											 			</tr>
-													 </c:when>
-												 <c:otherwise>
-														 <tr class="seatTblTr">
-															<td class="seatTblTd">${l}:00 ~ ${l+1}:00</td>
-															<td class="seatTblTd">이미 예약됨</td>							
-														 </tr class="seatTblTr">
-												 </c:otherwise>
-												</c:choose>
-											</c:forEach>
-										</tbody>
-									</table>
-										<input type="hidden" name = "userId" value="<%= sessionId %>">
-										<input type="hidden" name = "selectedDate" value="<%=selectedDate%>">
-										<input type="hidden" name = "seatNo" value="<%=seatNo%>">
-										<input type="hidden" name = "tempNo" value="${tempNo}">
-									<tr>
-										<td colspan="3">
-									<c:choose>
-										<c:when test="${mDto.usingTicket >= 50}">
-											<input class="button_type01" type="button" value="다음단계로" onclick="timeCheckOk2()">
-										</c:when>
-										<c:otherwise>
-											<input class="button_type01" type="button" value="다음단계로" onclick="timeCheckOk3()">
-										</c:otherwise>
-									</c:choose>
-											<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
-										</td>
-									</tr>
-	
-	
-	
-		</td>
+				<input class="button_type01" type="button" value="다음 단계로" onclick="seatCheckOk()">&nbsp;&nbsp;
+				<input class="button_type01" type="button" value="뒤로" onclick="window.history.back() ">
+			</td>
 		</tr>
-	
 	</table>
+	
 	</form>
 	</center>
-
-<%@ include file="../include/footer.jsp" %>
+	<%@ include file="../include/footer.jsp" %>
+	
 </body>
 </html>

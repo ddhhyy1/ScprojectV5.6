@@ -131,42 +131,42 @@
 		<td>
 				<img src="${pageContext.request.contextPath} /resources/img/CafeMap2.png" usemap="#cafeMap">
 				<map name="cafeMap"  id="cafeMap">
-				<div class="change1"><area shape="rect" coords="834,27,881,81" href=#></div>
-				<div class="change2"><area shape="rect" coords="776,27,821,81" href=#></div>
-				<div class="change3"><area shape="rect" coords="717,27,764,81" href=#></div>
-				<div class="change4"><area shape="rect" coords="658,27,705,81" href=#></div>
-				<div class="change5"><area shape="rect" coords="600,27,645,81" href=#></div>
-				<div class="change6"><area shape="rect" coords="541,27,586,81" href=#></div>
-				<div class="change7"><area shape="rect" coords="480,27,529,81" href=#></div>
-				<div class="change8"><area shape="rect" coords="420,27,471,81" href=#></div>
-				<div class="change9"><area shape="rect" coords="360,27,411,81" href=#></div>
-				<div class="change10"><area shape="rect" coords="306,27,353,81" href=#></div>
+				<div class="change1"><area shape="rect" coords="834,27,881,81" href="javascript:void(0);"></div>
+				<div class="change2"><area shape="rect" coords="776,27,821,81" href="javascript:void(0);"></div>
+				<div class="change3"><area shape="rect" coords="717,27,764,81" href="javascript:void(0);"></div>
+				<div class="change4"><area shape="rect" coords="658,27,705,81" href="javascript:void(0);"></div>
+				<div class="change5"><area shape="rect" coords="600,27,645,81" href="javascript:void(0);"></div>
+				<div class="change6"><area shape="rect" coords="541,27,586,81" href="javascript:void(0);"></div>
+				<div class="change7"><area shape="rect" coords="480,27,529,81" href="javascript:void(0);"></div>
+				<div class="change8"><area shape="rect" coords="420,27,471,81" href="javascript:void(0);"></div>
+				<div class="change9"><area shape="rect" coords="360,27,411,81" href="javascript:void(0);"></div>
+				<div class="change10"><area shape="rect" coords="306,27,353,81" href="javascript:void(0);"></div>
 				
-				<div class="change11"><area shape="rect" coords="246,27,295,81" href=#></div>
-				<div class="change12"><area shape="rect" coords="172,27,225,78" href=#></div>
-				<div class="change13"><area shape="rect" coords="171,87,226,137" href=#></div>
-				<div class="change14"><area shape="rect" coords="171,147,225,197" href=#></div>
-				<div class="change15"><area shape="rect" coords="172,206,225,257" href=#></div>
-				<div class="change16"><area shape="rect" coords="171,260,225,316" href=#></div>
-				<div class="change17"><area shape="rect" coords="172,320,225,376" href=#></div>
-				<div class="change18"><area shape="rect" coords="19,54,79,126" href=#></div>
-				<div class="change19"><area shape="rect" coords="17,141,78,212" href=#></div>
-				<div class="change20"><area shape="rect" coords="18,226,78,298" href=#></div>
+				<div class="change11"><area shape="rect" coords="246,27,295,81" href="javascript:void(0);"></div>
+				<div class="change12"><area shape="rect" coords="172,27,225,78" href="javascript:void(0);"></div>
+				<div class="change13"><area shape="rect" coords="171,87,226,137" href="javascript:void(0);"></div>
+				<div class="change14"><area shape="rect" coords="171,147,225,197" href="javascript:void(0);"></div>
+				<div class="change15"><area shape="rect" coords="172,206,225,257" href="javascript:void(0);"></div>
+				<div class="change16"><area shape="rect" coords="171,260,225,316" href="javascript:void(0);"></div>
+				<div class="change17"><area shape="rect" coords="172,320,225,376" href="javascript:void(0);"></div>
+				<div class="change18"><area shape="rect" coords="19,54,79,126" href="javascript:void(0);"></div>
+				<div class="change19"><area shape="rect" coords="17,141,78,212" href="javascript:void(0);"></div>
+				<div class="change20"><area shape="rect" coords="18,226,78,298" href="javascript:void(0);"></div>
 				
-				<div class="change21"><area shape="rect" coords="17,310,78,383" href=#></div>
-				<div class="change22"><area shape="rect" coords="18,397,78,470" href=#></div>	
-				<div class="change23"><area shape="rect" coords="24,530,77,576" href=#></div>
-				<div class="change24"><area shape="rect" coords="95,530,145,576" href=#></div>
-				<div class="change25"><area shape="rect" coords="162,530,213,576" href=#></div>
+				<div class="change21"><area shape="rect" coords="17,310,78,383" href="javascript:void(0);"></div>
+				<div class="change22"><area shape="rect" coords="18,397,78,470" href="javascript:void(0);"></div>	
+				<div class="change23"><area shape="rect" coords="24,530,77,576" href="javascript:void(0);"></div>
+				<div class="change24"><area shape="rect" coords="95,530,145,576" href="javascript:void(0);"></div>
+				<div class="change25"><area shape="rect" coords="162,530,213,576" href="javascript:void(0);"></div>
 				
-				<div class="change26"><area shape="rect" coords="591,270,642,325" href=#></div>
-				<div class="change27"><area shape="rect" coords="651,270,700,325" href=#></div>
-				<div class="change28"><area shape="rect" coords="711,270,762,325" href=#></div>
-				<div class="change29"><area shape="rect" coords="771,270,822,325" href=#></div>		
-				<div class="change30"><area shape="rect" coords="591,202,642,257" href=#></div>
-				<div class="change31"><area shape="rect" coords="654,202,702,257" href=#></div>
-				<div class="change32"><area shape="rect" coords="714,202,762,257" href=#></div>
-				<div class="change33"><area shape="rect" coords="774,202,822,257" href=#></div>
+				<div class="change26"><area shape="rect" coords="591,270,642,325" href="javascript:void(0);"></div>
+				<div class="change27"><area shape="rect" coords="651,270,700,325" href="javascript:void(0);"></div>
+				<div class="change28"><area shape="rect" coords="711,270,762,325" href="javascript:void(0);"></div>
+				<div class="change29"><area shape="rect" coords="771,270,822,325" href="javascript:void(0);"></div>		
+				<div class="change30"><area shape="rect" coords="591,202,642,257" href="javascript:void(0);"></div>
+				<div class="change31"><area shape="rect" coords="654,202,702,257" href="javascript:void(0);"></div>
+				<div class="change32"><area shape="rect" coords="714,202,762,257" href="javascript:void(0);"></div>
+				<div class="change33"><area shape="rect" coords="774,202,822,257" href="javascript:void(0);"></div>
 			</td>
 		</tr>
 		</table>
